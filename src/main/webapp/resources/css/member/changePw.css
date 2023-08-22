@@ -1,0 +1,133 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    text-align: center;
+    flex: 1;
+    
+}
+
+    #main_layer1{
+        --background-color: aqua;
+        min-height: 400px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        }
+
+        #findBox { 
+            --background-color: yellowgreen;
+            width : 400px;
+            height : 330px;
+            margin-top: 10vh;
+        }
+
+            #box_header1 {
+                --background-color: coral;
+                height : 20%;
+                
+            }
+
+
+            #box_header2{
+                --background-color: pink;
+                height : 8%;
+            }
+
+            #box_main {
+                --background-color: yellow;
+                height : 57%;
+                display : flex;
+                align-items: center;
+                flex-direction : column;
+            }
+
+                .info_field {
+                    width : 300px;
+                    height : 80px;
+                    margin : 10px;
+                }
+
+                .checkInfo{
+                    width : 300px;
+                    height : 40%;
+                    display : flex; 
+                    align-items : flex-end;
+                    padding : 5px; 
+                }
+                
+                .input_box{
+                    height : 60%;
+                }
+
+                .input_field{
+                    width : 100%;
+                    height : 100%;
+                    padding-left: 15px;
+                }
+
+
+            #box_foot{
+                --background-color : coral;
+                height : 15%;
+                text-align: center;
+                margin: 30px;
+            }
+
+                #changPwBtn{
+                    color : #FFF;
+                    background-color: #222;
+                    width : 115px;
+                    height : 40px;
+                    border-radius: 5px;
+                    text-align: center;
+                    margin : 0 auto;
+                    border-style : solid;
+                }
+                #changPwBtn:active {
+                    color : #222;
+                    background-color: #FFF;
+                    width : 115px;
+                    height : 40px;
+                    border-radius: 5px;
+                    text-align: center;
+                    margin : 0 auto;
+                    border-style : inset; 
+                }

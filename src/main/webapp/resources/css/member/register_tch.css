@@ -1,0 +1,266 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;   
+    flex: 1
+}
+
+    #main_layer1{
+        --background-color: pink;
+        height: 100px;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    #main_layer2{
+        height: 250px;
+        margin :20px 0;
+        display: flex;
+    }
+
+        #e_title{
+            width : 30%;
+            height : 100%;
+            text-align: right;
+        }
+
+            #e_title p {
+                margin : 10px 25px 0;                
+                font-size : 1.2em;
+                font-weight : bolder;
+            }
+
+        #e_data{
+            --background-color: tomato; 
+            width : 70%;
+            height : 100%;
+        }
+            table {
+                border : 1px solid gray;
+                width : 75%;
+                height : 90%;
+                margin : 10px;
+                border-collapse: collapse;
+                --table-layout: fixed;
+                /* 테이블 사이즈 고정  */
+            }        
+            td {
+                border : 1px solid gray;
+                color : rgb(96, 96, 96);
+                height: 40px;
+            }
+
+            input {
+                outline: none;
+                border:0px solid ivory;
+            }
+
+            #pay {
+                text-align: right;
+                width : 20%;
+                font-size: 1em;
+            }
+
+            #contact_time{
+                width : 100%;  
+            }
+
+            .line1{
+                text-align: center;
+                background-color: #ccc;
+                width:20%;
+            }
+
+            .line2{
+                text-align: center;
+            }
+
+            .line4 {
+                padding-left: 5px;
+                width : 30%;
+            }
+
+            .input {
+                width:100%;
+                height : 100%;
+                padding-left : 5px;
+                outline : none; 
+                border-color: #cccccc00;
+                font-size :medium;
+            }
+            #phn_chked {
+                border : 0.5px solid gray;
+                margin-left : 5px;
+                display: block;
+                font-size : 0.9em;
+                border-radius: 3px;
+                width: 100px;
+                padding : 2px;
+                background-color: #F0F0F0;
+                color : gray;
+                cursor: default;
+            }
+
+            #eml_btn {
+                margin-left : 5px;
+                border-radius: 5px;
+                padding: 1px;
+                text-align: center;
+                width : 85px;
+                height : 24px;
+                --font-size : small;
+                color : #fff;
+                background-color: #222;
+                border-style : solid;
+            }
+            #eml_btn:active  {
+                margin-left : 5px;
+                border-radius: 5px;
+                padding: 1px;
+                text-align: center;
+                width : 85px;
+                height : 24px;
+                font-size : small;
+                color : #222;
+                background-color: #fff;
+                border-style : inset; 
+            }
+
+    #main_layer3{
+        height : 410px;
+        margin :20px 0;
+        display: flex;
+    }
+        .line{
+            height: 50px;
+            table-layout: fixed;
+        }
+
+        #day{
+            display: flex;
+        }
+
+
+        #cho_title{
+        width : 30%;
+        height : 100%;
+        text-align: right;
+        }
+
+        #cho_title p {
+            margin : 10px 25px 0;                
+            font-size : 1.2em;
+            font-weight : bolder;
+        }
+
+        #cho_data{            
+            width : 70%;
+            height : 100%;   
+        }
+
+        .line>td:first-child{
+            text-align: center;
+            background-color: #ccc;
+            width:30%;
+        }
+
+        .line>td:last-child{
+            padding-left : 25px
+        }
+
+    #main_layer4, #main_layer5, #main_layer6{
+    height : 200px;
+    margin : 20px 0;
+    display: flex;
+    }
+
+        .title{
+        width : 30%;
+        height : 100%;
+        text-align: right;
+        }
+
+        .title p {
+            margin : 10px 25px 0;                
+            font-size : 1.2em;
+            font-weight : bolder;
+        }
+
+        .data {
+            width : 70%;
+            height : 100%;
+        }
+
+        textarea{
+            border : 2px solid #CCC;
+            border-radius: 5px;
+            margin-left : 10px;
+            padding : 5px;
+            resize : none;
+            outline : none; 
+            /* textarea 킃릭시 테두리 제거 */
+        }
+
+    #main_layer7 {
+        height : 150px;
+        text-align: center;
+    }
+
+        input[type=submit] {
+                color : #FFF;
+                background-color: #222;
+                width : 115px;
+                height : 40px;
+                border-radius: 5px;
+                text-align: center;
+                margin : 30px auto;
+                border-style : solid;
+        }
+
+        input[type=submit]:active {
+            color : #222;
+            background-color: #FFF;
+            width : 115px;
+            height : 40px;
+            border-radius: 5px;
+            text-align: center;
+            margin : 30px auto;
+            border-style : inset; 
+        }

@@ -1,0 +1,120 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    flex: 1
+}
+    #main_layer1{
+        min-height: 350px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+        #findIdBox { 
+        width : 400px;
+        height : 250px;
+        margin-top: 10vh;
+        }
+
+        #box_header1 {
+            height : 25%;
+            
+        }
+
+        #box_main {
+            height : 55%;
+            margin-top:20px;
+        }
+            span {
+                color : navy;
+            }
+
+            #box_foot { 
+                height : 20%;
+                margin: 20px auto;
+            }
+                #login_btn {
+                    width: 130px;
+                    height: 40px;
+                    border-radius: 5px;
+                    color : #FFF;
+                    background-color: #222;
+                    font-size: 1em;
+                    --border-style : solid;
+                    margin-right : 10px;
+                    text-align: center
+                }
+                #login_btn:active { 
+                    width: 130px;
+                    height: 40px;
+                    border-radius: 5px;
+                    color : #222;
+                    background-color: #fff;
+                    font-size: 1em;
+                    border-style : inset; 
+                    margin-right : 10px;
+                    text-align: center
+                }
+
+                #pw_btn {
+                    width: 130px;
+                    height: 40px;
+                    border-radius: 5px;
+                    color : black;
+                    background-color: #ccc;
+                    font-size: 1em;
+                    border : 1px none;
+                    margin-left : 10px;
+                    text-align: center
+                }
+                #pw_btn:active {
+                    width: 130px;
+                    height: 40px;
+                    border-radius: 5px;
+                    color : black;
+                    background-color: #fff;
+                    font-size: 1em;
+                    border-style : inset; 
+                    margin-left : 10px;
+                    text-align: center
+                }
+
+    

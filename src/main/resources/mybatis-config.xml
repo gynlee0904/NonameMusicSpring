@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+
+	<settings>
+	<!-- Null 값이 발생할 경우 빈칸이 아닌 null로 인식하라 -->
+	<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.nnm.spring.common.domain.Register" alias="Register"/>
+		<typeAlias type="com.nnm.spring.memberStd.domain.MemberStd" alias="MemberStd"/>
+		<typeAlias type="com.nnm.spring.memberTch.domain.MemberTch" alias="MemberTch"/>
+		<typeAlias type="com.nnm.spring.notice.domain.Notice" alias="Notice"/>
+		<typeAlias type="com.nnm.spring.free.domain.Freeboard" alias="Freeboard"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappers/common-mapper.xml"></mapper>
+		<mapper resource="mappers/smember-mapper.xml"></mapper>
+		<mapper resource="mappers/notice-mapper.xml"></mapper>
+		<mapper resource="mappers/freeboard-mapper.xml"></mapper>
+	</mappers>
+</configuration>

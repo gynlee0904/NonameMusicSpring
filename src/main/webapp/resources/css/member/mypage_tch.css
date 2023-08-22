@@ -1,0 +1,225 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    flex: 1
+}
+
+    #main_layer1{
+    --background-color: pink;
+    height: 120px;
+    text-align: center;
+    padding-top: 50px;
+}
+
+    #main_layer2{
+        height: 130px;
+        border-bottom : 1px solid #ccc;
+        margin: auto;
+        display : flex;
+        
+    }
+        #profile1 {
+            --background-color: skyblue;
+            width :35%;
+            display : flex;
+            justify-content : flex-end;
+        }
+            #profile1 img{
+                height : 90%;
+            }
+
+        #profile2{
+            --background-color: yellow;
+            width : 30%;
+            --line-height : -5px;
+
+            display : flex;
+            flex-direction: column;
+            justify-content : center;
+        }
+            #profile2 p:first-child{
+                letter-spacing: 10px;
+            }
+            #profile2 p{
+                margin-left : 70px;
+                margin-top : 5px;
+            }
+            #profile2 p:last-child{
+                margin-bottom : 5px;
+            }
+
+        #profile3{
+            --background-color: skyblue;
+            width : 35%;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            padding-right: 20px;
+        }
+            #changePw_btn{
+                width : 85px;
+                height: 25px;
+                border-radius: 4px;
+                color : #FFF;
+                background-color: #222;
+                font-size : 0.7em;
+                margin : 0 10px 10px 0px;
+            }
+
+            #changePw_btn:active { 
+                color : #222;
+                background-color: #FFF;
+                border-style : inset; 
+            }
+            
+            #delete_btn{
+                width : 70px;
+                height: 25px;
+                border-radius: 4px;
+                color : #FFF;
+                background-color: #222;
+                font-size : 0.7em;
+                margin : 0 20px 10px 0px;
+            }
+            #delete_btn:active { 
+                color : #222;
+                background-color: #FFF;
+                border-style : inset; 
+            }
+
+    #main_layer3{
+        height: 120px;
+        display : flex;
+        padding-top:15px;
+
+    }   
+        .title{
+            --background-color: beige;
+            width : 35%;
+            height : 100%;
+            text-align: right;
+            padding : 20px 25px 0; 
+            font-size : 1.2em;
+        }
+        .data{
+            padding : 10px 0; 
+            width : 65%;
+            height : 100%;
+        }
+        #current{
+            padding-left: 50px;
+        }
+
+    #main_layer4{
+        height: 120px;
+        display : flex;
+        padding-top:15px;
+
+    }   
+    #main_layer5{
+        height: 120px;
+        --text-align: center;
+        --padding-top: 50px;
+        display : flex;
+    }   
+
+        #choice_title, #lesson_title {
+            --background-color: azure;
+            width : 35%;
+            height : 100%;
+            padding-left: 50px;
+            float : left;
+        }
+
+        #choice_data, #lesson_data {
+            --background-color: aqua;
+            width : 65%;
+            height : 100%;
+            padding-left: 10px;
+            float : left;  
+        }
+
+    #main_layer6, #main_layer7, #main_layer8{
+        height: 200px;
+        display : flex;
+    }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+        textarea{
+            width : 400px;
+            height : 150px;
+            border : 2px solid #CCC;
+            opacity : none;
+            border-radius: 5px;
+            margin : 20px 30px;
+            padding : 5px;
+            resize : none;
+            outline : none; 
+            /* textarea 킃릭시 테두리 제거 */
+            font-family: 'Noto Sans KR', sans-serif; 
+        }
+
+    #main_layer9{
+        height: 150px;
+        text-align: center;
+    }  
+    
+        #modify_btn { 
+            color : #FFF;
+            background-color: #222;
+            width : 115px;
+            height : 40px;
+            border-radius: 5px;
+            text-align: center;
+            margin : 30px auto;
+            border-style : solid;
+        }
+        #modify_btn:active { 
+            color : #222;
+            background-color: #FFF;
+            width : 115px;
+            height : 40px;
+            border-radius: 5px;
+            text-align: center;
+            margin : 30px auto;
+            border-style : inset; 
+        }

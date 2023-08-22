@@ -1,0 +1,116 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    flex: 1
+    /* 660px; */
+    
+}
+
+    #main_layer1{
+        height: 350px;
+        --height: 60%;
+        text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        animation-name : mainImg;
+        animation-duration : 18s;
+        animation-delay : 1s;
+        animation-iteration-count: infinite;
+        /* 반복횟수지정 , infinite 무한반복  */
+    }
+    @keyframes mainImg {
+        0% {
+            background-image : url(../images/piano.png);
+        }
+        30% { 
+            background-image : url(../images/pppiano.png); 
+        }
+
+        60% {
+            background-image : url(../images/overview_division-d1_fe8a29a47bd.webp);  
+        }
+        90% {
+            background-image : url(../images/ppiano.png);             
+            }
+        100%{
+            background-image : url(../images/piano.png);
+        }
+    }
+
+
+    #main_layer2{
+        background-color: skyblue;
+        --height: 350vh;
+        --height: 40%;
+        display: flex;
+
+    }
+        #main_layer2 section:first-child,
+        #main_layer2 section:last-child {
+            width:30%;
+        }
+            
+
+        #main_layer2 section:nth-child(2){
+            width:40%;
+        }
+        
+            #video{
+                text-align: center;
+            }
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap');
+        #review,  #board {
+            
+            height :50px;
+            padding : 15px;
+            font-size: 20px;
+            font-weight:bold;
+            font-family: 'Merriweather', serif;
+        }
+        #playing {
+            height :50px;
+            padding : 15px 60px 15px;
+            font-size: 20px;
+            font-weight:bold;
+            font-family: 'Merriweather', serif;
+        }

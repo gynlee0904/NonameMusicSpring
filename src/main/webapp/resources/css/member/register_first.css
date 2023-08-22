@@ -1,0 +1,118 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    flex: 1
+    
+}
+
+    #main_layer1{
+        --background-color: pink;
+        height: 100px;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    #main_layer2{
+        --background-color: skyblue;
+        height : 250px;
+        display: flex;
+        justify-content : center;
+        /*약관박스랑 동의체크박스 모아서 가운데정렬*/
+    }
+
+        #policy {
+            background-color: #fff;
+            width : 520px;
+            height : 225px;
+            border : 1px solid #9c9c9c;
+            border-radius: 5px;
+            text-align: center;
+            margin : auto;
+        }
+        #agree {
+            display: flex;
+            flex-direction : row; 
+            justify-content : flex-start;
+            /* 동의체크박스 약관박스 시작라인 맞추기 */
+        }
+
+    #main_layer3{
+        --background-color: skyblue;
+        height: 50px;
+        display: flex;
+        justify-content : center;
+        /*라디오버튼 머리끝 맞추기*/
+    }
+        input[type=radio]{
+            margin:5px;
+        }
+    #main_layer4{
+        --background-color: pink;
+        height: 100px;
+        text-align: center;
+        padding-top : 30px;
+    }
+        #next_btn { 
+            color : #FFF;
+            background-color: #222;
+            font-size: 1.2m;
+            padding: 2px;
+            text-align: center;
+            line-height: 1px;
+            width: 150px;
+            height: 50px;
+            border-radius: 50px;
+            border-style : solid; 
+            margin: 20px;
+        }
+        #next_btn:active { 
+            color : #222;
+            background-color: #FFF;
+            font-size: 1.2m;
+            padding: 2px;
+            text-align: center;
+            line-height: 1px;
+            width: 150px;
+            height: 50px;
+            border-radius: 50px;
+            border-style : inset; 
+            margin: 20px;
+        }

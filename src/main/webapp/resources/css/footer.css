@@ -1,0 +1,17 @@
+#wrap-footer {
+    --bottom: 0px;
+    margin-top: auto;
+    clear:both; 
+}
+
+footer {
+    background-color: #f4f4f4;
+    width : 1040px;
+    height : 100px;
+    margin: 20px auto 0;
+    
+    padding-top : 65px;
+    text-align: center;
+    font-size:1px;
+    --bottom: 0px;  
+}

@@ -1,0 +1,72 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+/* #wrap-header{
+    
+} */
+header {
+    background-color: white;
+    --width : 1300px;
+    width : inherit;
+    height: 100px;
+    --position : fixed;
+    position : sticky;
+    top: 0px;
+    display: flex;
+
+    flex: 1
+}
+
+    #header_layer1 {
+        --background-color: pink;
+        width : 45%;
+        height: inherit;
+    }
+    #header_layer2 {
+        --background-color: orange;
+        width : 10%;
+        height: inherit;
+        --text-align: center;
+        padding : 0 20px;;
+    }
+        #mainlogo {
+            margin-top: 10px;
+            display: block;
+            width : 90px;
+            height : 90px;
+        }
+    #header_layer3 {
+        --background-color: crimson;
+        width : 45%;
+        height: inherit;
+        display : flex;
+        justify-content : flex-end;
+    }
+        #header_layer3>div {
+            border : 1px solid #ccc;
+            width : 100px;
+            height : 25px;
+            color : #222;
+            font-size : 0.9em; 
+            font-family: 'IBM Plex Serif', serif;
+            text-align : center;
+        }
+        #header_layer3>div>a {
+            display: block;
+            padding : 0px 1px;
+        }

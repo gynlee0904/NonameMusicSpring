@@ -1,0 +1,294 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    flex: 1
+    /* 660px; */
+}
+
+    #main_layer1 {
+        height : 200px;
+        border-bottom : 1px solid #ccc;
+        position: sticky;
+        top: 150px;
+        background-color: white;
+        display : flex;
+    }
+        #profile1 {
+            --background-color: pink;
+            width :35%;
+            display : flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+
+            #profile1 img {
+                height : 90%;
+                border : 2px solid #ccc;
+                border-radius: 100px;
+            }
+
+        #profile2 {
+            --background-color: lightgoldenrodyellow;
+            width:35%;
+            padding-left : 10px;
+        }
+
+            #tch_name{
+                display: flex;
+                margin : 15px 0;
+                font-size: 1.2em;;
+            }
+                #tName{
+                    margin-right: 5px;
+                }
+                .bi-heart{
+                    font-size : 20px;
+                    line-height: 30px;
+                }
+
+            #lesson_score {
+                margin-top: 5px;
+                display: flex; 
+            }
+                #starScr {
+                    letter-spacing:-2px;
+                }
+                #reviewCnt {
+                    margin : 0 5px;
+                }
+
+                    #rv_btn{
+                        background-color: #FFD93D;
+                        width : 50px;
+                        height: 20px;
+                        border-radius: 3px;
+                        border : none;
+                        color : #fff;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+
+            #lesson_pay {
+                font-size : 1.2em;
+                line-height: 30px;;
+                
+            }
+
+        #chat_btn {
+            background-color: #222;
+            color : #fff;
+            width : 230px;
+            height: 150px;
+            border-radius: 10px;
+            border-style : solid;
+            margin-top : 25px;
+            font-family: 'Hahmlet', serif;
+            cursor: pointer;
+            display : inline-block;
+            padding : 10px 20px;
+        }
+
+        #chat_btn:active {
+            background-color: #fff;
+            color : #222;
+            width : 230px;
+            height: 150px;
+            border-radius: 10px;
+            border-style : inset;
+            margin-top : 25px;
+            font-family: 'Hahmlet', serif;
+            cursor: pointer;
+            display : inline-block;
+            padding : 10px 20px;
+        }
+        
+        #contain_bln{
+            margin-left:30px;
+            height : 35px;
+            width : 80%;
+            display : inline-block;
+            vertical-align : middle;
+            text-align : center;
+            margin-bottom:5px;
+
+        }
+            #counsel{
+                width : 70%;
+                height : 35px;
+                font-size : 25px;
+                font-weight: bold;
+                float : left;
+            }
+            #ballon_img{
+                float : left;
+            }   
+            .bi-chat-dots{
+                font-size : 30px;
+                line-height: 30px;
+            }
+
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+        #contact {
+            margin: 0 5px;
+            color : #E06469;
+            font-size: 0.6em;
+            position: relative;
+            top: -5px;
+            font-weight: bold;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+    #main_layer2, #main_layer3, #main_layer4 {
+        --margin-top: 350px;
+        --height : 200px;
+        height : auto;
+        margin: 10px 0 ;
+        display: flex;
+    }         
+
+        .title {
+            --background-color: blue;
+            width : 40%;
+            text-align: right;
+            padding : 20px 25px 0; 
+            font-size : 1.2em;
+        }
+
+        .data {
+            --background-color: beige;
+            width : 60%;
+            padding : 20px 10px; 
+
+        }
+
+    #main_layer5 {
+        height : auto;
+        --clear:both;
+        --top : 800px;
+        /* 리뷰탑 */
+    }   
+        #main5_cover{
+            display: flex;
+        }
+        #main_sec5_1 {
+            width : 50%;
+            line-height: 50px;
+            padding-right : 50px;
+            border-right : 1px solid #ccc;
+        }
+
+            #bigScr {
+                font-size : 1em;
+                display: flex;
+                justify-content: flex-end;
+            }
+            #bigstar {
+                font-size : 3em;
+                color : #FFD93D;
+                letter-spacing:-4px;
+                display: flex;
+                justify-content: flex-end;
+                
+            }
+            #bigScr2 {
+                font-size : 1.5em;
+                display: flex;
+                justify-content: flex-end;
+            }
+                #big_scr {
+                    font-size: 1.5em;
+                    padding : 0.5vw;
+                }
+                #count {
+                    font-size: 0.8em;
+                    padding-top : 15px;
+                    --margin: 20px;;
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            #write_rvw{
+                display: flex;
+                justify-content: flex-end;
+            }
+
+        #main_sec5_2 {
+            width : 50%;
+            padding-left: 30px;
+        }
+
+
+                .review_pic{
+                    width: 90px;
+                    height :90px;
+                    border : 2px solid gray;
+                    border-radius: 100px;
+                }
+                
+                .pht_preview {
+                    float :left; 
+                    display:block;
+                    width : 90px;
+                    height : 90px;
+                    margin: 10px;
+                }
+
+    #main_layer6 {
+        --background-color: beige;
+        --display: flex;
+        --justify-content: center;
+        --clear:both;
+        height : auto;
+    }
+
+    #more {
+        background-color: pink;
+        height:30px;
+        width : 800px;
+        text-align:center;
+        margin : 0 auto;
+    }
+    #more_rvw{
+        height:30px;
+        width : 800px;
+    }

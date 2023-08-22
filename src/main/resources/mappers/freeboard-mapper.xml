@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="FreeboardMapper">
+	<resultMap type="Freeboard" id="fBoardResultMap">
+		<id property="freeNo"             column="FREE_NO"/>
+		<result property="freeSubject"    column="FREE_SUBJECT"/>
+		<result property="freeContent"    column="FREE_CONTENT"/>
+		<result property="freeWriter"     column="FREE_WRITER"/>
+		<result property="uploadDate"      column="UPLOAD_DATE"/>
+		<result property="updateDate"      column="UPDATE_DATE"/>
+		<result property="freeFilename"   column="FREE_FILENAME"/>
+		<result property="freeFilepath"   column="FREE_FILEPATH"/>
+		<result property="freeFilelength" column="FREE_FILELENGTH"/>	
+	</resultMap>
+	
+	
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT (*) FROM FREEBOARD_TBL 
+	</select>
+	
+	<select id="selectFreeList" resultMap="fBoardResultMap">
+		SELECT * FROM FREEBOARD_TBL ORDER BY FREE_NO DESC 
+	</select>
+
+
+	<select id="selectFreeListByKeywordCount" resultType="_int">
+		SELECT COUNT (*) FROM FREEBOARD_TBL
+		<if test="searchCondition == 'all'"> <!-- 스트링을 나타낼때는 '' 으로 표기  -->
+			WHERE FREE_SUBJECT LIKE '%'||#{searchKeyword}||'%' OR FREE_CONTENT LIKE '%'||#{searchKeyword}||'%' OR FREE_WRITER LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'title'">
+			WHERE FREE_SUBJECT LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE FREE_CONTENT LIKE '%'||#{searchKeyword}||'%'
+		</if> 
+		<if test="searchCondition == 'writer'">
+			WHERE FREE_WRITER LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+
+	<select id="searchFreeboardByKeyword" resultMap="fBoardResultMap">
+		SELECT * FROM FREEBOARD_TBL 
+		<if test="searchCondition == 'all'"> <!-- 스트링을 나타낼때는 '' 으로 표기  -->
+			WHERE FREE_SUBJECT LIKE '%'||#{searchKeyword}||'%' OR FREE_CONTENT LIKE '%'||#{searchKeyword}||'%' OR FREE_WRITER LIKE '%'||#{searchKeyword}||'%' 
+			ORDER BY FREE_NO DESC 
+		</if>
+		<if test="searchCondition == 'title'">
+			WHERE FREE_SUBJECT LIKE '%'||#{searchKeyword}||'%'
+			ORDER BY FREE_NO DESC 
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE FREE_CONTENT LIKE '%'||#{searchKeyword}||'%'
+			ORDER BY FREE_NO DESC 
+		</if>
+		<if test="searchCondition == 'writer'">
+			WHERE FREE_WRITER LIKE '%'||#{searchKeyword}||'%'
+			ORDER BY FREE_NO DESC 
+		</if>
+	</select>
+
+
+	<insert id="insertFreeboard">
+		INSERT INTO FREEBOARD_TBL VALUES(SEQ_FREEBOARD_NO.NEXTVAL,#{freeSubject},#{freeContent},#{freeWriter},DEFAULT,DEFAULT,#{freeFilename}, #{freeFilepath}, #{freeFilelength})
+	</insert>
+
+
+	<select id="selectOneDetailByNo" resultMap="fBoardResultMap">
+		SELECT * FROM FREEBOARD_TBL WHERE FREE_NO= #{freeNo}
+	</select>
+	
+	
+
+
+</mapper>

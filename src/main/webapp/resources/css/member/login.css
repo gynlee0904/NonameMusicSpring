@@ -1,0 +1,146 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    flex: 1
+}
+
+    #main_layer1{
+        --background-color: aqua;
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+        #loginBox { 
+            --background-color: aqua;
+            width : 400px;
+            height : 280px;
+            margin : 10vh;
+        }
+
+        #box_header1 {
+            --background-color: pink;
+            height : 20%;
+            text-align: center;
+        }
+
+        #box_header2 {
+            height : 15%;
+            text-align: center;
+            padding : 5px;
+        }
+
+        #box_main {
+            height : 55%;
+            display : flex;
+        }
+            #box_main_layer1 {
+                --background-color: bisque;
+                width : 70%; 
+                height : 100%;
+                
+            }
+                #id-field {
+                    --background-color: bisque;
+                    width : 100%;
+                    height : 50%;
+                    margin: 0px;
+                    padding: 0px;
+                }
+                    
+                #pw-field {
+                    --background-color: skyblue;
+                    width : 100%;
+                    height : 50%;
+                    margin: 0px;
+                    padding: 0px;
+                }
+                    #user_id {
+                        width : 90%;
+                        height : 80%;
+                        margin-top : 5px;
+                        margin-left : 20px;
+                        margin-bottom : 5px;
+                        padding-left: 15px;
+                    }
+                    #user_pw {
+                        width : 90%;
+                        height : 80%;
+                        margin-top : 5px;
+                        margin-left : 20px;
+                        margin-bottom : 10px;
+                        padding-left: 15px;
+                    }
+
+            #box_main_layer2 {
+                --background-color: pink;
+                width : 30%; 
+                height : 100%;
+                
+            }
+                #btn { 
+                    color : #FFF;
+                    background-color: #222;
+                    width : 70%;
+                    height : 90%;
+                    border-radius: 10px;
+                    margin : 4px 0px 8px 8px;
+                    border-style : none;
+                }
+                #btn:active { 
+                    color : #222;
+                    background-color: #FFF;
+                    width : 70%;
+                    height : 90%;
+                    border-radius: 10px;
+                    margin : 4px 0px 8px 8px;
+                    border-style : inset; 
+                }
+                    
+
+        #login_footer {
+            height: 10%;
+            word-spacing: 5px;
+            padding-right : 30px;
+            font-size : 0.8em;
+            text-align: right;
+        }

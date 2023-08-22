@@ -1,0 +1,44 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+
+nav { 
+    background-color:white;
+    --width : 1300px;
+    width : inherit;
+    height : 50px;
+    border-bottom : 1px solid #ccc;
+    font-size : 1.3em;
+    font-family: 'IBM Plex Serif', serif;
+    font-weight: bolder;
+    --position : fixed;
+    position : sticky;
+    top: 100px;
+    
+}
+    #menu_ul{
+        height : 100%;
+        display:flex;
+        align-items : center;
+        justify-content: center;
+    }
+
+    .menu_li {
+        width : 33%;
+        text-align : center;
+    }
