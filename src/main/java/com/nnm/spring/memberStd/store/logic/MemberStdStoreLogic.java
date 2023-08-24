@@ -16,9 +16,9 @@ public class MemberStdStoreLogic implements MemberStdStore {
 	}
 
 	@Override
-	public MemberStd showOneStdById(SqlSession session, String memberEmail) {
-		MemberStd sMember = session.selectOne("SMemberMapper.showOneStdById",memberEmail);
-		return sMember;
+	public MemberStd showOneStdById(SqlSession session, MemberStd sMember) {
+		MemberStd sOne = session.selectOne("SMemberMapper.showOneStdById",sMember);
+		return sOne;
 	}
 
 	@Override

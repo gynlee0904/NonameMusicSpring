@@ -25,6 +25,8 @@ public interface NoticeStore {
 
 	public int deleteNoticeByNo(SqlSession session, Integer noticeNo);
 
+	public int modifyNoticeByNo(SqlSession session, Notice notice);
+
 	
 
 	

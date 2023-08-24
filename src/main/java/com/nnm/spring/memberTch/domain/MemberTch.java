@@ -37,6 +37,66 @@ public class MemberTch {
 		this.memberPw = memberPw;
 	}
 
+	
+	
+
+
+	public MemberTch(String memberPhone, String memberEmail, String memberPw, String proPicFilename,
+			String proPicFilepath, long proPicFilelength, String lessonFee, String payment, String contactTime,
+			String place, String lesson, String lessonType, String history, String target, String freeWords) {
+		super();
+		this.memberPhone = memberPhone;
+		this.memberEmail = memberEmail;
+		this.memberPw = memberPw;
+		this.proPicFilename = proPicFilename;
+		this.proPicFilepath = proPicFilepath;
+		this.proPicFilelength = proPicFilelength;
+		this.lessonFee = lessonFee;
+		this.payment = payment;
+		this.contactTime = contactTime;
+		this.place = place;
+		this.lesson = lesson;
+		this.lessonType = lessonType;
+		this.history = history;
+		this.target = target;
+		this.freeWords = freeWords;
+	}
+
+
+
+	public MemberTch(String position, String memberEmail) {
+		super();
+		this.position = position;
+		this.memberEmail = memberEmail;
+	}
+
+
+
+	public MemberTch(String position, String memberName, String memberGender, String memberPhone, String memberEmail,
+			String memberPw, String proPicFilename, String proPicFilepath, long proPicFilelength, String lessonFee,
+			String payment, String contactTime, String place, String lesson, String lessonType, String history,
+			String target, String freeWords) {
+		super();
+		this.position = position;
+		this.memberName = memberName;
+		this.memberGender = memberGender;
+		this.memberPhone = memberPhone;
+		this.memberEmail = memberEmail;
+		this.memberPw = memberPw;
+		this.proPicFilename = proPicFilename;
+		this.proPicFilepath = proPicFilepath;
+		this.proPicFilelength = proPicFilelength;
+		this.lessonFee = lessonFee;
+		this.payment = payment;
+		this.contactTime = contactTime;
+		this.place = place;
+		this.lesson = lesson;
+		this.lessonType = lessonType;
+		this.history = history;
+		this.target = target;
+		this.freeWords = freeWords;
+	}
+
 
 
 	public String getPosition() {

@@ -63,7 +63,10 @@ main {
             justify-content : flex-end;
         }
             #profile1 img{
-                height : 90%;
+              	max-height : 120px;
+                max-width : 120px;
+                border-radius : 100px;
+                border : 1px solid #ccc;
             }
 
         #profile2{
@@ -76,7 +79,7 @@ main {
             justify-content : center;
         }
             #profile2 p:first-child{
-                letter-spacing: 10px;
+                letter-spacing: 15px;
             }
             #profile2 p{
                 margin-left : 70px;

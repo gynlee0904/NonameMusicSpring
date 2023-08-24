@@ -52,7 +52,7 @@
                         
                         <section id="board_content">
                             <div id="content_wrap">
-                            	<input trpe="hidden" name="noticeNo" value="${notice.noticeNo}">
+                            	<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
                                 <div id="noticeSubject">${notice.noticeSubject}</div>
                                 <div id="noticeview">
 									<fmt:formatDate pattern="yy/MM/dd HH:mm:ss" value="${notice.nCreateDate }"/>, 조회수
@@ -76,8 +76,8 @@
                                     <button id="listBackBtn" >돌아가기</button>
                                 </div>
                                 <div>
-                                    <input type="submit" name="" value="수정">
-                                    <a href="/notice/delete.do?memberEmail=${memberEmail }"><button id="deleteBtn" >삭제</button></a>
+                                    <a href="/notice/modify.do?noticeNo=${notice.noticeNo}"><button id="modifyBtnBtn" >수정하기</button></a>
+                                    <a href="javascript:void(0)" onclick="checkDelete();"><button id="deleteBtn" >삭제</button></a>
                                 </div>
                             </div>	
 <!-- ************************************************************************************************************ -->
@@ -141,6 +141,15 @@
 	            function locate2 (){
 	                location.href='/free/list.do?page=1'
 	            }
+	            
+	            function checkDelete(){
+					const noticeNo = '${notice.noticeNo}'
+					if(confirm ("정말 삭제하시겠습니까? 삭제후엔 복구할 수 없습니다.")){
+						location.href = "/notice/delete.do?noticeNo="+noticeNo;
+						
+					}
+					//확인(true) 눌렀을때만 탈퇴되도록  //취소누르면 실행문이 동작 안함 
+				}
 	
 	      </script>
               

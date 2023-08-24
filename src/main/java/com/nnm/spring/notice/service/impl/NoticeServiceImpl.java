@@ -83,6 +83,13 @@ public class NoticeServiceImpl implements NoticeService{
 		return result;
 	}
 
+
+	@Override
+	public int modifyNoticeByNo(Notice notice) {
+		int result = nStore.modifyNoticeByNo(session, notice);
+		return result;
+	}
+
 	
 	
 

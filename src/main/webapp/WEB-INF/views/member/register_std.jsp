@@ -50,18 +50,18 @@
                                     <tr>
                                         <td class="line1">이름</td>
                                         <td class="line2">
-                                            <input type="text" name="memberName" class="input">
+                                            <input type="text" name="memberName" class="input" reqired>
         
                                         </td>
                                         <td class="line1">성별</td>
                                         <td class="line2">
-                                            <input type="text" name="memberGender" class="input">
+                                            <input type="text" name="memberGender" class="input" reqired>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="line1">휴대폰번호</td>
                                         <td colspan="2" class="line2">
-                                            <input type="text" name="memberPhone" class="input">
+                                            <input type="text" name="memberPhone" class="input" reqired>
                                         </td>
                                         <td class="line4">
                                             <div id="phn_chked">휴대폰인증완료</div>
@@ -71,7 +71,7 @@
                                     <tr>
                                         <td class="line1">ID</td>
                                         <td colspan="2">
-                                            <input type="text" name="memberEmail" class="input" placeholder="사용하시는 이메일을 입력해주세요.">
+                                            <input type="text" name="memberEmail" class="input" placeholder="사용하시는 이메일을 입력해주세요." check_result="fail" reqired>
                                         </td>
                                         <td class="line4">
                                             <button type="button" id="eml_btn">이메일 확인</button>
@@ -81,7 +81,7 @@
                                     <tr>
                                         <td class="line1">PW</td>
                                         <td colspan="2">
-                                            <input type="password" name="memberPw" class="input" placeholder="사용하실 비밀번호를 입력해 주세요.">
+                                            <input type="password" name="memberPw" class="input" placeholder="사용하실 비밀번호를 입력해 주세요." reqired>
                                         </td>
                                         
                                         <td></td>
@@ -90,7 +90,7 @@
                                     <tr>
                                         <td class="line1">PW 확인</td>
                                         <td colspan="2">
-                                            <input type="password" name="memberPwChk" class="input" placeholder="비밀번호를 한번 더 입력해 주세요.">
+                                            <input type="password" name="memberPwChk" class="input" placeholder="비밀번호를 한번 더 입력해 주세요." reqired>
                                         </td>
                                         <td></td>
                                         <!-- <td></td> -->

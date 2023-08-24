@@ -6,7 +6,7 @@ public interface MemberStdService {
 
 	public int insertStdMember(MemberStd sMember);
 
-	public MemberStd showOneStdById(String memberEmail);
+	public MemberStd showOneStdById(MemberStd sMember);
 
 	public int modifyStdMember(MemberStd sMember);
 

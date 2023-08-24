@@ -34,8 +34,9 @@
 		UPDATE SMEMBER_TBL SET MEMBER_PHONE = #{memberPhone}, PROPIC_FILENAME = #{proPicFilename}, PROPIC_FILEPATH = #{proPicFilepath}, PROPIC_FILELENGTH = #{proPicFilelength}, PLACE = #{place}, LESSON = #{lesson}, LESSON_TYPE = #{lessonType}, TEACHER_GENDER = #{tGender}, MY_LEVEL = #{myLevel}, FREE_WORDS = #{freeWords}, UPDATE_DATE = DEFAULT WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_YN = 'Y'
 	</update>
 
+	<!-- 마이페이지 조회 -->
 	<select id="showOneStdById" resultMap="sMemberResultMap">
-		SELECT * FROM SMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_YN = 'Y'
+		SELECT * FROM SMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_YN = 'Y' AND MEMBER_POSITION = #{position}
 	</select>
 	
 	<update id="outServiceStdMember">

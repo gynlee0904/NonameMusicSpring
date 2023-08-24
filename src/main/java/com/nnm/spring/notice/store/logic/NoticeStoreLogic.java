@@ -65,6 +65,12 @@ public class NoticeStoreLogic implements NoticeStore{
 		return result;
 	}
 
+	@Override
+	public int modifyNoticeByNo(SqlSession session, Notice notice) {
+		int result = session.update("NoticeMapper.modifyNoticeByNo", notice);
+		return result;
+	}
+
 	
 
 	

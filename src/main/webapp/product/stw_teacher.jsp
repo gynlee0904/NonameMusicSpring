@@ -30,28 +30,11 @@
 
     <body>
         <div id="container">
-            <header>
-                <div id="header_layer1"> </div>
-                <div id="header_layer2">
-                    <a href="./index.html"></a><img src="../resources/images/mainlogo.png" alt="logo" id="mainlogo"></a>
-                </div>
-                <div id="header_layer3">
-                    <div ><a href="./member/register1.html" >Join</a></div>
-                    <div ><a href="./member/login.html" >LogIn</a></div>
-                    <div ><a href="#" >C/S Center</a></div>
-                </div>
-            </header>
+            <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>  
+			<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>  
 
 
-            <nav>
-                <ul id="menu_ul">
-                    <li class="menu_li"><a href="./product/searchPage.html" class="menu">Teacher</a></li>
-                    <li class="menu_li"><a href="./product/productPage.html" class="menu">Class</a></li>
-                    <li class="menu_li"><a href="#" class="menu">Community</a></li>
-                </ul>
-            </nav>
-
- <!-- **************************************************************************** -->
+            <!-- ************************************************************************************ -->
             
             <main>
                 <section id="main_layer1">
@@ -185,14 +168,7 @@
             </main>
         </div>
 
-        <div id="wrap-footer">
-            <footer>
-                <div>
-                    <p>Copyright 2023. NonameMusic</p>
-                    <p>All rights reserved.</p>
-                </div>
-            </footer>
-        </div>
+   		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         
 
         <script>

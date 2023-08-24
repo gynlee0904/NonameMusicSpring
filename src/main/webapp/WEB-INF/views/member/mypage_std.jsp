@@ -39,7 +39,7 @@
                     <h1>MY PAGE</h1>
                 </section>
 
-<!--                 <form action="member/modify.do" method="get"> -->
+
                     <section id="main_layer2">
                         <section id="profile1">
                         	<c:if test="${!empty sMember.proPicFilename }"><img src="../resources/nuploadFiles/${sMember.proPicFilename}" alt="사진" id="mypicture"></c:if>
@@ -47,12 +47,13 @@
                             
                         </section>
                         <section id="profile2">
-                            <p><b> ${memberName}(${memberGender})</b></p>
+                        	<p><b> ${sMember.memberName}(${sMember.memberGender})</b></p>
                             <p>${sMember.memberEmail}</p>
                             <p> ${sMember.memberPhone} </p>
                             <p><small>
                             	가입일 : <fmt:formatDate pattern="yyyy.MM.dd" value="${sMember.memberDate }"/>                           
                             </small></p>
+                            
                         </section>
                         <section id="profile3">
                             <button type="button" id="changePw_btn" name="changePw" onclick="">비밀번호 변경</button>
@@ -109,11 +110,16 @@
                             <textarea spellcheck="false">${sMember.freeWords}</textarea>
                         </section>
                     </section>
-    
-                    <section id="main_layer6">
-                        <a href="/member/modify_std.do?memberEmail=${memberEmail}"><button type="submit" id="modify_btn" name="modifyInfo" >회원정보수정</button></a>
-                    </section>
-<!--                 </form> -->
+	                <form action="/member/modify_std.do" method="get">
+<!-- 						<input type="hidden" name="memberEmail" value="memberEmail"> -->
+<!-- 						<input type="hidden" name="position" value="std"> -->
+	                    <section id="main_layer6">
+<%--                         <a href="/member/modify_std.do?memberEmail=${memberEmail}&position=std"> --%>
+<!--                         	<button type="submit" id="modify_btn" name="modifyInfo">회원정보수정</button> -->
+<!--                         </a> -->
+	                        <input type="submit" id="modify_btn" name="modifyInfo" value="회원정보수정">
+	                    </section>
+	                </form>
             </main>
         </div>
 

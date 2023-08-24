@@ -92,6 +92,7 @@ public class CommonController {
 				if(sOne != null) {
 					session.setAttribute("memberEmail", sOne.getMemberEmail());
 					session.setAttribute("memberName", sOne.getMemberName());
+					session.setAttribute("position", sOne.getPosition());
 					
 				}
 			}else if(position.equals("tch")) {
@@ -99,7 +100,7 @@ public class CommonController {
 				if(tOne != null) {
 					session.setAttribute("memberEmail", tOne.getMemberEmail());
 					session.setAttribute("memberName", tOne.getMemberName());
-					
+					session.setAttribute("position", tOne.getPosition());
 				}
 			}else {
 				//로그인 실패

@@ -25,8 +25,9 @@
 		<result property="memberYn"       column="MEMBER_YN"/>
 	</resultMap>
 	
+	<!-- 로그인 -->
 	<select id="selectStdMemberLogin" resultMap="sMemberResultMap">
-		SELECT * FROM SMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_POSITION = #{position}
+		SELECT * FROM SMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_POSITION = #{position} AND MEMBER_YN = 'Y' 
 	</select>
 	
 	
@@ -61,7 +62,7 @@
 	
 	
 	<select id="selectTchMemberLogin" resultMap="tMemberResultMap">
-		SELECT * FROM TMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_POSITION = #{position}
+		SELECT * FROM TMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_POSITION = #{position} AND MEMBER_YN = 'Y' 
 	</select>
 	
 	

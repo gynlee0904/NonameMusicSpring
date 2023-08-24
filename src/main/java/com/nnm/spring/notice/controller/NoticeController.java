@@ -90,6 +90,8 @@ public class NoticeController {
 		}
 		pi= new PageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, naviTotalCount, naviTotalCount);
 		return pi;
+		
+		
 	}
 	
 	
@@ -236,6 +238,9 @@ public class NoticeController {
 	}
 	
 	
+	/**
+	 * 글삭제
+	 */
 	@RequestMapping(value="/notice/delete.do", method=RequestMethod.GET)
 	public String deleteNotice(@RequestParam ("noticeNo") Integer noticeNo
 							, Model model) {
@@ -256,9 +261,73 @@ public class NoticeController {
 			model.addAttribute("url", "/notice/insert.do");
 			return "common/errorPage";
 		}
+	}
+	
+	/**
+	 * 글수정페이지로 이동
+	 */
+	@RequestMapping(value="/notice/modify.do", method=RequestMethod.GET)
+	public String showModifyNotice(@RequestParam ("noticeNo") Integer noticeNo
+								, Model model) {
+		Notice notice = service.selectOneDetailByNo(noticeNo);
+		model.addAttribute("notice", notice);
+		return "notice/noticeModify";
+	}
+	
+	@RequestMapping(value="/notice/modify.do", method=RequestMethod.POST)
+	public String modifyNoticeByNo(@ModelAttribute Notice notice
+								, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
+								, HttpServletRequest request
+								, Model model) {
+		
+		//UPDATE NOTICE_TBL SET NOTICE_SUBJECT = ? , NOTICE_CONTENT = ? WHERE NOTICE_NO =? 
+		
+		try {
+			if(!uploadFile.getOriginalFilename().equals("")) {
+				//파일이름
+				String fileName = uploadFile.getOriginalFilename();
+				
+				//파일경로
+				String root = request.getSession().getServletContext().getRealPath("resources");
+				String savefolder = root+ "\\nuploadFiles";
+				File folder = new File(savefolder);
+				
+				if(!folder.exists()) {
+					folder.mkdir();
+				}
+				
+				String savePath = savefolder + "\\"+fileName;
+				File file = new File(savePath);
+				
+				uploadFile.transferTo(file);
+				
+				//파일크기
+				long fileLength = uploadFile.getSize();
+				notice.setNoticeFilename(fileName);
+				notice.setNoticeFilepath(savePath);
+				notice.setNoticeFilelength(fileLength);
+			}
+			int result = service.modifyNoticeByNo(notice);
+			if(result > 0) {
+				model.addAttribute("notice",notice);
+				return "notice/noticeDetail";
+				
+			}else {
+				model.addAttribute("msg","글 수정이 완료되지 않았습니다");
+				model.addAttribute("error", "수정 실패");
+				model.addAttribute("url", "/notice/insert.do");
+				return "common/errorPage";	
+			}
+		} catch (Exception e) {
+			model.addAttribute("msg","관리자에게 문의해주세요");
+			model.addAttribute("error", e.getMessage());
+			model.addAttribute("url", "/notice/insert.do");
+			return "common/errorPage";
+		}
 		
 		
 	}
+	
 	
 
 }

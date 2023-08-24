@@ -21,6 +21,7 @@
 	<mappers>
 		<mapper resource="mappers/common-mapper.xml"></mapper>
 		<mapper resource="mappers/smember-mapper.xml"></mapper>
+		<mapper resource="mappers/tmember-mapper.xml"></mapper>
 		<mapper resource="mappers/notice-mapper.xml"></mapper>
 		<mapper resource="mappers/freeboard-mapper.xml"></mapper>
 	</mappers>

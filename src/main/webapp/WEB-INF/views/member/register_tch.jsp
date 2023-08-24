@@ -37,7 +37,7 @@
                     <h1>선생님으로 가입하기</h1>
                 </section>
 
-                <form action="/member/register3.do" method="post">
+                <form action="/member/register3.do" method="post" enctype="multipart/form-data">
                     <section id="main_layer2">
                         <section id="e_title">
                             <p>필수정보</p>
@@ -53,8 +53,8 @@
                                     </td>
                                     <td class="line1">성별</td>
                                     <td class="line4">
-                                        &nbsp;&nbsp;<label><input type="radio" name="gender" id="" class="ipt_chkbx">&nbsp;&nbsp;여성</label>&nbsp;&nbsp
-                                        <label><input type="radio" name="gender" id="" class="ipt_chkbx">&nbsp;&nbsp;남성</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;<label><input type="radio" name="memberGender" value="F" class="ipt_chkbx">&nbsp;&nbsp;여성</label>&nbsp;&nbsp
+                                        <label><input type="radio" name="memberGender" value="M" class="ipt_chkbx">&nbsp;&nbsp;남성</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
                                 <tr>
@@ -108,20 +108,20 @@
                                 <tr class="line">
                                     <td >프로필 사진</td> 
                                     <td >
-                                        <input type="file" name="profile"  >
+                                        <input type="file" name="uploadFile"  >
                                     </td>
                                 </tr>
                                 <tr class="line">
                                     <td>회당 레슨비</td>
                                     <td>
-                                        <input type="text" id="pay"> 원 (50분기준)
+                                        <input type="text" id="pay" name="lessonFee" > 원 (50분기준)
                                 </td >
                                 </tr>
                                 <tr class="line">
                                     <td>결제 방법</td>
                                     <td>
-                                        <label><input type="checkbox" name="" value="" >&nbsp;&nbsp;ㅇㅇ페이</label><br>
-                                        <label><input type="checkbox" name="" value="" >&nbsp;&nbsp;실시간 계좌이체</label>
+                                        <label><input type="checkbox" name="payment"  value="ddpay">&nbsp;&nbsp;ㅇㅇ페이</label><br>
+                                        <label><input type="checkbox" name="payment"  value="account">&nbsp;&nbsp;실시간 계좌이체</label>
                                 </td >
                                 </tr>
                                 <tr class="line">
@@ -142,7 +142,7 @@
                                             <option value="">오후</option>
                                         </select> -->
 
-                                        <input type="text" placeholder="매일, 주말, 월수금.. ㅇㅇ시~ㅇㅇ시 / ㅁㅁ시~ㅁㅁ시"  id="contact_time">
+                                        <input type="text" name="contactTime" placeholder="매일, 주말, 월수금.. ㅇㅇ시~ㅇㅇ시 / ㅁㅁ시~ㅁㅁ시"  id="contact_time">
                                     </td >
                                 </tr>
                                 <tr class="line">
@@ -206,5 +206,18 @@
 
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         
+        <script>
+	        const input = document.querySelector('#pay');
+	        input.addEventListener('keyup', function(e) {
+	          let value = e.target.value;
+	          value = Number(value.replaceAll(',', ''));
+	          if(isNaN(value)) {
+	            input.value = 0;
+	          }else {
+	            const formatValue = value.toLocaleString('ko-KR');
+	            input.value = formatValue;
+	          }
+	        })	
+        </script>
     </body>
 </html>

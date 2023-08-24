@@ -73,6 +73,10 @@
 	<delete id="deleteNoticeByNo">
 		DELETE FROM NOTICE_TBL WHERE NOTICE_NO= #{noticeNo}
 	</delete>
+	
+	<update id="modifyNoticeByNo">
+		UPDATE NOTICE_TBL SET NOTICE_SUBJECT = #{noticeSubject} , NOTICE_CONTENT = #{noticeContent} WHERE NOTICE_NO =#{noticeNo} 
+	</update>
 
 
 </mapper>

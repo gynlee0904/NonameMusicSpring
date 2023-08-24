@@ -56,12 +56,11 @@ public class MemberStd {
 	}
 
 
-
-
-	public MemberStd(String memberPhone, String memberEmail, String memberPw,
-			String proPicFilename, String proPicFilepath, long proPicFilelength, String place, String lesson,
-			String lessonType, String tGender, String myLevel, String freeWords) {
+	public MemberStd(String position,String memberPhone, String memberEmail, String memberPw, String proPicFilename,
+			String proPicFilepath, long proPicFilelength, String place, String lesson, String lessonType,
+			String tGender, String myLevel, String freeWords) {
 		super();
+		this.position = position;
 		this.memberPhone = memberPhone;
 		this.memberEmail = memberEmail;
 		this.memberPw = memberPw;

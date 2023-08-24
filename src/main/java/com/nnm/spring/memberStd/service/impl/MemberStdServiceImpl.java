@@ -23,9 +23,9 @@ public class MemberStdServiceImpl implements MemberStdService {
 	}
 
 	@Override
-	public MemberStd showOneStdById(String memberEmail) {
-		MemberStd sMember = sStore.showOneStdById(session, memberEmail);
-		return sMember;
+	public MemberStd showOneStdById(MemberStd sMember) {
+		MemberStd sOne = sStore.showOneStdById(session, sMember);
+		return sOne;
 	}
 
 	@Override

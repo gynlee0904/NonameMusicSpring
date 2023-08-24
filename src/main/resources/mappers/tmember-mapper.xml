@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TMemberMapper">
+	<resultMap type="MemberTch" id="tMemberResultMap">
+		<id property="memberEmail"            column="MEMBER_EMAIL"/>
+		<result property="position"           column="MEMBER_POSITION"/>
+		<result property="memberName"         column="MEMBER_NAME"/>
+		<result property="memberGender"       column="MEMBER_GENDER"/>
+		<result property="memberPhone"        column="MEMBER_PHONE"/>
+		<result property="memberPw"           column="MEMBER_PW"/>
+		<result property="proPicFilename"     column="PROPIC_FILENAME"/>
+		<result property="proPicFilepath"     column="PROPIC_FILEPATH"/>
+		<result property="proPicFilelength"   column="PROPIC_FILELENGTH"/>
+		<result property="lessonFee"          column="LESSONFEE"/>
+		<result property="payment"            column="PAYMENT"/>
+		<result property="contactTime"        column="CONTACTTIME"/>
+		<result property="place"              column="PLACE"/>
+		<result property="lesson"             column="LESSON"/>
+		<result property="lessonType"         column="LESSON_TYPE"/>
+		<result property="history"            column="HISTORY"/>
+		<result property="target"            column="TARGET"/>
+		<result property="freeWords"          column="FREE_WORDS"/>
+		<result property="memberDate"         column="MEMBER_DATE"/>
+		<result property="updateDate"         column="UPDATE_DATE"/>
+		<result property="memberYn"           column="MEMBER_YN"/>
+	</resultMap>
+
+	<insert id="insertTchMember">
+		INSERT INTO TMEMBER_TBL VALUES (#{position} ,#{memberName},#{memberGender},#{memberPhone},#{memberEmail},#{memberPw},#{proPicFilename},#{proPicFilepath},#{proPicFilelength},#{lessonFee},#{payment},#{contactTime}, #{place},#{lesson},#{lessonType},#{history},#{target},#{freeWords},DEFAULT,DEFAULT,DEFAULT)
+	</insert>
+	
+	<select id="showOneTchById" resultMap="tMemberResultMap">
+		SELECT * FROM TMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_YN = 'Y' AND MEMBER_POSITION = #{position}
+	</select>
+	
+	<update id="modifyTchMember">
+		UPDATE TMEMBER_TBL SET MEMBER_PHONE = #{memberPhone}, PROPIC_FILENAME = #{proPicFilename}, PROPIC_FILEPATH = #{proPicFilepath}, PROPIC_FILELENGTH = #{proPicFilelength}, LESSONFEE = #{lessonFee}, PAYMENT = #{payment}, CONTACTTIME = #{contactTime}, PLACE = #{place}, LESSON = #{lesson}, LESSON_TYPE = #{lessonType}, HISTORY = #{history}, TARGET = #{target}, FREE_WORDS = #{freeWords}, UPDATE_DATE = DEFAULT WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_YN = 'Y'
+	</update>
+	
+	<update id="outServiceTchMember">
+		UPDATE TMEMBER_TBL SET MEMBER_YN = 'N' WHERE MEMBER_EMAIL = #{memberEmail} 
+	</update>
+	
+	
+
+
+</mapper> 

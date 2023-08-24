@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,16 +69,24 @@
                                     </div>
                                     <div>
                                         <input type="text" name="freeWriter" placeholder="작성자" value="${freeboard.freeWriter}">
+                                        <c:set var="wrterNmLength" value="${fn:length(freeboard.freeWriter)}"/>
+                                  		<c:choose>
+                                   			<c:when test="${fn:length(freeboard.freeWriter)}>1">
+                                   				<c:out value='${fn:substring(freeboard.freeWriter,0,1) }'/>*<c:out value='${fn:substring(freeboard.freeWriter,2,3) }'/>
+                                   			</c:when>
+                                   			<c:otherwise><c:out value="${freeboard.freeWriter}"/></c:otherwise>
+                                    	</c:choose>
+                                    
                                     </div>
                                 </div>
                             </div>
                             <div id="btn_wrap">
                                 <div>
-                                    <input type="button" id="listBack" value="돌아가기">
+                                    <button id="listBackBtn" >돌아가기</button>
                                 </div>
                                 <div>
                                     <input type="submit" name="" value="수정">
-                                    <a href="/notice/delete.do?memberEmail=${memberEmail}"><button id="deletefree" name="" value="삭제"></a>
+                                    <a href="/free/delete.do?freeNo=${freeboard.freeNo }"><button id="deleteBtn" >삭제</button></a>
                                 </div>
                             </div>	
 <!-- ************************************************************************************************************ -->

@@ -37,16 +37,16 @@
                 <section id="main_layer1">
                     <h1>회원 정보 수정</h1>
                 </section>
-
-                <form action="/member/modify_std.do" method="post">
+                
+                <form action="/member/modify_std.do" method="post" enctype="multipart/form-data">
+                	<input type="hidden" name="memberEmail" value="${sMember.memberEmail}"> 
+                	<input type="hidden" name="position" value="std"> 
                     <section id="main_layer2">
                         <section class="title">
                             <p><b>필수 정보</b></p>
                         </section>
                         <section class="data">
-            
-                        <input type="hidden" name="memberEmail" value="${sMember.memberEmail}"> 
-                            <table id="tbl_1">
+                        	<table id="tbl_1">
                                 <tr>
                                     <td class="line1">이름</td>
                                     <td  colspan="2" class="line2">
@@ -134,7 +134,7 @@
                             <p><b>하고싶은 말</b></p>
                         </section>
                         <div class="data">
-                            <textarea rows="10" cols="60" placeholder="자유롭게 쓰세요" name="freeWords" spellcheck="false"></textarea>
+                            <textarea rows="10" cols="60" name="freeWords" spellcheck="false" placeholder="${sMember.freeWords}"></textarea>
                         </div>
                     </section>
     

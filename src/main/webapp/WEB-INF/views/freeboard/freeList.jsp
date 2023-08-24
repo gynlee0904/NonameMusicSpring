@@ -54,7 +54,6 @@
                         </section>
                         <section id="board_content">
                         
-                            
                             <table>
                                 <colgroup>
                                     <col width="10%">
@@ -82,13 +81,14 @@
 												<c:if test="${empty freeboard.freeFilename }"> &nbsp;&nbsp;&nbsp;&nbsp; <a href="/free/detail.do?freeNo=${ freeboard.freeNo }" class="subject"> ${freeboard.freeSubject} </a></c:if>
 	                                        </td> 
 	                                        <td class="align"  nowrap>
-	                                        	<c:set var="wrterNmLength" value="${fn:length(freeboard.freeWriter)}"/>
+		                                        <c:set var="TextValue" value="${freeboard.freeWriter}"/>
 	                                        		<c:choose>
-	                                        			<c:when test="${fn:length(freeboard.freeWriter)}>1">
-	                                        				<c:out value='${fn:substring(freeboard.freeWriter,0,1) }'/>*<c:out value='${fn:substring(freeboard.freeWriter,1+1,3) }'/>
+	                                        			<c:when test="${fn:length(TextValue) > 1 }">
+	                                        				<c:out value="${fn:substring(TextValue,0,1) }"/>*<c:out value='${fn:substring(TextValue,2,3) }'/>
 	                                        			</c:when>
 	                                        			<c:otherwise><c:out value="${freeboard.freeWriter}"/></c:otherwise>
 	                                        		</c:choose>
+	                                        	
 <%-- 	                                        	${freeboard.freeWriter}</td> --%>
 	                                        <td class="align" nowrap>
 	                                        	<fmt:formatDate pattern="yy/MM/dd HH:mm:ss" value="${freeboard.uploadDate }"/>

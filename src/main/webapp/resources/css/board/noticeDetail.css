@@ -217,7 +217,7 @@ main {
         
 
 
-        input[type=submit] {
+        #modifyBtnBtn {
             color : #FFF;
             background-color: #222;
             border-radius: 3px;

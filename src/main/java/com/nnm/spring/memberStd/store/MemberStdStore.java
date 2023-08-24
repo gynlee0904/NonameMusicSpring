@@ -8,7 +8,7 @@ public interface MemberStdStore {
 
 	public int insertStdMember(SqlSession session, MemberStd sMember);
 
-	public MemberStd showOneStdById(SqlSession session, String memberId);
+	public MemberStd showOneStdById(SqlSession session, MemberStd sMember);
 
 	public int modifyStdMember(SqlSession session, MemberStd sMember);
 

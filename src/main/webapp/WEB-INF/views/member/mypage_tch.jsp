@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,16 +40,19 @@
                     <h1>MY PAGE</h1>
                 </section>
 
-                <form action="" method="">
+<!--                 <form action="/member/mypage.do" method="get"> -->
                     <section id="main_layer2">
                         <section id="profile1">
-                            <img src="../resources/images/profile_pic-removebg.png" alt="사진" id="mypicture">
+                            <c:if test="${!empty tMember.proPicFilename }"><img src="../resources/nuploadFiles/${tMember.proPicFilename}" alt="사진" id="mypicture"></c:if>
+							<c:if test="${empty tMember.proPicFilename }"><img src="../resources/images/profile_pic-removebg.png" alt="사진" id="mypicture" ></c:if>
                         </section>
                         <section id="profile2">
-                            <p><b>선 생 님 (남) </b></p>
-                            <p> HGD001@naver.com</p>
-                            <p> 010-0904-1011 </p>
-                            <p><small>가입일 : 2023.08.13</small></p>
+                    		<p><b>${tMember.memberName}(${tMember.memberGender}) </b></p>
+                            <p> ${tMember.memberEmail}</p>
+                            <p> ${tMember.memberPhone} </p>
+                            <p><small>가입일 : <fmt:formatDate pattern="yyyy.MM.dd" value="${tMember.memberDate }"/> 
+                            <input type="hidden" name="position" value="tch"> 
+                            </small></p>
                         </section>
                         <section id="profile3">
                             <button type="button" id="changePw_btn" name="changePw" onclick="">비밀번호 변경</button>
@@ -83,9 +88,9 @@
                                 </section>
                                 <section id="lesson_data">
                                     <ul>
-                                        <li>50,000원 (50분 기준)</li>
-                                        <li>ㅇㅇ페이 / 실시간계좌이체</li>
-                                        <li>매일 9시 ~ 10시 / 21시 ~ 23시 </li>
+                                        <li>${tMember.lessonFee} 원 (50분 기준)</li>
+                                        <li>${tMember.payment}</li>
+                                        <li>${tMember.contactTime} </li>
 
                                     </ul>
                                 </section>
@@ -102,15 +107,13 @@
                                         <li>희망하는 레슨 장소</li>
                                         <li>희망하는 레슨 방식</li>
                                         <li>희망하는 레슨</li>
-                                        <li>결제방식</li>
                                     </ul>  
                                 </section>
                                 <section id="choice_data">
                                     <ul>
-                                        <li>연습실 레슨</li>
-                                        <li>1대일 레슨 / 친구와 함께 레슨</li>
-                                        <li>원하는 곡만 마스터 </li>
-                                        <li> 무관</li>
+                                        <li>${tMember.place}</li>                           
+                                        <li>${tMember.lesson} </li>
+                                        <li>${tMember.lessonType}  </li>
                                     </ul>
                                 </section>
                         </section>
@@ -123,7 +126,7 @@
                             <p><b>선생님 정보</b></p>
                         </section>
                         <section class="data">
-                            <textarea spellcheck="false" name="history">존나좋은학교출신 </textarea>
+                            <textarea spellcheck="false" name="history">${tMember.history} </textarea>
                         </section>
                     </section>
 
@@ -132,7 +135,7 @@
                             <p><b>수강대상</b></p>
                         </section>
                         <section class="data">
-                            <textarea spellcheck="false" name="target" >존못부터 존잘까지 커버가능</textarea>
+                            <textarea spellcheck="false" name="target" >${tMember.target}</textarea>
                         </section>
                     </section>
 
@@ -141,18 +144,36 @@
                             <p><b>하고싶은말</b></p>
                         </section>
                         <section class="data">
-                            <textarea spellcheck="false" name="freeWords">피아노 잘가르침</textarea>
+                            <textarea spellcheck="false" name="freeWords">${tMember.freeWords}</textarea>
                         </section>
                     </section>
     
                     <section id="main_layer9">
-                        <input type="submit" id="modify_btn" name="modifyInfo" value="회원정보수정">
+                         <a href="/member/modify_tch.do?memberEmail=${memberEmail }"><button type="submit" id="modify_btn" name="modifyInfo" >회원정보수정</button></a>
                     </section>
-                </form>
+<!--                 </form> -->
             </main>
         </div>
 
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-        
+        <script>
+// 	        var String = ${tMember.place};
+// 	        if(String.eqals("oneOnOne"){
+// 	        	result1 = ${fn:replace('oneOnOne','oneOnOne', '1 대 1 레슨')}
+// 	        	document.querySelector("#place").innerHTML = result1
+// 	        }else if(String.eqals("group")){
+// 	        	${fn:replace('group', 'group', '친구와 함께 레슨')} 
+// 	        }
+        </script>
+        <script>
+	    	function checkDelete(){
+				const memberEmail = '${memberEmail}'
+				if(confirm ("정말 탈퇴하시겠습니까? 탈퇴한 아이디는 다시 사용할수 없습니다")){
+					location.href = "/member/delete_tch.do?memberEmail="+memberEmail;
+				}
+				//확인(true) 눌렀을때만 탈퇴되도록  //취소누르면 실행문이 동작 안함 
+			}
+
+		</script> 
     </body>
 </html>

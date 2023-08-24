@@ -49,10 +49,22 @@ public interface NoticeService {
 	public List<Notice> searchNoticeByKeyword(PageInfo pInfo, Map<String, String> paramMap);
 
 
+	/**
+	 * 공지사항 글 상세보기 (디테일)
+	 */
 	public Notice selectOneDetailByNo(Integer noticeNo);
 
-
+	
+	/**
+	 * 공지 글삭제
+	 */
 	public int deleteNoticeByNo(Integer noticeNo);
+
+
+	/**
+	 * 공지 글수정
+	 */
+	public int modifyNoticeByNo(Notice notice);
 	
 
 }
