@@ -6,8 +6,8 @@
 <configuration>
 
 	<settings>
-	<!-- Null 값이 발생할 경우 빈칸이 아닌 null로 인식하라 -->
-	<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- Null 값이 발생할 경우 빈칸이 아닌 null로 인식하라 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
 	<typeAliases>
@@ -16,6 +16,8 @@
 		<typeAlias type="com.nnm.spring.memberTch.domain.MemberTch" alias="MemberTch"/>
 		<typeAlias type="com.nnm.spring.notice.domain.Notice" alias="Notice"/>
 		<typeAlias type="com.nnm.spring.free.domain.Freeboard" alias="Freeboard"/>
+		<typeAlias type="com.nnm.spring.Reply.domain.NoticeReply" alias="NoticeReply"/>
+		<typeAlias type="com.nnm.spring.product.domain.MyClass" alias="MyClass"/>
 	</typeAliases>
 	
 	<mappers>
@@ -24,5 +26,7 @@
 		<mapper resource="mappers/tmember-mapper.xml"></mapper>
 		<mapper resource="mappers/notice-mapper.xml"></mapper>
 		<mapper resource="mappers/freeboard-mapper.xml"></mapper>
+		<mapper resource="mappers/reply-mapper.xml"></mapper>
+		<mapper resource="mappers/product-mapper.xml"></mapper>
 	</mappers>
 </configuration>

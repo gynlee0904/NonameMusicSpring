@@ -14,4 +14,8 @@ public interface MemberStdStore {
 
 	public int outServiceStdMember(SqlSession session, String memberEmail);
 
+	public int stdEmailCheck(SqlSession session, String memberEmail);
+
+//	public MemberStd showOneByEmail(SqlSession session, String memberEmail);
+
 }

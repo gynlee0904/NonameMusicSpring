@@ -9,47 +9,70 @@
         <a href="/index.jsp"><img src="../resources/images/mainlogo.png" alt="logo" id="mainlogo"></a>
     </div>
     <div id="header_layer3">
-<%--     	<c:choose> --%>
-<%--   			<c:when test="${memberEmail eq null }"> --%>
-<!-- 	      	 	<div class="member"><a href="/member/register1.do" >Join</a></div> -->
-<!-- 	         	<div class="member"><a href="/member/login.do" >LogIn</a></div> -->
-<%--         	</c:when> --%>
-<%-- 	        <c:when test="${memberEmail ne null && position eq 'std' }"> --%>
-<%-- 	        	<div class="member"><a href="/member/mypage_std.do?memberEmail=${memberEmail}&position=std"  class="my_std">MyPage</a></div> --%>
-<!-- 	        	<div class="member"><a href="/member/logout.do" class="my_std">LogOut</a></div> -->
-<%-- 	        </c:when> --%>
-<%-- 	        <c:when test="${memberEmail ne null && position eq 'tch' }"> --%>
-<%-- 	        	<div class="member"><a href="/member/mypage_tch.do?memberEmail=${memberEmail}&position=tch" class="my_tch">MyPage</a></div> --%>
-<!-- 	        	<div class="member"><a href="/member/logout.do" class="my_tch">LogOut</a></div> -->
-<%-- 	        </c:when> --%>
-<%--     	</c:choose> --%>
+    		
 
-        <c:if test="${memberEmail eq null }">
-      	 	<div class="member"><a href="/member/register1.do" >Join</a></div>
-         	<div class="member"><a href="/member/login.do" >LogIn</a></div>
-        </c:if>
-        <c:if test="${memberEmail ne null && position eq 'std' }">
-         	<div class="member"><a href="/member/mypage_std.do?memberEmail=${memberEmail}&position=std" >MyPage</a></div>
-         	<div class="member"><a href="/member/logout.do" >LogOut</a></div>
-        </c:if>
-        <c:if test="${memberEmail ne null && position eq 'tch' }">
-         	<div class="member"><a href="/member/mypage_tch.do?memberEmail=${memberEmail}&position=tch" >MyPage</a></div>
-         	<div class="member"><a href="/member/logout.do" >LogOut</a></div>
-        </c:if>
-        
-        <div ><a href="#" >C/S Center</a></div>
+        <div id="memberMenu">
+			<div class="member" id="join"  style="display:none;"><a href="/member/register1.do" >Join</a></div>
+			<div class="member" id="logIn" style="display:none;"><a href="/member/login.do" >LogIn</a></div>
+
+			<div class="member" id="myPage" style="display:none;"><a href="/member/mypage_std.do?memberEmail=${memberEmail}&position=std" >MyPage</a></div>
+			<div class="member" id="logOut" style="display:none;"><a href="/member/logout.do" >LogOut</a></div>
+
+			<div class="member" id="myPage2" style="display:none;"><a href="/member/mypage_tch.do?memberEmail=${memberEmail}&position=tch" >MyPage</a></div>
+			<div class="member" id="logOut2" style="display:none;"><a href="/member/logout.do" >LogOut</a></div>
+
+        	<div class="member"><a href="#" >C/S Center</a></div>
+        </div>
+
+<%-- 			<c:if test="${memberEmail eq null }"> --%>
+<!-- 				<div class="member"><a href="/member/register1.do" >Join</a></div> -->
+<!-- 				<div class="member"><a href="/member/login.do" >LogIn</a></div> -->
+<%-- 			</c:if> --%>
+			
+<%-- 			<c:if test="${memberEmail ne null && position eq 'std' }"> --%>
+<%-- 				<div class="member"><a href="/member/mypage_std.do?memberEmail=${memberEmail}&position=std" >MyPage</a></div> --%>
+<!-- 				<div class="member"><a href="/member/logout.do" >LogOut</a></div> -->
+<%-- 			</c:if> --%>
+<%-- 			<c:if test="${memberEmail ne null && position eq 'tch' }"> --%>
+<%-- 				<div class="member"><a href="/member/mypage_tch.do?memberEmail=${memberEmail}&position=tch" >MyPage</a></div> --%>
+<!-- 				<div class="member"><a href="/member/logout.do" >LogOut</a></div> -->
+<%-- 			</c:if> --%>
+
+<!--         	<div class="member"><a href="#" >C/S Center</a></div> -->
+
+		<div id="welcome">
+ 			<c:if test="${memberEmail ne null}">
+	            <span>${memberEmail}님 환영합니다!</span> 
+		   	</c:if>
+		</div>
+			
+
+		
     </div>
     
     <script>
-//     	if(position.equals("std")){
-//     		document.getElementByClass("my_tch").style.display = 'none';
-//     		document.getElementByClass("my_tch").style.display = 'block';
-//     	}else if(position.equals("tch"){
-//     		document.getElementByClass("my_std").style.display = 'none';
-//     		document.getElementByClass("my_std").style.display = 'block';
-    	
-//     	}
     
+    if(${memberEmail eq null }){
+    	document.querySelector("#join").style.display="block"
+    	document.querySelector("#join").style.opacity="1";
+    	document.querySelector("#logIn").style.display="block"
+    	document.querySelector("#logIn").style.opacity="1";
+    }
+    else if(${memberEmail ne null && position eq 'std' }){
+    	document.querySelector("#myPage").style.display="block"
+       	document.querySelector("#myPage").style.opacity="1";
+       	document.querySelector("#logOut").style.display="block"
+       	document.querySelector("#logOut").style.opacity="1";
+    }
+    else if(${memberEmail ne null && position eq 'tch' }){
+    	document.querySelector("#myPage2").style.display="block"
+       	document.querySelector("#myPage2").style.opacity="1";
+       	document.querySelector("#logOut2").style.display="block"
+       	document.querySelector("#logOut2").style.opacity="1";
+    }
+
+
+
     </script>
     
 </header>

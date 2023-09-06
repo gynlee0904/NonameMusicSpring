@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,16 +34,15 @@
             <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>  
 			<jsp:include page="/WEB-INF/views/include/nav.jsp"></jsp:include>  
 
-
-            <!-- ************************************************************************************ -->
+ <!-- **************************************************************************** -->
             
             <main>
                 <section id="main_layer1">
-                    <section id="profile1">
+                    <div id="profile1">
                         <img src="../resources/images/goodman.png" alt="서태우">
-                    </section>
+                    </div>
 
-                    <section id="profile2">
+                    <div id="profile2">
                         <div id="tch_name">
                             <div id="tName">서태우 선생님</div>
                             <div id="bookmark "><i class="bi bi-heart"></i></div>
@@ -54,31 +54,39 @@
                         <p>레슨횟수 : 총 3회 </p>
 
                         <div div id="lesson_score">
-                            <p id="starScr"> ★★★★★  </p>
-                            <p id="reviewCnt"> (3) </p>
-                            <button id="rv_btn">리뷰</button>
-                        </div><br>
+                            <div id="starScr">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                            <div id="reviewCnt">(12)</div>
+            
+                            <div><button id="rv_btn">리뷰</button></div>
+                        </div>
                             
                         <div id="lesson_pay">
                             <p>레슨비 : 회당 50,000원 (50분 기준)</p>
                             <p>결제방법 : ㅇㅇ페이, 실시간 계좌이체</p>
                         </div>
-                    </section>
+                    </div>
 
                     <form action="" method="">
-                        <section id="profile3"> 
+                        <div id="profile3"> 
                             <div id="">
                                 <button id="chat_btn"> 
                                     <div id="contain_bln">
                                         <div id="counsel">상담하기&nbsp;</div>
-                                        <div id="ballon_img"><i class="bi bi-chat-dots"></i></div>
+                                        <div id="ballon_img"><i class="bi bi-wechat"></i></div>
+                                        <!-- <div id="ballon_img"><i class="bi bi-chat-dots"></i></div> -->
                                     </div>
                                     <small>(상담 후 결제진행)</small>
                                 </button>
                                 <br>
                                 <small id="contact">연락가능시간 : 매일 89시 ~ 10시 / 21시 ~ 23시</small>
                             </div>
-                        </section>
+                        </div>
                     </form>	
                 </section>
 
@@ -87,7 +95,6 @@
                         <h4>선생님 정보</h4>
                     </div>
                     <div class="data">
-                    
                             <p>한국대학교 피아노전공 (졸업) <br>
                             총 레슨 경력 7년<br>
                             입시레슨, 취미레슨 가능 <br>
@@ -120,55 +127,76 @@
                 <br><br>
 
                 <section id="main_layer5">
-                    <div id="main5_cover">
-                        <div id="main_sec5_1">
-                            <div id="bigScr">
+                    <div id="main5_part1">
+                        <div id="starScore_wrap">
+                            <div id="bigScore">
                                 <h2>리뷰</h2>
                             </div>
+
                             <div id="bigstar">
-                                ★★★★★
+                                <i class="bi bi-star"></i>
+                                <!-- <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star-fill"></i> -->
+
+                                <i class="bi bi-star"></i>
+                                <!-- <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star-fill"></i> -->
+
+                                <i class="bi bi-star"></i>
+                                <!-- <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star-fill"></i> -->
+
+                                <i class="bi bi-star"></i>
+                                <!-- <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star-fill"></i> -->
+
+                                <i class="bi bi-star"></i>
+                                <!-- <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star-fill"></i> -->                                
                             </div>
-                            <div id="bigScr2">
-                                <p id="big_scr"><strong>5.0</strong></p>
-                                <span id="count"><small>(3개의 리뷰)</small></span>
+
+                            <div id="bigScore2">
+                                <strong>5.0</strong>
+                                <small>&nbsp(3개의 리뷰)</small>
                             </div>
+
                             <div id="write_rvw">
                                 <button type="button">리뷰남기기</button>
                             </div>
-                        </div>
 
-                        <div id="main_sec5_2">
-                            <div id="">
-                                <ul id="pht_list">
-                                    <div class="pht_preview">
-                                        <li ><img src="../resources/images/2022120601782_0.jpg" class="review_pic"></li>
-                                    </div>
-                                    <div class="pht_preview">
-                                        <li ><img src="../resources/images/goodman2.png" class="review_pic"></li>
-                                    </div>
-                                </ul>
-                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div id="main5_part2">
+                        <div id="photo_review">
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+                            <div class="card"></div>
+
+                            
+                        </div>
+                        <div id="next_btn">
+                            <i class="bi bi-chevron-compact-right"></i>
                         </div>
                     </div>
                 </section>
-            
-                <br><br>
-                
+
                 <section id="main_layer6">
-                    <article id="rvw_list">
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </article>
-                    <div id="more">
-                        <button id="more_rvw">펼치기</button>
-                    </div>
+                    <button id="openReviewBtn">
+                        Review 'count'
+                    </button>
+                    <!-- <div id="openReview">
+                    </div> -->
                 </section>
 
             </main>
         </div>
 
-   		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+        <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         
 
         <script>

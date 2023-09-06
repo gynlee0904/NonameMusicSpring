@@ -5,6 +5,7 @@
 
 html, body{
     height : 100%;
+    
     /* 910px */
 } 
 
@@ -168,8 +169,8 @@ main {
         }
         
         #noticeContent>img{
-        	 max-width : 630px;
-        	 max-height : 270px;
+        	max-width : 630px;
+        	max-height : 270px;
         }
 
         #file_wrap {
@@ -216,8 +217,7 @@ main {
         } 
         
 
-
-        #modifyBtnBtn {
+        #returnListBtn, #modifybtn {
             color : #FFF;
             background-color: #222;
             border-radius: 3px;
@@ -227,53 +227,300 @@ main {
             margin-right: 5px;
         }
 
-        #listBackBtn, #deleteBtn {
+        #deleteBtn, button[name=insertReplyBtn] {
             color : #FFF;
             background-color: #222;
             border-radius: 3px;
             width : 80px;
             height:23px;
             text-align: center;
-        }
-        
-        #comment_layer{
-            border : 1px solid gray;
-            --background-color: #ccc;
-            width : 90%;
-            
-            margin: 10px auto;
-            --display: flex;
-            --flex-direction: column;
+            --margin-right: 5px;
         }
 
-        #commentOpenBtn {
+        
+        
+/*  ************************************** */
+        #comment_layer{
+            --background-color: #ccc;
+            
+            --width : 90%;
+            width : 665px;
+            height: auto;
+            --min-height: 295px;
+            margin: 10px auto;
+            
+        }
+
+/*         #comment_open { */
+/*             width : 663px; */
+/*             height : 25px; */
+/*             border : 0px solid black; */
+/*             background-color: #ccc; */
+/*             margin-bottom : 5px; */
+/*         } */
+
+        #viewCommentBtn {
+        	--border : 1px solid black;
+            width : 665px;
+            height : 35px;
+            border : none;
+            background-color: #ccc;
+            --background-size: cover;
+            margin-bottom : 5px;
+        }
+        #viewCommentBtn:active {
+            width : 665px;
+            height : 35px;
+            border : none;
+            border-style : inset;
+            background-color: #ccc;
+            --background-size: cover;
+            margin-bottom : 5px;
+        }
+        
+        
+        #comment_wrap{
+        	border : 1px solid #ccc;
+        	padding-top : 15px;
+        	
+        	
+        }
+
+        #ReplyBox{
+            width : 595px;
+            --height : 120px;
+            border-radius : 5px;
+            --height : auto;
+            margin : 10px auto 0;
+        }
+        #reply_head {
+            border-top-left-radius : 5px;
+            border-top-right-radius : 5px;
+            background-color : #00284f;
+            color : #fff;
+            height:30px;
+            display: flex;
+            text-align: left;
+            
+        }
+            #reply_noWriter{
+                width : 50%;
+                display : flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left : 10px;
+            }
+            #reply_nDate{
+                width : 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding-right : 10px;
+            }
+
+        #reply_content {
+            height:auto;
+            border : 1px solid #ccc;
+            text-align: left;
+            padding : 5px;
+            word-break : break-all;
+        }
+
+        #reply_foot {
+            height:30px;
+            display : flex;
+            padding : 5px;
+            border-bottom-left-radius : 5px;
+            border-bottom-right-radius : 5px;
+            color : #fff;
+            background-color: #f0f0f0;
+            border : 1px solid #ccc;
+            border-top: none;
+
+        }
+            #re_replyBtn{
+                width : 50%;
+                display : flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            #reply_edit_btn{
+                width : 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            button[name=replymodifyBtn]{
+                color : #FFF;
+                background-color: #222;
+                border-radius: 3px;
+                width : 50px;
+                height:23px;
+                text-align: center;
+                margin-right: 5px;
+            }
+            button[name=replydeleteBtn]{
+                color : #FFF;
+                background-color: #222;
+                border-radius: 3px;
+                width : 50px;
+                height:23px;
+                text-align: center;
+                margin-right: 5px;
+            }
+
+
+        #insertReplyBox{
+            width : 595px;
+            --height : 120px;
+            border-radius : 5px;
+            --height : auto;
+            margin : 30px auto 10px;
+        }
+
+        #insert_reply_head{
+            border-top-left-radius : 5px;
+            border-top-right-radius : 5px;
+            background-color : #00284f;
+            color : #fff;
+            height:30px;
+            text-align: left;
+            padding-left : 5px;
+        }
+
+        .bi-arrow-return-right{
+            --font-size : 1.2em;
+            --margine-right:5px;
+            color : #fff;
+        }
+        #insert_reply_content{
+            height:70px;
+            border : 1px solid #ccc;
+            padding : 5px;
+            font-size: medium;
+        }
+        textarea[name=noticeReplyContent] {
+            --background-color : green;
             width : 100%;
             height : 100%;
-            border : 0px solid gray;
-            background-color: #ccc;
+            outline : none;
+            resize:none;
+            border : none;
+            padding : 3px;
         }
 
-        .commen {
-            border : 1px solid blue;
+        #insert_reply_foot {
+            height:30px;
+            display : flex;
+            padding : 5px;
+            border-bottom-left-radius : 5px;
+            border-bottom-right-radius : 5px;
+            --color : #fff;
+            border : 1px solid #ccc;
+            border-top: none;
+        }
+            #reply_attachFile{
+                width : 50%;
+                display : flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            
+                
+                
+            #reply_writer{
+                width : 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+            }
+            
+                input[name=noticeReplyWriter]{
+                    width : 100px;
+                    height : 22px;
+                    outline : none;
+                    --border: none;
+                    margin-right: 5px;
+                }
+
+
+
+        .replyModifyForm {
+            width : 593px;
+            --height : 120px;
             border-radius : 5px;
-            height : auto;
-            width : 90%;
+            --height : auto;
             margin : 10px auto;
-            
+        }    
+        #modify_reply_head{
+            border-top-left-radius : 5px;
+            border-top-right-radius : 5px;
+            background-color : #135394;
+            color : #fff;
+            height:30px;
+            text-align: left;
+            padding-left : 5px;
         }
 
-        .div_border { 
-            border : 1px solid darkgray;
-    
+        .bi-arrow-return-right{
+            --font-size : 1.2em;
+            --margine-right:5px;
+            color : #fff;
         }
-        .commen2{
-            border : 1px solid blue;
-            border-radius : 5px;
-            height : auto;
-            width : 80%;
-            margin : 10px;
-            
+        #modify_reply_content{
+            height:70px;
+            border : 1px solid #ccc;
+            padding : 5px;
+            font-size: medium;
         }
-        
+        #noticeReplyContent {
+            --background-color : green;
+            width : 100%;
+            height : 100%;
+            outline : none;
+            resize:none;
+            border : none;
+            padding : 3px;
+        }
 
+        #modify_reply_foot {
+            height:30px;
+            display : flex;
+            padding : 5px;
+            border-bottom-left-radius : 5px;
+            border-bottom-right-radius : 5px;
+            --color : #fff;
+            border : 1px solid #ccc;
+            border-top: none;
+        }
+            #modify_reply_attachFile{
+                width : 50%;
+                display : flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            
+                
+                
+            #modify_reply_edit{
+                width : 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+            }
+            
+                #modifyReplyBtn {
+                    color : #FFF;
+                    background-color: #222;
+                    border-radius: 3px;
+                    width : 80px;
+                    height:22px;
+                    text-align: center;
+                }      
+#topScroll {
+    border : none;
+    background-color: white;;
+}  
 

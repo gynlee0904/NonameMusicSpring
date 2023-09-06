@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.nnm.spring.Reply.domain.NoticeReply;
+import com.nnm.spring.Reply.service.NoticeReplyService;
 import com.nnm.spring.notice.domain.Notice;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.notice.service.NoticeService;
@@ -25,6 +27,8 @@ import com.nnm.spring.notice.service.NoticeService;
 public class NoticeController {
 	@Autowired
 	private NoticeService service;
+	@Autowired
+	private NoticeReplyService rService;
 	
 	
 	/**
@@ -88,7 +92,7 @@ public class NoticeController {
 			//endNavi는 startNavi에 무조건 naviCountPerPage값을 더하므로 실제 최대값보다 커질 수 있음
 			//커지면 naviTotalCount 값으로 넣어주는 식 ↓
 		}
-		pi= new PageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, naviTotalCount, naviTotalCount);
+		pi= new PageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, naviTotalCount, totalCount);
 		return pi;
 		
 		
@@ -219,6 +223,12 @@ public class NoticeController {
 		try {
 			if(notice != null) {
 				//가져왔으면 detail.jsp로 이동 
+				//댓글리스트도 보여줌
+				List<NoticeReply>nrList = rService.selectNoticeReplyList(noticeNo);
+				if(nrList.size() > 0) {
+					model.addAttribute("nrList",nrList);
+					
+				}
 				model.addAttribute("notice",notice);
 				return "notice/noticeDetail";
 				
@@ -236,7 +246,6 @@ public class NoticeController {
 			return "common/errorPage";
 		}
 	}
-	
 	
 	/**
 	 * 글삭제
@@ -262,6 +271,7 @@ public class NoticeController {
 			return "common/errorPage";
 		}
 	}
+	
 	
 	/**
 	 * 글수정페이지로 이동

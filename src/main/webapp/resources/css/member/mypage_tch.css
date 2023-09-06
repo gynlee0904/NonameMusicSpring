@@ -129,8 +129,8 @@ main {
                 border-style : inset; 
             }
 
-    #main_layer3{
-        height: 120px;
+    #main_layer3 {
+        height: 140px;
         display : flex;
         padding-top:15px;
 

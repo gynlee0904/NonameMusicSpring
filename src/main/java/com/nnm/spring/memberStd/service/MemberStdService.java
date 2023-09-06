@@ -12,4 +12,8 @@ public interface MemberStdService {
 
 	public int outServiceStdMember(String memberEmail);
 
+	public int stdEmailCheck(String memberEmail);
+
+//	public MemberStd showOneByEmail(String memberEmail);
+
 }

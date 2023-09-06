@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="ReplyMapper">
+	<resultMap type="NoticeReply" id="noticeReplyResultMap">
+		<id property="noticeReplyNo"              column="NOTICE_REPLY_NO"/>
+		<result property="refNoticeNo"       column="REF_NOTICE_NO"/>
+		<result property="noticeReplyContent"     column="NOTICE_REPLY_CONTENT"/>
+		<result property="noticeReplyWriter"      column="NOTICE_REPLY_WRITER"/>
+		<result property="noticeReplyFilename"      column="NOTICE_REPLY_FILENAME"/>
+		<result property="noticeReplyFileRename"      column="NOTICE_REPLY_FILERENAME"/>
+		<result property="noticeReplyFilepath"      column="NOTICE_REPLY_FILEPATH"/>
+		<result property="noticeReplyFilelength"      column="NOTICE_REPLY_FILELENGTH"/>
+		<result property="nrCreateDate"      column="N_R_CREATE_DATE"/>	
+		<result property="nrUpdateDate"      column="N_R_UPDATE_DATE"/>	
+		<result property="updateYn"         column="UPDATE_YN"/>	
+		<result property="rStatus"          column="R_STATUS"/>	
+	</resultMap>
+  
+
+	<insert id="insertNoticeReply">
+		INSERT INTO NOTICE_REPLY_TBL VALUES(SEQ_N_REPLY_NO.NEXTVAL,#{refNoticeNo},#{noticeReplyContent},#{noticeReplyWriter},#{noticeReplyFilename}, #{noticeReplyFileRename}, #{noticeReplyFilepath}, #{noticeReplyFilelength}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
+	
+	<select id="selectNoticeReplyList" resultMap="noticeReplyResultMap">
+		SELECT * FROM NOTICE_REPLY_TBL WHERE REF_NOTICE_NO = #{refNoticeNo} AND R_STATUS = 'Y'
+	</select>
+	
+	<update id="modifyReply">
+		UPDATE NOTICE_REPLY_TBL SET NOTICE_REPLY_CONTENT = #{noticeReplyContent}, N_R_UPDATE_DATE = DEFAULT, UPDATE_YN = 'Y' WHERE NOTICE_REPLY_NO = #{noticeReplyNo}
+	</update>
+	
+	<update id="deleteReply">
+	 	UPDATE NOTICE_REPLY_TBL SET R_STATUS = 'N' WHERE NOTICE_REPLY_NO =  #{noticeReplyNo} 
+	</update>
+	
+
+</mapper>

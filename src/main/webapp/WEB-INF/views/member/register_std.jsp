@@ -38,30 +38,33 @@
                         <h1>학생으로 가입하기</h1>
                     </section>
                     
-                    <form action="/member/register2.do" method="post" enctype="multipart/form-data">
+                    <form id="registerForm" action="/member/register2.do" method="post" enctype="multipart/form-data">
                         <section id="main_layer2">
                             <section id="e_title">
                                 <p>필수정보</p>
                             </section>
             
                             <section id="e_data">
-                            <input type="hidden" name="position" value="${register.position}"> 
+<%--                             <input type="hidden" name="position" value="${register.position}">  --%>
+								<input type="hidden" name="position" value="std">
                                 <table id="tbl_1">
                                     <tr>
                                         <td class="line1">이름</td>
                                         <td class="line2">
-                                            <input type="text" name="memberName" class="input" reqired>
+                                            <input type="text" name="memberName" id="memberName" class="input" value="${sMember.memberName}" reqired>
         
                                         </td>
                                         <td class="line1">성별</td>
                                         <td class="line2">
-                                            <input type="text" name="memberGender" class="input" reqired>
+                                            <label><input type="radio" name="memberGender" value="F" class="ipt_chkbx" reqired <c:if test="${ sMember.memberGender eq 'F' }">checked</c:if>>&nbsp;&nbsp;여성</label>&nbsp;&nbsp;
+                                            <label><input type="radio" name="memberGender" value="M" class="ipt_chkbx" reqired <c:if test="${ sMember.memberGender eq 'M' }">checked</c:if>>&nbsp;&nbsp;남성</label>&nbsp;&nbsp;
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="line1">휴대폰번호</td>
                                         <td colspan="2" class="line2">
-                                            <input type="text" name="memberPhone" class="input" reqired>
+                                            <input type="text" name="memberPhone" id="memberPhone" class="input" value="${sMember.memberPhone }"  maxlength="13" reqired>
                                         </td>
                                         <td class="line4">
                                             <div id="phn_chked">휴대폰인증완료</div>
@@ -71,26 +74,38 @@
                                     <tr>
                                         <td class="line1">ID</td>
                                         <td colspan="2">
-                                            <input type="text" name="memberEmail" class="input" placeholder="사용하시는 이메일을 입력해주세요." check_result="fail" reqired>
+                                            <input type="text" name="memberEmail" id="memberEmail" class="input" placeholder="사용하시는 이메일을 입력해주세요." value="${sMember.memberEmail }" reqired>
                                         </td>
                                         <td class="line4">
-                                            <button type="button" id="eml_btn">이메일 확인</button>
+                                        	<div>
+	                                            <button type="button" id="eml_btn" name="dbCheckId" onclick="emailCheck()">이메일 중복확인</button>
+	                                            <input type="hidden" name="idDuplication" value="${isChecked }">
+                                        	</div>
+                                            <div id="checkIdMsg">
+	                                            <c:if test="${isAvailable eq 'yes'}">
+													<span style="color: ${color};"><small>${msg}</small></span>
+												</c:if>
+												<c:if test="${isAvailable eq 'no'}">
+													<span style="color: ${color};"><small>${msg}</small></span>
+												</c:if>
+                                            </div>
+                                            
                                         </td>
                                         <!-- <td></td> -->
                                     </tr>
                                     <tr>
                                         <td class="line1">PW</td>
                                         <td colspan="2">
-                                            <input type="password" name="memberPw" class="input" placeholder="사용하실 비밀번호를 입력해 주세요." reqired>
+                                            <input type="password" name="memberPw" id="memberPw" class="input" placeholder="사용하실 비밀번호를 입력해 주세요."  reqired>
                                         </td>
                                         
-                                        <td></td>
+                                        <td class="line4"><small> 8~12자리의 영문자, 숫자 포함</small></td>
                                         <!-- <td></td> -->
                                     </tr>
                                     <tr>
                                         <td class="line1">PW 확인</td>
                                         <td colspan="2">
-                                            <input type="password" name="memberPwChk" class="input" placeholder="비밀번호를 한번 더 입력해 주세요." reqired>
+                                            <input type="password" name="memberPwChk" id="memberPwChk"  class="input" placeholder="비밀번호를 한번 더 입력해 주세요." reqired>
                                         </td>
                                         <td></td>
                                         <!-- <td></td> -->
@@ -165,13 +180,174 @@
                         </section>
         
                         <section id="main_layer5">
-                            <input type="submit" value="회원가입완료"> </input>
+                            <input type="button" id="registerBtn" onclick="registerCheck()" value="회원가입완료">
                         </section>
                     </form>
                 </main>
             </div>
 
             <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+            
+            <script> 
+	            function registerCheck() {
+	            	const memberName = document.getElementById("memberName");
+	            	let memberGender = document.getElementsByName("memberGender");
+	            	const memberPhone = document.getElementById("memberPhone");
+	            	const memberEmail = document.getElementById("memberEmail");
+	            	const memberPw = document.getElementById("memberPw");
+	            	const memberPwChk = document.getElementById("memberPwChk");
+	            	const emailCheck = document.getElementById("eml_btn");
+	            	const checkIdMsg = document.querySelector("span");
+	            	
+	            	//정규식
+	            	const regName = /^[가-힣]{2,15}$/;
+	            	const regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
+	            	const regPhone = /^(010)[0-9]{3,4}[0-9]{4}$/;
+	            	const regPw = /^[a-zA-z0-9]{8,12}$/;
+	            	
+	            	const str = memberEmail.value;
+	            	const words = str.split('@')
+	            	
+
+
+	            	
+	            	//이름 확인 
+	            	if(memberName.value == ""){
+	            		alert("이름을 입력해주세요");
+	            		memberName.focus();
+	            		return false;
+	            	} 
+	            	if(!regName.test(memberName.value)){
+	                    alert("이름은 2~15자까지의 한글만 입력할 수 있습니다")
+	                    memberName.focus();
+	                    return false;
+	                }
+	            	
+	            	
+	            	//성별 확인 
+	        		let gender_type = null;
+
+	        		for(var i = 0; i < memberGender.length; i++){
+	        			if(memberGender[i].checked == true){ 
+	        				gender_type = memberGender[i].value;
+	        			}
+	        		}
+	        		if(gender_type == null){
+						alert("성별을 선택하세요."); 
+						memberGender[0].focus();
+						return false;
+	        		}
+	        		
+
+	            	//전화번호 확인 
+	            	if(memberPhone.value == ""){
+	            		alert("전화번호를 입력해주세요");
+	            		memberPhone.focus();
+	            		return false;
+	            	}
+	            	if(!regPhone.test(memberPhone.value)){
+	            		alert("잘못된 전화번호 형식입니다.")
+	                    memberPhone.focus();
+	                    return false;
+	            		
+	            	}
+	            	
+	            	//이멜(아이디)확인
+	            	if(memberEmail.value == ""){
+						alert("사용하실 아이디를 입력해주세요");
+						memberEmail.focus();
+		            	return false;
+	            	}
+					if(!regEmail.test(memberEmail.value)){
+	                    alert("잘못된 이메일 형식입니다.")
+	                    memberEmail.focus();
+	                    return false;
+	                }
+					if(registerForm.idDuplication.value == ""){
+						 alert("이메일 중복체크를 해주세요")
+						 return false;
+					}
+
+	            	//비밀번호 확인 
+	            	if(memberPw.value == ""){
+	            		alert("사용하실 비밀번호를 입력해주세요");
+	            		memberPw.focus();
+	            		return false;
+	            	} 
+	            	if(memberPw.value == memberEmail.value || memberPw.value == words[0] || memberPw.value == words[1]){
+	                    alert("아이디와 동일한 비밀번호를 사용할 수 없습니다.")
+	                    pw.focus();
+	                    return false;
+	                }
+	            	if(!regPw.test(memberPw.value)){
+	                    alert("비밀번호는 8~12자의 영문자와 숫자를 포함해야합니다(특수문자 제외)")
+	                    memberPw.focus();
+	                    return false;
+	                }
+	            	
+	            	
+	            	//비밀번호 일치 확인 
+	            	if(memberPwChk.value == ""){
+	            		alert("비밀번호를 한번 더 확인해주세요");
+	            		memberPwChk.focus();
+	            		return false;
+	            	}
+	            	if(memberPw.value != memberPwChk.value){
+	            		alert("비밀번호가 맞지 않습니다. 다시 확인해주세요");
+	            		memberPwChk.focus();
+	            		return false;
+	            	}
+		            document.querySelector("#registerForm").submit();
+	          	}
+	            
+	            
+	            
+	            
+				
+				
+				
+	            function emailCheck(){
+	            	const memberEmail = document.getElementById("memberEmail").value;
+	            	const memberName = document.getElementById("memberName").value;
+	            	let memberGender = '';
+	            	const memberPhone = document.getElementById("memberPhone").value;
+	            	//라디오버튼 클릭한 값 저장
+	            	const radioButtons = document.getElementsByName("memberGender");
+					radioButtons.forEach((radio) => {  //forEach(item) item은 변수명이라 아무거나 써도 상관 없음
+				        if (radio.checked) {
+				            memberGender = radio.value;
+				        }
+				    });
+
+					
+					if(memberEmail.trim() != ""){
+		            	location.href="/member/stdEmailCheck.do?memberEmail="+memberEmail+"&memberName="+memberName+"&memberGender="+memberGender+"&memberPhone="+memberPhone;
+// 	            		var newUrl = "/member/register2.do";
+// 	            		window.history.replaceState({}, document.title, newUrl);
+						if('${isAvailable eq 'yes'}'){
+	            		document.getElementsByName("idDuplication").value = "idCheck";  
+// 	            		document.getElementById("eml_btn").disabled = true; // 버튼 비활성화
+		            	return false;
+						}
+	            	}
+					if('${isAvailable eq 'no'}' && document.querySelector("#registerForm").submit()){
+						 alert("중복되는 이메일은 아이디로 사용할 수 없습니다. 다른 이메일을 입력해주세요")
+						 memberEmail.focus();
+						 return false;
+					 }			
+	            }
+	            
+	         // 아이디 입력란 값이 변경될 때 중복 확인 상태를 다시 "idUncheck"으로 변경
+				document.getElementById("memberEmail").addEventListener("keydown", function() {
+                document.getElementById("idDuplication").value = "idUncheck";
+                document.getElementById("eml_btn").disabled = false; // 버튼 활성화
+	            });
+				
+	         	
+	           
+	            
+            
+         </script>
         
     </body>
 </html>

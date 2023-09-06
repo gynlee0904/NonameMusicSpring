@@ -24,12 +24,11 @@ header {
     --width : 1300px;
     width : inherit;
     height: 100px;
-    --position : fixed;
     position : sticky;
     top: 0px;
     display: flex;
-
-    flex: 1
+    flex: 1;
+	z-index: 2;
 }
 
     #header_layer1 {
@@ -50,14 +49,21 @@ header {
             width : 90px;
             height : 90px;
         }
-    #header_layer3 {
+   #header_layer3 {
         --background-color: crimson;
         width : 45%;
         height: inherit;
         display : flex;
-        justify-content : flex-end;
+        flex-direction: column;
+        justify-content: flex-start;
+    	align-items: flex-end;
+        
     }
-        #header_layer3>div {
+        
+        #memberMenu {
+            display : flex;
+        }
+        .member {
             border : 1px solid #ccc;
             width : 100px;
             height : 25px;
@@ -66,7 +72,11 @@ header {
             font-family: 'IBM Plex Serif', serif;
             text-align : center;
         }
-        #header_layer3>div>a {
+        .member>a {
             display: block;
             padding : 0px 1px;
+        }
+        
+        #header_layer3>div:last-child>span {
+            margin : 5px;
         }

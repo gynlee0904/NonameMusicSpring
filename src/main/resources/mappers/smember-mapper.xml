@@ -12,6 +12,7 @@
 		<result property="memberPhone"        column="MEMBER_PHONE"/>
 		<result property="memberPw"           column="MEMBER_PW"/>
 		<result property="proPicFilename"     column="PROPIC_FILENAME"/>
+		<result property="proPicFileRename"     column="PROPIC_FILERENAME"/>
 		<result property="proPicFilepath"     column="PROPIC_FILEPATH"/>
 		<result property="proPicFilelength"   column="PROPIC_FILELENGTH"/>
 		<result property="place"              column="PLACE"/>
@@ -27,7 +28,7 @@
 
 
 	<insert id="insertMemberStd">
-		INSERT INTO SMEMBER_TBL VALUES (#{position} ,#{memberName},#{memberGender},#{memberPhone},#{memberEmail},#{memberPw},#{proPicFilename},#{proPicFilepath},#{proPicFilelength},#{place},#{lesson},#{lessonType},#{tGender},#{myLevel},#{freeWords},DEFAULT,DEFAULT,DEFAULT)
+		INSERT INTO SMEMBER_TBL VALUES (#{position} ,#{memberName},#{memberGender},#{memberPhone},#{memberEmail},#{memberPw},#{proPicFilename},#{proPicFileRename},#{proPicFilepath},#{proPicFilelength},#{place},#{lesson},#{lessonType},#{tGender},#{myLevel},#{freeWords},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
 	<update id="modifyStdMember">
@@ -39,9 +40,17 @@
 		SELECT * FROM SMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_YN = 'Y' AND MEMBER_POSITION = #{position}
 	</select>
 	
+	<!-- 회원탈퇴 -->
 	<update id="outServiceStdMember">
 		UPDATE SMEMBER_TBL SET MEMBER_YN = 'N' WHERE MEMBER_EMAIL = #{memberEmail} 
 	</update>
+	
+<!-- 	아이디중복확인 -->
+	<select id="stdEmailCheck" resultType="_int">
+		SELECT COUNT (*) FROM SMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail}  
+	</select>
+	
+
 	
 
 </mapper>

@@ -245,6 +245,9 @@ public class MemberTchController {
 	}
 	
 	
+	/**
+	 * 강사회원 탈퇴
+	 */
 	@RequestMapping(value="/member/delete_tch.do", method=RequestMethod.GET)
 	public String outServiceTchMember(@RequestParam("memberEmail") String memberEmail, Model model) {
 		try {

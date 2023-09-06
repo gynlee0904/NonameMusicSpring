@@ -10,6 +10,7 @@ public class MemberStd {
 	private String memberEmail;
 	private String memberPw;
 	private String proPicFilename;
+	private String proPicFileRename;
 	private String proPicFilepath;
 	private long proPicFilelength;
 	private String place;
@@ -34,9 +35,14 @@ public class MemberStd {
 	}
 
 
+
+	
+
+
 	public MemberStd(String position, String memberName, String memberGender, String memberPhone, String memberEmail,
-			String memberPw, String proPicFilename, String proPicFilepath, long proPicFilelength, String place,
-			String lesson, String lessonType, String tGender, String myLevel, String freeWords) {
+			String memberPw, String proPicFilename, String proPicFileRename, String proPicFilepath,
+			long proPicFilelength, String place, String lesson, String lessonType, String tGender, String myLevel,
+			String freeWords) {
 		super();
 		this.position = position;
 		this.memberName = memberName;
@@ -45,6 +51,7 @@ public class MemberStd {
 		this.memberEmail = memberEmail;
 		this.memberPw = memberPw;
 		this.proPicFilename = proPicFilename;
+		this.proPicFileRename = proPicFileRename;
 		this.proPicFilepath = proPicFilepath;
 		this.proPicFilelength = proPicFilelength;
 		this.place = place;
@@ -54,6 +61,7 @@ public class MemberStd {
 		this.myLevel = myLevel;
 		this.freeWords = freeWords;
 	}
+
 
 
 	public MemberStd(String position,String memberPhone, String memberEmail, String memberPw, String proPicFilename,
@@ -73,6 +81,15 @@ public class MemberStd {
 		this.tGender = tGender;
 		this.myLevel = myLevel;
 		this.freeWords = freeWords;
+	}
+
+
+	public MemberStd(String memberName, String memberGender, String memberPhone, String memberEmail) {
+		super();
+		this.memberName = memberName;
+		this.memberGender = memberGender;
+		this.memberPhone = memberPhone;
+		this.memberEmail = memberEmail;
 	}
 
 
@@ -131,6 +148,14 @@ public class MemberStd {
 
 	public void setProPicFilename(String proPicFilename) {
 		this.proPicFilename = proPicFilename;
+	}
+
+	public String getProPicFileRename() {
+		return proPicFileRename;
+	}
+
+	public void setProPicFileRename(String proPicFileRename) {
+		this.proPicFileRename = proPicFileRename;
 	}
 
 	public String getProPicFilepath() {
@@ -221,15 +246,20 @@ public class MemberStd {
 		this.memberYn = memberYn;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "MemberStd [position=" + position + ", memberName=" + memberName + ", memberGender=" + memberGender
 				+ ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail + ", memberPw=" + memberPw
-				+ ", proPicFilename=" + proPicFilename + ", proPicFilepath=" + proPicFilepath + ", proPicFilelength="
-				+ proPicFilelength + ", place=" + place + ", lesson=" + lesson + ", lessonType=" + lessonType
-				+ ", tGender=" + tGender + ", myLevel=" + myLevel + ", freeWords=" + freeWords + ", memberDate="
-				+ memberDate + ", updateDate=" + updateDate + ", memberYn=" + memberYn + "]";
+				+ ", proPicFilename=" + proPicFilename + ", proPicFileRename=" + proPicFileRename + ", proPicFilepath="
+				+ proPicFilepath + ", proPicFilelength=" + proPicFilelength + ", place=" + place + ", lesson=" + lesson
+				+ ", lessonType=" + lessonType + ", tGender=" + tGender + ", myLevel=" + myLevel + ", freeWords="
+				+ freeWords + ", memberDate=" + memberDate + ", updateDate=" + updateDate + ", memberYn=" + memberYn
+				+ "]";
 	}
+
+
 	
 	
 	

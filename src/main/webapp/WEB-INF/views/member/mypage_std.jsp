@@ -56,8 +56,8 @@
                             
                         </section>
                         <section id="profile3">
-                            <button type="button" id="changePw_btn" name="changePw" onclick="">비밀번호 변경</button>
-                            <a href="javascript:void(0)" onclick="checkDelete();"><button type="submit" id="delete_btn" name="delete" value="">회원탈퇴</button></a>
+                            <a href="#"><button type="button" id="changePw_btn" name="changePw">비밀번호 변경</button></a>
+                            <a href="javascript:void(0)" onclick="checkDelete();"><button type="submit" id="delete_btn" name="delete">회원탈퇴</button></a>
                         </section>
                     </section>
     
@@ -92,11 +92,37 @@
                                 </section>
                                 <section id="choice_data">
                                     <ul>
-                                        <li>${sMember.place}</li>
-                                        <li>${sMember.lesson}</li>
-                                        <li>${sMember.lessonType} </li>
-                                        <li>${sMember.tGender}</li>
-                                        <li>${sMember.myLevel}</li>
+                                        <li>
+                                         <%--	${sMember.place} --%>
+                                        	<c:if test="${sMember.place ne null && sMember.place.contains('visitTeacher')}">선생님 연습실에서 레슨</c:if>
+                                        	<c:if test="${sMember.place.contains('visitTeacher') && sMember.place.contains('visitStudent')}">/</c:if>
+                                       		<c:if test="${sMember.place ne null && sMember.place.contains('visitStudent')}">우리집으로 방문 희망</c:if>
+                                       		<c:if test="${sMember.place eq null}">선택안함</c:if>
+                                        </li>
+                                        <li>
+											<c:if test="${sMember.lesson ne null && sMember.lesson.contains('oneOnOne')}">1 대 1 레슨</c:if>
+                                        	<c:if test="${sMember.lesson.contains('oneOnOne') && sMember.lesson.contains('group')}">/</c:if>
+                                       		<c:if test="${sMember.lesson ne null && sMember.lesson.contains('group')}">친구와 함께 레슨</c:if>
+                                       		<c:if test="${sMember.lesson eq null}">선택안함</c:if>
+										</li>
+                                        <li>
+                                        	<c:if test="${sMember.lessonType eq 'basic' }">기초부터 차근히 배우고 싶어요.</c:if>
+                                        	<c:if test="${sMember.lessonType eq 'wants' }">원하는 곡만 마스터하고 싶어요.</c:if>
+                                        	<c:if test="${sMember.lessonType eq null}">선택안함</c:if>
+                                        </li>
+                                        <li>
+											<c:if test="${sMember.tGender eq 'F' }">여성</c:if>
+                                        	<c:if test="${sMember.tGender eq 'M' }">남성</c:if>
+                                        	<c:if test="${sMember.tGender eq 'N' }">무관</c:if>
+                                        	<c:if test="${sMember.tGender eq null}">선택안함</c:if>
+										</li>
+                                        <li>
+											<c:if test="${sMember.myLevel eq 'low'}">하</c:if>
+                                        	<c:if test="${sMember.myLevel eq 'middle'}">중</c:if>
+                                        	<c:if test="${sMember.myLevel eq 'mhigh'}">중상</c:if>
+                                        	<c:if test="${sMember.myLevel eq 'high'}">상</c:if>
+                                        	<c:if test="${sMember.myLevel eq null}">선택안함</c:if>
+										</li>
                                     </ul>
                                 </section>
                         </section>
@@ -111,8 +137,6 @@
                         </section>
                     </section>
 	                <form action="/member/modify_std.do" method="get">
-<!-- 						<input type="hidden" name="memberEmail" value="memberEmail"> -->
-<!-- 						<input type="hidden" name="position" value="std"> -->
 	                    <section id="main_layer6">
 <%--                         <a href="/member/modify_std.do?memberEmail=${memberEmail}&position=std"> --%>
 <!--                         	<button type="submit" id="modify_btn" name="modifyInfo">회원정보수정</button> -->

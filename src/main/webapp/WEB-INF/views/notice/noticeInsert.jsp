@@ -50,12 +50,12 @@
                         </section>
                         
                         <section id="board_content">
-                            <form action="/notice/insert.do" method="post" enctype="multipart/form-data">
+                            <form action="/notice/insert.do" method="post" enctype="multipart/form-data" id="registerForm">
                                 <div>
-                                    <input type="text" name="noticeSubject" placeholder="제목">
+                                    <input type="text" name="noticeSubject" id="noticeSubject" placeholder="제목" onclick="insertCheck()">
                                 </div>
                                 <div>
-                                    <textarea name="noticeContent" placeholder="내용" spellcheck="false"></textarea>
+                                    <textarea name="noticeContent" id="noticeContent" placeholder="내용" spellcheck="false" onclick="insertCheck()"></textarea>
                                 </div>
                                 <div id="file_wrap">
                                     <div >
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div id="btn_wrap">
-                                    <input type="submit" value="올리기">
+                                    <input type="button" onclick="registerCheck()" value="올리기" >
                                     <input type="button" value="돌아가기">
                                 </div>	
                             </form>
@@ -101,8 +101,22 @@
             }
             function locate2 (){
                 location.href='/free/list.do?page=1'
-            }
-
+            }     
+      
+          //유효성검사
+	      function registerCheck() {
+	    	  var nSubject = document.querySelector('#noticeSubject').value;
+	    	  var nContent = document.querySelector('#noticeContent').value;
+	    	    
+	    	  if(nSubject === '' || nContent === '') {
+	    		    window.alert("필수정보는 반드시 입력해야 합니다.");
+	    		    nSubject.focus();
+	    		    return false;
+	    		} else{
+	    			document.querySelector("#registerForm").submit();
+	    		}
+	    	}
+      	
       </script>
         
         

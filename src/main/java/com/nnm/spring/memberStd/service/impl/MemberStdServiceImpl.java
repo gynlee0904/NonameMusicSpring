@@ -40,5 +40,17 @@ public class MemberStdServiceImpl implements MemberStdService {
 		return result;
 	}
 
+	@Override
+	public int stdEmailCheck(String memberEmail) {
+		int result = sStore.stdEmailCheck(session, memberEmail);
+		return result;
+	}
+
+//	@Override
+//	public MemberStd showOneByEmail(String memberEmail) {
+//		MemberStd sOne = sStore.showOneByEmail(session, memberEmail);
+//		return sOne;
+//	}
+
 	
 }

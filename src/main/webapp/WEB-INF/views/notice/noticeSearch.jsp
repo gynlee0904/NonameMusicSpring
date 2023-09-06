@@ -75,7 +75,9 @@
                                 <tbody>
                                 	<c:forEach var="notice" items="${sList}" varStatus="i">
 	                                    <tr>
-	                                        <td class="align" nowrap>${i.count}</td> 
+	                                        <td class="align" nowrap>
+												${(pInfo.totalCount - i.index) - ((pInfo.currentPage - 1)  *  10 ) }
+											</td> 
 	                                        <td id="subject" nowrap>
 	                                        	<c:if test="${!empty notice.noticeFilename }"> ◎ <a href="/notice/detail.do?noticeNo=${ notice.noticeNo }" class="subject"> ${notice.noticeSubject} </a></c:if>
 												<c:if test="${empty notice.noticeFilename }"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/notice/detail.do?noticeNo=${ notice.noticeNo }" class="subject"> ${notice.noticeSubject} </a></c:if>

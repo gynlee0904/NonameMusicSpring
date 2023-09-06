@@ -33,5 +33,17 @@ public class MemberStdStoreLogic implements MemberStdStore {
 		return result;
 	}
 
+	@Override
+	public int stdEmailCheck(SqlSession session, String memberEmail) {
+		int result = session.selectOne("SMemberMapper.stdEmailCheck", memberEmail);
+		return result;
+	}
+
+//	@Override
+//	public MemberStd showOneByEmail(SqlSession session, String memberEmail) {
+//		MemberStd sOne = session.selectOne("SMemberMapper.showOneByEmail", memberEmail);
+//		return sOne;
+//	}
+
 	
 }

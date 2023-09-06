@@ -38,12 +38,12 @@
                     <h1>회원가입</h1>
                 </section>
     
-                <form action="/member/register1.do" method="post">
+                <form id="regiForm" action="/member/register1.do" method="post">
                     <section id="main_layer2">
                         <div>
                             <div id="policy">약관</div>
                             <div id="agree">
-                                <label><input type="checkbox" name="policy" >&nbsp;동의합니다(필수)</label>
+                                <label><input type="checkbox" name="policy" id="policyChk" >&nbsp;동의합니다(필수)</label>
                             </div>
                         </div>
                     </section>
@@ -60,7 +60,7 @@
                     </section>
     
                     <section id="main_layer4">
-                        <button type="submit" id="next_btn">본인인증하기</button></a>
+                        <button type="button" id="next_btn" onclick="registerCheck()">본인인증하기</button></a>
                     </section>
                 </form>
             </main>
@@ -68,5 +68,18 @@
 
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         
+        <script> 
+        	function registerCheck() {
+        		var policyChk = document.querySelector('#policyChk');
+        		if(regiForm.policyChk.checked == false){
+        			 alert("필수동의사항에 체크해주세요");
+        			 return false;
+        		}else{
+        			document.querySelector("#regiForm").submit();
+        		}
+        		
+        	}
+        
+        </script>
     </body>
 </html>

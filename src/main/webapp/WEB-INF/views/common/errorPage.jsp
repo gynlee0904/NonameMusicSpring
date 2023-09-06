@@ -10,10 +10,15 @@
 		<h1>서비스실패</h1>
 		<h2>관리자에게 문의바랍니다</h2>
 		<h2>${error }</h2>
-		<a href = "${url }">페이지 이동</a>
+<%-- 		<a href = "${url }">페이지 이동</a> --%>
+			
+			
 		<script>
 			const msg = "${msg}";
 			if(msg!=null)alert(msg);
+			
+			const url = '${url }';
+			location.href = url;
 		</script>
 	</body>
 </html>

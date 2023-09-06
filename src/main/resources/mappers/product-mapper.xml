@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ProductMapper">
+	<resultMap type="MyClass" id="myClassResultMap">
+		<id property="classNo"              column="CLASS_NO"/>
+		<result property="classTitle"       column="CLASS_TITLE"/>
+		<result property="cCreateDate"     column="C_CREATE_DATE"/>
+		<result property="memberEmail"      column="MEMBER_EMAIL"/>
+		<result property="classWriter"      column="CLASS_WRITER"/>	
+		<result property="classTime"      column="CLASS_TIME"/>
+		<result property="classDay"    column="CLASS_DAY"/>
+		<result property="classPrice"  column="CLASS_PRICE"/>
+		<result property="maxPeople"    column="CLASS_MAXPEOPLE"/>
+		<result property="classTarget"    column="CLASS_TARGET"/>
+		<result property="classProgress"    column="CLASS_PROGRESS"/>	
+		<result property="cUpdateDate"  column="C_UPDATE_DATE"/>
+		<result property="UpdateYN"       column="UPDATE_YN"/>
+		<result property="classFilename"      column="CLASS_FILENAME"/>	
+		<result property="classFileRename"      column="CLASS_FILERENAME"/>	
+		<result property="classFilepath"      column="CLASS_FILEPATH"/>	
+		<result property="classFilelength"      column="CLASS_FILELENGTH"/>	
+	</resultMap>
+	
+	<!-- 클래스등록 -->
+	<insert id="insertClass">
+		INSERT INTO CLASS_LIST_TBL VALUES (#{classTitle}, SEQ_MY_CLASS_NO.NEXTVAL,DEFAULT,#{memberEmail},#{classWriter},#{classTime},#{classDay},#{classPrice},#{maxPeople},#{classTarget},#{classProgress},DEFAULT,DEFAULT,DEFAULT, #{classFilename}, #{classFileRename}, #{classFilepath}, #{classFilelength})
+	</insert>
+
+	<!-- 마이클래스리스트 전체게시글수조회-->
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT (*) FROM CLASS_LIST_TBL WHERE C_STATUS = 'Y' AND MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	<!-- 마이클래스리스트 목록 -->
+	<select id="selectMyClassList" resultMap="myClassResultMap">
+		SELECT * FROM CLASS_LIST_TBL WHERE C_STATUS = 'Y'AND MEMBER_EMAIL = #{memberEmail} ORDER BY CLASS_NO DESC
+	</select>
+	
+	<!-- 전체클래스리스트 전체게시글수조회 -->
+	<select id="getAllClassListCount" resultType="_int">
+		SELECT COUNT (*) FROM CLASS_LIST_TBL WHERE C_STATUS = 'Y'
+	</select>
+	
+	<!-- 전체클래스리스트 목록 -->
+	<select id="selectAllClassList" resultMap="myClassResultMap">
+		SELECT * FROM CLASS_LIST_TBL WHERE C_STATUS = 'Y' ORDER BY CLASS_NO DESC
+	</select>
+	
+	<!-- 클래스페이지 상세 -->
+	<select id="selectClassByNo" resultMap="myClassResultMap">
+		SELECT * FROM CLASS_LIST_TBL WHERE CLASS_NO = #{classNo}
+	</select>
+	
+	
+</mapper>

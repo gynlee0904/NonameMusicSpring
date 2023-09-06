@@ -56,7 +56,7 @@ main {
     }
 
         #e_title{
-            width : 30%;
+            width : 25%;
             height : 100%;
             text-align: right;
         }
@@ -74,7 +74,7 @@ main {
         }
             table {
                 border : 1px solid gray;
-                width : 75%;
+                width : 85%;
                 height : 90%;
                 margin : 10px;
                 border-collapse: collapse;
@@ -85,7 +85,7 @@ main {
             td {
                 border : 1px solid gray;
                 color : rgb(96, 96, 96);
-                height: 40px;
+                height: 45px;
             }
 
             .line1{
@@ -131,7 +131,7 @@ main {
                 border-radius: 5px;
                 padding: 1px;
                 text-align: center;
-                width : 85px;
+                width: 105px;
                 height : 24px;
                 font-size : small;
                 color : #fff;
@@ -144,13 +144,19 @@ main {
                 border-radius: 5px;
                 padding: 1px;
                 text-align: center;
-                width : 85px;
+                width: 105px;
                 height : 24px;
                 font-size : small;
                 color : #222;
                 background-color: #fff;
                 border-style : inset; 
             }
+            
+            small {
+            font-size : 0.7em;
+            }
+            
+            
 
     #main_layer3{
         height : 350px;
@@ -163,7 +169,7 @@ main {
     }
 
         #cho_title{
-        width : 30%;
+        width : 25%;
         height : 100%;
         text-align: right;
         }
@@ -227,7 +233,7 @@ main {
         height : 100px;
         text-align: center;
     }
-        input[type=submit] {
+        #registerBtn {
                 color : #FFF;
                 background-color: #222;
                 width : 115px;
@@ -238,7 +244,7 @@ main {
                 border-style : solid;
 
         }
-        input[type=submit]:active {
+        #registerBtn:active {
             color : #222;
             background-color: #FFF;
             width : 115px;

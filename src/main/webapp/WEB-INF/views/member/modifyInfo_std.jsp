@@ -50,15 +50,15 @@
                                 <tr>
                                     <td class="line1">이름</td>
                                     <td  colspan="2" class="line2">
-<%--                                         <input type="text" name="memberName" id="name" value="${sMember.memberName}" readonly> --%>
-                                    	<p id="name"> ${sMember.memberName} </p>
+                                        <input type="text" name="memberName" id="name" value="${sMember.memberName}" readonly>
+<%--                                     	<p id="name"> ${sMember.memberName} </p> --%>
                                     </td>
                                     <!-- <td></td> -->
                                 </tr>
                                 <tr>
                                     <td class="line1">휴대폰번호</td>
                                     <td class="line2">
-                                        <input type="text" name="memberPhone" class="input" placeholder="${sMember.memberPhone}">
+                                        <input type="text" name="memberPhone" class="input" value="${sMember.memberPhone}">
                                     </td>
                                     <td class="line4">
                                         <div id="phn_chked">휴대폰인증</div>
@@ -90,39 +90,40 @@
                                 <tr class="line">
                                     <td>희망하는 레슨장소</td>
                                     <td>
-                                        <label><input type="checkbox" name="place" value="visitTeacher"  >&nbsp;&nbsp;선생님 연습실에서 레슨</label><br>
-                                        <label><input type="checkbox" name="place" value="visitStudent"  >&nbsp;&nbsp;우리집으로 방문 희망</label>
+                                        <label><input type="checkbox" name="place" value="visitTeacher" <c:if test="${sMember.place ne null && sMember.place.contains('visitTeacher')}">checked</c:if> >&nbsp;&nbsp;선생님 연습실에서 레슨</label><br>
+                                        <label><input type="checkbox" name="place" value="visitStudent" <c:if test="${sMember.place ne null && sMember.place.contains('visitStudent')}">checked</c:if> >&nbsp;&nbsp;우리집으로 방문 희망</label>
+
                                 </td >
                                 </tr>
                                 <tr class="line">
                                     <td >희망하는 레슨 방식</td>
                                     <td >
-                                        <label><input type="checkbox" name="lesson" value="oneOnOne" >&nbsp;&nbsp;1 대 1 레슨</label><br>
-                                        <label><input type="checkbox" name="lesson" value="group"  >&nbsp;&nbsp;친구와 함께 레슨</label>
+                                        <label><input type="checkbox" name="lesson" value="oneOnOne" <c:if test="${sMember.lesson ne null && sMember.lesson.contains('oneOnOne')}">checked</c:if> >&nbsp;&nbsp;1 대 1 레슨</label><br>
+                                        <label><input type="checkbox" name="lesson" value="group" <c:if test="${sMember.lesson ne null && sMember.lesson.contains('group')}">checked</c:if> >&nbsp;&nbsp;친구와 함께 레슨</label>
                                     </td>
                                 </tr>
                                 <tr class="line">
                                     <td >희망하는 레슨</td>
                                     <td >
-                                        <label><input type="radio" name="lessonType" class="ipt_chkbx" value="basic" >&nbsp;&nbsp;기초부터 차근히 배우고 싶어요.</label><br>
-                                        <label><input type="radio" name="lessonType" class="ipt_chkbx" value="wants" >&nbsp;&nbsp;원하는 곡만 마스터하고 싶어요.</label>
+                                        <label><input type="radio" name="lessonType" class="ipt_chkbx" value="basic" <c:if test="${ sMember.lessonType eq 'basic' }">checked</c:if> >&nbsp;&nbsp;기초부터 차근히 배우고 싶어요.</label><br>
+                                        <label><input type="radio" name="lessonType" class="ipt_chkbx" value="wants" <c:if test="${ sMember.lessonType eq 'wants' }">checked</c:if> >&nbsp;&nbsp;원하는 곡만 마스터하고 싶어요.</label>
                                     </td>
                                 </tr>
                                 <tr class="line">
                                     <td >선호하는 선생님 성별</td>
                                     <td >
-                                        <label><input type="radio" name="tGender" class="ipt_chkbx" value="F" >&nbsp;&nbsp;여성</label>&nbsp;&nbsp;
-                                        <label><input type="radio" name="tGender" class="ipt_chkbx" value="M" >&nbsp;&nbsp;남성</label>&nbsp;&nbsp;
-                                        <label><input type="radio" name="tGender" class="ipt_chkbx" value="N" >&nbsp;&nbsp;무관</label>
+                                        <label><input type="radio" name="tGender" class="ipt_chkbx" value="F" <c:if test="${ sMember.tGender eq 'F' }">checked</c:if> >&nbsp;&nbsp;여성</label>&nbsp;&nbsp;
+                                        <label><input type="radio" name="tGender" class="ipt_chkbx" value="M" <c:if test="${ sMember.tGender eq 'M' }">checked</c:if> >&nbsp;&nbsp;남성</label>&nbsp;&nbsp;
+                                        <label><input type="radio" name="tGender" class="ipt_chkbx" value="N" <c:if test="${ sMember.tGender eq 'N' }">checked</c:if> >&nbsp;&nbsp;무관</label>
                                     </td>
                                 </tr>
                                 <tr class="line">
                                     <td >나의 현재 레벨</td>
                                     <td >
-                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="low" >&nbsp;&nbsp;하</label>&nbsp;&nbsp;
-                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="middle" >&nbsp;&nbsp;중</label>&nbsp;&nbsp;
-                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="mhigh" >&nbsp;&nbsp;중상</label>&nbsp;&nbsp;
-                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="high" >&nbsp;&nbsp;상</label>
+                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="low" <c:if test="${ sMember.myLevel eq 'low' }">checked</c:if> >&nbsp;&nbsp;하</label>&nbsp;&nbsp;
+                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="middle" <c:if test="${ sMember.myLevel eq 'middle' }">checked</c:if> >&nbsp;&nbsp;중</label>&nbsp;&nbsp;
+                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="mhigh" <c:if test="${ sMember.myLevel eq 'mhigh' }">checked</c:if> >&nbsp;&nbsp;중상</label>&nbsp;&nbsp;
+                                        <label><input type="radio" name="myLevel" class="ipt_chkbx" value="high" <c:if test="${ sMember.myLevel eq 'high' }">checked</c:if> >&nbsp;&nbsp;상</label>
                                     </td>
                                 </tr>
                             </table>
@@ -147,5 +148,20 @@
 
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         
+        <script>
+//         	window.onload = function(){
+<%--         		var selectedValues = <%= request.getParameterValues("place") %>; --%>
+        		
+//         		for (var i = 0; i < selectedValues.length; i++){
+//         			var value= selectedValues[i];
+//         			var checkBox = document.ceateElement("input");
+//         			checkBox.type = "checkbox";
+//         			checkBox.value = sMember.place;
+//         			checkBox.checked = true;
+//         		}
+        		
+//         	}
+        
+        </script>
     </body>
 </html>

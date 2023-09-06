@@ -1,0 +1,188 @@
+/* 헤더,나브폰트 */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500&display=swap');  */
+/*본문폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap'); */
+
+html, body{
+    height : 100%;
+    /* 910px */
+} 
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+li{
+    list-style-type: none;
+}
+a{
+    text-decoration: none;
+}
+a:link {
+    color : #222;
+}
+a:visited {
+    color : #222;
+}
+
+#container {
+    width : 1300px;
+    margin : 0 auto;
+}
+
+
+
+main {
+    width : 80%;
+    margin : 0 auto;
+    font-family: 'Hahmlet', serif;
+    --height : 660px;
+    --height : calc(100vh - 250px);
+    flex: 1
+    /* 660px; */
+}
+#main_layer1{
+    height : 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#main_layer2{
+    
+    display: flex;
+    height : 50px;
+}
+
+
+    #item_write{
+            --background-color: aliceblue;
+            width : 50%;
+            --height : 50px;
+            display: flex;
+            align-items: center;
+            padding : 10px 95px;
+            
+        }
+
+        #writeClass{
+            background: black;
+            color: white;
+            border : 1px solid black;
+            border-radius: 5px;
+            padding : 5px 5px;
+            font-size: 12px;
+            transition: .5s ease;
+        }
+        #writeClass:hover {
+            font-size: 12px;
+            transition: .5s ease;
+            border : 2px solid black;
+            background : transparent;
+            color: black;
+            
+        }
+
+    #checkBtn {
+        width : 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding : 10px 95px;
+    }    
+        .deleteClass, .hideClass, .modifyClass{
+            background: black;
+            color: white;
+            border : 1px solid black;
+            border-radius: 5px;
+            font-size: 12px;
+            padding : 5px 5px;
+            margin : 2px;
+            
+        }
+        .deleteClass:active, .hideClass:active, .modifyClass:active  {
+            background: white;
+            color: black;
+            border : 1px solid black;
+            border-radius: 5px;
+            font-size: 12px;
+            padding : 5px 5px;
+            margin : 2px;
+            
+        }
+#main_layer3{
+    height : auto;
+}
+	.no_my_class{
+		width : 850px;
+		height : 50px;
+		border-top : 1px dotted #ccc;
+        border-bottom : 1px dotted #ccc;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+    	align-items: center;
+	}
+		
+    .my_class {
+        --background-color: aliceblue;
+        display: flex;
+        width : 850px;
+        height : 150px;
+        border-top : 1px dotted #ccc;
+        border-bottom : 1px dotted #ccc;
+        margin: 0 auto;
+        text-align : center;
+    }
+    
+    
+    /* #main_layer2>.my_class:first-child{
+        border-bottom : none;
+    } */
+
+    /* #main_layer2>.my_class:last-child{
+        border-bottom : none;
+    } */
+
+    .checkbox{
+        --background-color: aliceblue;
+        width : 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    .thumbnail {
+        --background-color: pink;
+        width : 20%;
+        background-image: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+        .thumbnail>img {
+            width : 130px;
+            height : 130px;
+            border : 1px solid #ccc;
+        }
+    .content {
+        width : 50%;
+        padding : 20px 10px; 
+        font-size : 0.9em;
+        text-align : left;
+    }
+    .text {
+        margin-top: 10px;
+        line-height: 22px;
+    }
+    .btn {
+        width : 20%; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+
+
+
+
+    

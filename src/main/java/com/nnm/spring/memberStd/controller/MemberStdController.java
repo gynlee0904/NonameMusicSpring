@@ -1,6 +1,12 @@
 package com.nnm.spring.memberStd.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -42,29 +48,29 @@ public class MemberStdController {
 									, @RequestParam("memberPhone") String memberPhone
 									, @RequestParam("memberEmail") String memberEmail
 									, @RequestParam("memberPw") String memberPw
-									, @RequestParam("place") String [] places
-									, @RequestParam("lesson") String [] lessons
-									, @RequestParam("lessonType") String lessonType
-									, @RequestParam("tGender") String tGender
-									, @RequestParam("myLevel") String myLevel
+									, @RequestParam(value="place", required=false ) String place
+									, @RequestParam(value="lesson", required=false ) String lesson
+									, @RequestParam(value="lessonType", required=false ) String lessonType
+									, @RequestParam(value="tGender", required=false ) String tGender
+									, @RequestParam(value="myLevel", required=false ) String myLevel
 									, @RequestParam("freeWords") String freeWords
 									, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
 									, HttpServletRequest request
 									, Model model) {
-		String place = String.join("/", places);
-		String lesson = String.join(" / ", lessons);
+//		String place = String.join("/", places);
+//		String lesson = String.join(" / ", lessons);
 		
-		MemberStd sMember = new MemberStd(position, memberName, memberGender, memberPhone, memberEmail, memberPw, null, null, 0, place, lesson, lessonType, tGender, myLevel, freeWords);
+		MemberStd sMember = new MemberStd(position, memberName, memberGender, memberPhone, memberEmail, memberPw, null, null, null, 0, place, lesson, lessonType, tGender, myLevel, freeWords);
 		
 		//INSERT INTO SMEMBER_TBL VALUES ()
 		try {
-			if(!uploadFile.getOriginalFilename().equals("")) {
+			if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 				//파일이름
 				String fileName = uploadFile.getOriginalFilename();
 				
 				//파일경로
 				String root = request.getSession().getServletContext().getRealPath("resources");
-				String savefolder = root+ "\\nuploadFiles";
+				String savefolder = root+ "\\puploadFiles";
 				File folder = new File(savefolder);
 				
 				if(!folder.exists()) {
@@ -74,10 +80,11 @@ public class MemberStdController {
 				String savePath = savefolder + "\\"+fileName;
 				File file = new File(savePath);
 				
-				uploadFile.transferTo(file);
-				
 				//파일크기
 				long fileLength = uploadFile.getSize();
+				
+				uploadFile.transferTo(file);
+
 				sMember.setProPicFilename(fileName);
 				sMember.setProPicFilepath(savePath);
 				sMember.setProPicFilelength(fileLength);
@@ -128,7 +135,7 @@ public class MemberStdController {
 //	}
 	
 	/**
-	 *학생마이페이지 이동(세션으로 데이받아오기)
+	 *학생마이페이지 이동(세션으로 데이터받아오기)
 	 */
 	@RequestMapping(value="/member/mypage_std.do", method=RequestMethod.GET)
 	public String showDetailMember(HttpSession session
@@ -144,8 +151,8 @@ public class MemberStdController {
 		try {
 			MemberStd sOne =  service.showOneStdById(sMember);
 			if(sOne != null) {
-				model.addAttribute("tMember",sOne);
-				return "member/mypage_tch"; //데이터포함 
+				model.addAttribute("sMember",sOne);
+				return "member/mypage_std"; //데이터포함 
 			}else{
 				model.addAttribute("msg", "데이터 조회 실패");
 				return "common/errorPage";
@@ -196,11 +203,11 @@ public class MemberStdController {
 	 */
 	@RequestMapping(value="/member/modify_std.do", method=RequestMethod.POST)
 	public String modifyStdMember(@RequestParam("memberPhone") String memberPhone
-								, @RequestParam("place") String [] places
-								, @RequestParam("lesson") String [] lessons
-								, @RequestParam("lessonType") String lessonType
-								, @RequestParam("tGender") String tGender
-								, @RequestParam("myLevel") String myLevel
+								, @RequestParam(value="place", required=false) String place
+								, @RequestParam(value="lesson", required=false) String lesson
+								, @RequestParam(value="lessonType", required=false) String lessonType
+								, @RequestParam(value="tGender", required=false) String tGender
+								, @RequestParam(value="myLevel", required=false) String myLevel
 								, @RequestParam("freeWords") String freeWords
 								, @RequestParam("position") String position
 								, @RequestParam("memberEmail") String memberEmail
@@ -209,37 +216,31 @@ public class MemberStdController {
 								, HttpServletRequest request
 								, Model model) {
 		
-		String place = String.join(",", places);
-		String lesson = String.join(",", lessons);
-		
+//		String place = String.join(",", places);
+//		String lesson = String.join(",", lessons);
 		
 		//UPDATE SMEMBER_TBL SET ~ WHERE MEMBER_EMAIL = ? AND MEMBER_PW =? AND MEMBER_YN = 'Y'
 		MemberStd sMember = new MemberStd(position, memberPhone, memberEmail, memberPw, null, null , 0, place, lesson, lessonType, tGender, myLevel, freeWords);
 		
 		try {
-			if(!uploadFile.getOriginalFilename().equals("")) {
-				//파일이름
-				String fileName = uploadFile.getOriginalFilename();
-				
-				//파일경로
-				String root = request.getSession().getServletContext().getRealPath("resources");
-				String savefolder = root+ "\\nuploadFiles";
-				File folder = new File(savefolder);
-				
-				if(!folder.exists()) {
-					folder.mkdir();
+			if(uploadFile != null && !uploadFile.isEmpty()) {
+				String fileName = sMember.getProPicFilename(); //기존 업로드된 파일의 파일네임
+				if(fileName != null) { //기존 업로드된 파일이 있는지 확인하고 있으면 삭제 
+					this.deleteFile(request, fileName );  //이 클래스에 deleteFile 메소드를 만들어 사용 (request 와 fileName 을 전달받아 삭제)
 				}
 				
-				String savePath = savefolder + "\\"+fileName;
-				File file = new File(savePath);
-				
-				uploadFile.transferTo(file);
-				
-				//파일크기
-				long fileLength = uploadFile.getSize();
-				sMember.setProPicFilename(fileName);
-				sMember.setProPicFilepath(savePath);
-				sMember.setProPicFilelength(fileLength);
+				//새 프로필사진 저장
+				Map<String, Object> infoMap = this.saveFile(uploadFile, request);
+				String profileName = (String)infoMap.get("fileName");
+				String profileRename = (String)infoMap.get("fileRename");
+				String profilePath = (String)infoMap.get("filePath");
+				long profileLength = (long)infoMap.get("fileLength");
+
+				sMember.setProPicFilename(profileName);
+				sMember.setProPicFileRename(profileRename);
+				sMember.setProPicFilepath(profilePath);
+				sMember.setProPicFilelength(profileLength);
+
 			}
 			int result = service.modifyStdMember(sMember);
 			if(result > 0) {
@@ -292,5 +293,104 @@ public class MemberStdController {
 	
 	
 	
+	//파일삭제 메소드
+	public void deleteFile(HttpServletRequest request, String fileName ) {
+		String root = request.getSession().getServletContext().getRealPath("resources"); //파일 경로 가져오기 
+		String delFilePath = root+"\\puploadFiles\\"+fileName;
+		File file = new File(delFilePath);
+		if(file.exists()) {
+			file.delete();
+		}
+		
+	}
+	
+	
+	//파일첨부 메소드
+	public Map<String, Object> saveFile(MultipartFile uploadFile, HttpServletRequest request) throws IllegalStateException, IOException {
+		
+		Map<String, Object> infoMap = new HashMap<String, Object>();
+		
+		//파일이름
+		String fileName = uploadFile.getOriginalFilename();
+		
+		
+		//파일경로
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String saveFolder = root+ "\\puploadFiles";
+		File folder = new File(saveFolder);
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		
+		//파일 리네임 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String strResult = sdf.format(new Date(System.currentTimeMillis())); //파일이름 가져오기(리네임한거)
+		String ext = fileName.substring(fileName.lastIndexOf(".")+1);	  //확장자 가져오기
+		String fileRename = "P"+strResult+"."+ext;  //리네임한 결과
+		String savePath = saveFolder + "\\" + fileRename;  //파일리네임으로 바꿔줘야 리네임된 파일명으로 추가됨
+		File file = new File(savePath);
+		
+		
+		//파일크기 
+		long fileLength = uploadFile.getSize();
+		
+
+		//실제 파일 저장 
+		uploadFile.transferTo(file);
+		
+		//맵에 데이터저장
+		infoMap.put("fileName", fileName);
+		infoMap.put("fileRename", fileRename);
+		infoMap.put("savePath", savePath);
+		infoMap.put("fileLength", fileLength);
+		
+		return infoMap;
+	}
+	
+	
+	//아이디중복체크
+	@RequestMapping(value="/member/stdEmailCheck.do", method=RequestMethod.GET)
+	public String stdEmailCheck(@ModelAttribute MemberStd sMember
+//							  , @RequestParam("memberEmail") String memberEmail
+							  , Model model ) {
+		//SELECT COUNT (*) FROM SMEMBER_TBL WHERE MEMBER_EMAIL = ? 
+
+		String memberEmail = sMember.getMemberEmail(); 
+		String memberName = sMember.getMemberName(); 
+		String memberGender = sMember.getMemberGender(); 
+		String memberPhone = sMember.getMemberPhone(); 
+		
+		try {
+			
+			int result = service.stdEmailCheck(memberEmail);
+			model.addAttribute("isChecked", "idCheck");	
+//			System.out.println(result);
+			if(result>0) {
+				//중복아이디 있음
+				model.addAttribute("sMember", sMember);
+				model.addAttribute("isAvailable", "no");
+				model.addAttribute("msg", "이미 사용 중인 아이디 입니다.");
+				model.addAttribute("color", "red");
+				return "member/register_std";
+				
+			}else {
+				//중복아이디 없음
+				model.addAttribute("sMember", sMember);
+				model.addAttribute("isAvailable", "yes");	
+				model.addAttribute("msg", "사용 가능한 아이디 입니다.");
+				model.addAttribute("color", "blue");
+				return "member/register_std";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();  			
+			model.addAttribute("msg","관리자에게 문의해주세요");
+			model.addAttribute("error", e.getMessage());
+			model.addAttribute("url", "/index.jsp");
+			return "common/errorPage";
+		}
+	}
+	
+
 
 }

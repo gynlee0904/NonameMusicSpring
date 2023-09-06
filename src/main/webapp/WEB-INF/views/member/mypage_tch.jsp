@@ -42,85 +42,84 @@
 
 <!--                 <form action="/member/mypage.do" method="get"> -->
                     <section id="main_layer2">
-                        <section id="profile1">
+                        <div id="profile1">
                             <c:if test="${!empty tMember.proPicFilename }"><img src="../resources/nuploadFiles/${tMember.proPicFilename}" alt="사진" id="mypicture"></c:if>
 							<c:if test="${empty tMember.proPicFilename }"><img src="../resources/images/profile_pic-removebg.png" alt="사진" id="mypicture" ></c:if>
-                        </section>
-                        <section id="profile2">
+                        </div>
+                        <div id="profile2">
                     		<p><b>${tMember.memberName}(${tMember.memberGender}) </b></p>
                             <p> ${tMember.memberEmail}</p>
                             <p> ${tMember.memberPhone} </p>
                             <p><small>가입일 : <fmt:formatDate pattern="yyyy.MM.dd" value="${tMember.memberDate }"/> 
                             <input type="hidden" name="position" value="tch"> 
                             </small></p>
-                        </section>
-                        <section id="profile3">
+                        </div>
+                        <div id="profile3">
                             <button type="button" id="changePw_btn" name="changePw" onclick="">비밀번호 변경</button>
-                            <a href="javascript:void(0)" onclick="checkDelete();"><button type="submit" id="delete_btn" name="delete" value="">회원탈퇴</button></a>
-                        </section>
+                            <a href="javascript:void(0)" onclick="checkDelete();"><button id="delete_btn" name="delete">회원탈퇴</button></a>
+                        </div>
                     </section>
     
                     <section id="main_layer3">
-                        <section class="title">
+                        <div class="title">
                             <p><b>기본 정보</b></p>
-                        </section>
-                        <section id="current" class="data">
+                        </div>
+                        <div id="current" class="data">
                             <ul>
-                                <li ><a href="#" >내 클래스</a></li>
-                                <li ><a href="#" >내가 올린 글</a></li>
+                            	<li >내 프로필 : 공개중</li>
+                                <li ><a href="javascript:void(0)" onclick="goToMyClassList();">내 클래스</a></li>
+                                <li ><a href="#" >내가 쓴 글</a></li>
                                 <li ><a href="#" >레슨 이력</a></li>
                                 <li ><a href="#" >내 지갑</a></li>
                             </ul>
-                        </section>
+                        </div>
                     </section>
     
                     <section id="main_layer4">
-                        <section class="title">
-                            <p><b>레슨 정보</b></p></h3>
-                        </section>
-                        <section class="data">
-                                <section id="lesson_title">
-                                    <ul>
-                                        <li>회당 레슨비</li>
-                                        <li>결제받는 방법</li>
-                                        <li>연락가능시간</li>
-                                    </ul>  
-                                </section>
-                                <section id="lesson_data">
-                                    <ul>
-                                        <li>${tMember.lessonFee} 원 (50분 기준)</li>
-                                        <li>${tMember.payment}</li>
-                                        <li>${tMember.contactTime} </li>
-
-                                    </ul>
-                                </section>
-                        </section>
+                        <div class="title">
+                            <p><b>레슨 정보</b></p>
+                        </div>
+                        <div class="data">
+	                        <div id="lesson_title">
+	                            <ul>
+	                                <li>회당 레슨비</li>
+	                                <li>결제받는 방법</li>
+	                                <li>연락가능시간</li>
+	                            </ul>  
+	                        </div>
+	                        <div id="lesson_data">
+	                            <ul>
+	                                <li>${tMember.lessonFee} 원 (50분 기준)</li>
+	                                <li>${tMember.payment}</li>
+	                                <li>${tMember.contactTime} </li>
+	
+	                            </ul>
+	                        </div>
+                        </div>
                     </section>
 
                     <section id="main_layer5">
-                        <section class="title">
-                            <p><b>추가 정보</b></p></h3>
-                        </section>
-                        <section class="data">
-                                <section id="choice_title">
-                                    <ul>
-                                        <li>희망하는 레슨 장소</li>
-                                        <li>희망하는 레슨 방식</li>
-                                        <li>희망하는 레슨</li>
-                                    </ul>  
-                                </section>
-                                <section id="choice_data">
-                                    <ul>
-                                        <li>${tMember.place}</li>                           
-                                        <li>${tMember.lesson} </li>
-                                        <li>${tMember.lessonType}  </li>
-                                    </ul>
-                                </section>
-                        </section>
+                        <div class="title">
+                            <p><b>추가 정보</b></p>
+                        </div>
+                        <div class="data">
+	                        <div id="choice_title">
+	                            <ul>
+	                                <li>희망하는 레슨 장소</li>
+	                                <li>희망하는 레슨 방식</li>
+	                                <li>희망하는 레슨</li>
+	                            </ul>  
+	                        </div>
+	                        <div id="choice_data">
+	                            <ul>
+	                                <li>${tMember.place}</li>                           
+	                                <li>${tMember.lesson} </li>
+	                                <li>${tMember.lessonType}  </li>
+	                            </ul>
+	                        </div>
+                        </div>
                     </section>
 
-            
-    
                     <section id="main_layer6">
                         <section class="title">
                             <p><b>선생님 정보</b></p>
@@ -156,24 +155,23 @@
         </div>
 
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+        
+       
         <script>
-// 	        var String = ${tMember.place};
-// 	        if(String.eqals("oneOnOne"){
-// 	        	result1 = ${fn:replace('oneOnOne','oneOnOne', '1 대 1 레슨')}
-// 	        	document.querySelector("#place").innerHTML = result1
-// 	        }else if(String.eqals("group")){
-// 	        	${fn:replace('group', 'group', '친구와 함께 레슨')} 
-// 	        }
-        </script>
-        <script>
+        	//회원탈퇴하기
 	    	function checkDelete(){
-				const memberEmail = '${memberEmail}'
+				const memberEmail = '${memberEmail}';
 				if(confirm ("정말 탈퇴하시겠습니까? 탈퇴한 아이디는 다시 사용할수 없습니다")){
 					location.href = "/member/delete_tch.do?memberEmail="+memberEmail;
 				}
 				//확인(true) 눌렀을때만 탈퇴되도록  //취소누르면 실행문이 동작 안함 
 			}
 
+	    	//마이 클래스 리스트 페이지로 이동 
+	    	function goToMyClassList(){
+	    		const memberEmail = '${memberEmail}';
+	    		location.href = "/product/my_class_list.do?memberEmail="+memberEmail;
+	    	}
 		</script> 
     </body>
 </html>
