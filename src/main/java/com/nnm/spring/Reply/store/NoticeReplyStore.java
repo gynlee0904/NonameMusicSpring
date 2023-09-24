@@ -8,12 +8,44 @@ import com.nnm.spring.Reply.domain.NoticeReply;
 
 public interface NoticeReplyStore {
 
-	public int insertNoticeReply(SqlSession session, NoticeReply reply);
+	/**
+	 * 댓글등록
+	 * @param session
+	 * @param reply
+	 * @return
+	 */
+	public int insertNoticeReply(SqlSession session, NoticeReply nReply);
 
+	/**
+	 * 댓글수정
+	 * @param session
+	 * @param reply
+	 * @return
+	 */
+	public int modifyReply(SqlSession session, NoticeReply nReply);
+
+	/**
+	 * 댓글삭제
+	 * @param session
+	 * @param reply
+	 * @return
+	 */
+	public int deleteReply(SqlSession session, NoticeReply nReply);
+	
+	/**
+	 * 댓글목록
+	 * @param session
+	 * @param refNoticeNo
+	 * @return
+	 */
 	public List<NoticeReply> selectNoticeReplyList(SqlSession session, Integer refNoticeNo);
 
-	public int modifyReply(SqlSession session, NoticeReply reply);
-
-	public int deleteReply(SqlSession session, NoticeReply reply);
+	/**
+	 * 댓글 총 개수
+	 * @param session
+	 * @param refNoticeNo
+	 * @return
+	 */
+	public int getReplyListCount(SqlSession session, Integer refNoticeNo);
 
 }

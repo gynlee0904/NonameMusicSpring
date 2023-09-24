@@ -6,36 +6,52 @@
   
 <mapper namespace="ReplyMapper">
 	<resultMap type="NoticeReply" id="noticeReplyResultMap">
-		<id property="noticeReplyNo"              column="NOTICE_REPLY_NO"/>
-		<result property="refNoticeNo"       column="REF_NOTICE_NO"/>
+		<id     property="noticeReplyNo"          column="NOTICE_REPLY_NO"/>
+		<result property="refNoticeNo"            column="REF_NOTICE_NO"/>
 		<result property="noticeReplyContent"     column="NOTICE_REPLY_CONTENT"/>
 		<result property="noticeReplyWriter"      column="NOTICE_REPLY_WRITER"/>
-		<result property="noticeReplyFilename"      column="NOTICE_REPLY_FILENAME"/>
-		<result property="noticeReplyFileRename"      column="NOTICE_REPLY_FILERENAME"/>
-		<result property="noticeReplyFilepath"      column="NOTICE_REPLY_FILEPATH"/>
-		<result property="noticeReplyFilelength"      column="NOTICE_REPLY_FILELENGTH"/>
-		<result property="nrCreateDate"      column="N_R_CREATE_DATE"/>	
-		<result property="nrUpdateDate"      column="N_R_UPDATE_DATE"/>	
-		<result property="updateYn"         column="UPDATE_YN"/>	
-		<result property="rStatus"          column="R_STATUS"/>	
+		<result property="noticeReplyFilename"    column="NOTICE_REPLY_FILENAME"/>
+		<result property="noticeReplyFileRename"  column="NOTICE_REPLY_FILERENAME"/>
+		<result property="noticeReplyFilepath"    column="NOTICE_REPLY_FILEPATH"/>
+		<result property="noticeReplyFilelength"  column="NOTICE_REPLY_FILELENGTH"/>
+		<result property="nrCreateDate"           column="N_R_CREATE_DATE"/>	
+		<result property="nrUpdateDate"           column="N_R_UPDATE_DATE"/>	
+		<result property="updateYn"               column="UPDATE_YN"/>	
+		<result property="rStatus"                column="R_STATUS"/>	
+		<result property="noticeRParentNo"        column="NOTICE_R_PARENT_NO"/>
+		<result property="level"    			  column="LEVEL"/>	
 	</resultMap>
   
-
+	<!-- 댓글등록 -->
 	<insert id="insertNoticeReply">
-		INSERT INTO NOTICE_REPLY_TBL VALUES(SEQ_N_REPLY_NO.NEXTVAL,#{refNoticeNo},#{noticeReplyContent},#{noticeReplyWriter},#{noticeReplyFilename}, #{noticeReplyFileRename}, #{noticeReplyFilepath}, #{noticeReplyFilelength}, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO NOTICE_REPLY_TBL VALUES(SEQ_N_REPLY_NO.NEXTVAL, #{refNoticeNo}, #{noticeReplyContent}, #{noticeReplyWriter}, #{noticeReplyFilename}, #{noticeReplyFileRename}, #{noticeReplyFilepath}, #{noticeReplyFilelength}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{noticeRParentNo})
 	</insert>
 	
-	<select id="selectNoticeReplyList" resultMap="noticeReplyResultMap">
-		SELECT * FROM NOTICE_REPLY_TBL WHERE REF_NOTICE_NO = #{refNoticeNo} AND R_STATUS = 'Y'
-	</select>
-	
+	<!-- 댓글수정 -->
 	<update id="modifyReply">
 		UPDATE NOTICE_REPLY_TBL SET NOTICE_REPLY_CONTENT = #{noticeReplyContent}, N_R_UPDATE_DATE = DEFAULT, UPDATE_YN = 'Y' WHERE NOTICE_REPLY_NO = #{noticeReplyNo}
 	</update>
 	
+	<!-- 댓글삭제 -->
 	<update id="deleteReply">
-	 	UPDATE NOTICE_REPLY_TBL SET R_STATUS = 'N' WHERE NOTICE_REPLY_NO =  #{noticeReplyNo} 
+	 	UPDATE NOTICE_REPLY_TBL SET R_STATUS = 'N' WHERE NOTICE_REPLY_NO = #{noticeReplyNo} 
 	</update>
+	
+	<!-- 댓글 목록(+대댓글) -->
+	<select id="selectNoticeReplyList" resultMap="noticeReplyResultMap">
+<!-- 		SELECT * FROM NOTICE_REPLY_TBL WHERE REF_NOTICE_NO = #{refNoticeNo} AND R_STATUS = 'Y' -->
+		SELECT LEVEL, NOTICE_REPLY_TBL.* FROM NOTICE_REPLY_TBL  
+		WHERE REF_NOTICE_NO = #{refNoticeNo } AND R_STATUS = 'Y' 
+		START WITH NOTICE_R_PARENT_NO = 0 
+		CONNECT BY PRIOR NOTICE_REPLY_NO = NOTICE_R_PARENT_NO
+	</select>
+	
+	<!-- 댓글 총개수 -->
+	<select id="getReplyListCount" resultType="_int">
+		SELECT COUNT (*) FROM NOTICE_REPLY_TBL WHERE R_STATUS = 'Y' AND REF_NOTICE_NO = #{refNoticeNo}
+	</select>
+	
+	
 	
 
 </mapper>

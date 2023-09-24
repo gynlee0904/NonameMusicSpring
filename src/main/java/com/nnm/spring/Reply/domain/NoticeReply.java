@@ -15,8 +15,17 @@ public class NoticeReply {
 	private Timestamp nrUpdateDate;
 	private char updateYn;
 	private char rStatus;
-	
-	public NoticeReply() {}
+	private int noticeRParentNo;
+	private int level;
+	private String memberEmail;
+
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
 
 	public int getNoticeReplyNo() {
 		return noticeReplyNo;
@@ -113,6 +122,22 @@ public class NoticeReply {
 	public void setrStatus(char rStatus) {
 		this.rStatus = rStatus;
 	}
+	
+	public int getNoticeRParentNo() {
+		return noticeRParentNo;
+	}
+
+	public void setNoticeRParentNo(int noticeRParentNo) {
+		this.noticeRParentNo = noticeRParentNo;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
 	@Override
 	public String toString() {
@@ -121,7 +146,7 @@ public class NoticeReply {
 				+ ", 댓글첨부파일이름=" + noticeReplyFilename + ", 댓글첨부파일리네임=" + noticeReplyFileRename
 				+ ", 댓글첨부파일경로=" + noticeReplyFilepath + ", 댓글첨부파일크기 =" + noticeReplyFilelength
 				+ ", 댓글작성날짜=" + nrCreateDate + ", 댓글수정날짜=" + nrUpdateDate + ", 수정여부=" + updateYn
-				+ ", rStatus=" + rStatus + "]";
+				+ ", rStatus=" + rStatus + ", 부모댓글=" + noticeRParentNo +", 레벨=" +  level +"]";
 	}
 	
 	

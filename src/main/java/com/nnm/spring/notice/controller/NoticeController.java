@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,9 +34,6 @@ public class NoticeController {
 	
 	/**
 	 * noticeList로 이동(+페이징)
-	 * @param currentPage
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value="/notice/list.do", method=RequestMethod.GET)
 	public String showNoticeList(@RequestParam (value="page", required=false, defaultValue="1") Integer currentPage
@@ -67,9 +65,6 @@ public class NoticeController {
 	
 	/**
 	 * 페이징처리
-	 * @param currentPage
-	 * @param totalCount
-	 * @return
 	 */
 	public PageInfo getPageInfo(int currentPage, int totalCount) {
 		////SELECT COUNT (*) FROM NOTICE_TBL
@@ -94,18 +89,11 @@ public class NoticeController {
 		}
 		pi= new PageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, naviTotalCount, totalCount);
 		return pi;
-		
-		
 	}
 	
 	
 	/**
 	 * notice 검색시 서치페이지 이동
-	 * @param searchCondition
-	 * @param searchKeyword
-	 * @param currentPage
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value="/notice/search.do", method=RequestMethod.GET)
 	public String searchNoticeList(@RequestParam("searchCondition") String searchCondition
@@ -141,7 +129,6 @@ public class NoticeController {
 	
 	/**
 	 * 글쓰기페이지로 이동
-	 * @return
 	 */
 	@RequestMapping(value="/notice/insert.do", method=RequestMethod.GET)
 	public String showInsertForm() {
@@ -151,11 +138,6 @@ public class NoticeController {
 	
 	/**
 	 * 글쓰기+파일첨부
-	 * @param notice
-	 * @param uploadFile
-	 * @param request
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value="/notice/insert.do", method=RequestMethod.POST)
 	public String insertNotice(@ModelAttribute Notice notice
@@ -210,35 +192,51 @@ public class NoticeController {
 	
 	/**
 	 * 공지글상세보기(디테일)
-	 * @param noticeNo
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value="/notice/detail.do", method=RequestMethod.GET)
 	public String detailNotice(@RequestParam ("noticeNo") Integer noticeNo
-							, Model model) {
+						     , Model model
+							 , HttpSession session) {
 		//SELECT * FROM NOTICE_TBL WHERE NOTICE_NO=?
-		Notice notice = service.selectOneDetailByNo(noticeNo);
-		
 		try {
-			if(notice != null) {
-				//가져왔으면 detail.jsp로 이동 
-				//댓글리스트도 보여줌
-				List<NoticeReply>nrList = rService.selectNoticeReplyList(noticeNo);
-				if(nrList.size() > 0) {
-					model.addAttribute("nrList",nrList);
-					
-				}
-				model.addAttribute("notice",notice);
-				return "notice/noticeDetail";
+			String memberEmail = (String) session.getAttribute("memberEmail");
+			
+			if(memberEmail != null && !memberEmail.equals("")) {  //로그인한 사용자만 상세보기 가능
+				Notice notice = service.selectOneDetailByNo(noticeNo);
 				
+				if(notice != null) {
+					
+					//댓글리스트 가져오기
+					List<NoticeReply>nrList = rService.selectNoticeReplyList(noticeNo);
+					
+					//댓글수 카운트
+					NoticeReply nReply = new NoticeReply();
+					int refNoticeNo = nReply.getRefNoticeNo();
+					int totalReplyCount = rService.getReplyListCount(refNoticeNo);
+					
+					if(nrList.size() > 0) {
+						model.addAttribute("nrList",nrList);
+					}else {
+						model.addAttribute("msg", "등록된 댓글이 없습니다.");
+					}
+					model.addAttribute("notice",notice);
+					model.addAttribute("totalReplyCount",totalReplyCount);
+					return "notice/noticeDetail";
+					
+				}else {
+					//실패시 에러페이지로 이동 
+					model.addAttribute("msg","글 조회가 완료되지 않았습니다");
+					model.addAttribute("error", "조회 실패");
+					model.addAttribute("url", "/notice/insert.do");
+					return "common/errorPage";	
+				}
 			}else {
-				//실패시 에러페이지로 이동 
-				model.addAttribute("msg","글 조회가 완료되지 않았습니다");
+				model.addAttribute("msg","로그인해야 합니다");
 				model.addAttribute("error", "조회 실패");
-				model.addAttribute("url", "/notice/insert.do");
+				model.addAttribute("url", "/member/login.do");
 				return "common/errorPage";	
 			}
+			
 		} catch (Exception e) {
 			model.addAttribute("msg","관리자에게 문의해주세요");
 			model.addAttribute("error", e.getMessage());
@@ -334,8 +332,6 @@ public class NoticeController {
 			model.addAttribute("url", "/notice/insert.do");
 			return "common/errorPage";
 		}
-		
-		
 	}
 	
 	

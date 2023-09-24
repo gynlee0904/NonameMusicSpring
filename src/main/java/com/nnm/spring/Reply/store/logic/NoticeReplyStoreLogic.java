@@ -13,8 +13,20 @@ import com.nnm.spring.Reply.store.NoticeReplyStore;
 public class NoticeReplyStoreLogic implements NoticeReplyStore {
 
 	@Override
-	public int insertNoticeReply(SqlSession session, NoticeReply reply) {
-		int result = session.insert("ReplyMapper.insertNoticeReply",reply);
+	public int insertNoticeReply(SqlSession session, NoticeReply nReply) {
+		int result = session.insert("ReplyMapper.insertNoticeReply",nReply);
+		return result;
+	}
+
+	@Override
+	public int modifyReply(SqlSession session, NoticeReply nReply) {
+		int result = session.update("ReplyMapper.modifyReply", nReply);
+		return result;
+	}
+
+	@Override
+	public int deleteReply(SqlSession session, NoticeReply nReply) {
+		int result = session.update("ReplyMapper.deleteReply", nReply);
 		return result;
 	}
 
@@ -23,16 +35,10 @@ public class NoticeReplyStoreLogic implements NoticeReplyStore {
 		List<NoticeReply> nrList = session.selectList("ReplyMapper.selectNoticeReplyList",refNoticeNo);
 		return nrList;
 	}
-
+	
 	@Override
-	public int modifyReply(SqlSession session, NoticeReply reply) {
-		int result = session.update("ReplyMapper.modifyReply", reply);
-		return result;
-	}
-
-	@Override
-	public int deleteReply(SqlSession session, NoticeReply reply) {
-		int result = session.update("ReplyMapper.deleteReply", reply);
+	public int getReplyListCount(SqlSession session, Integer refNoticeNo) {
+		int result = session.update("ReplyMapper.getReplyListCount", refNoticeNo);
 		return result;
 	}
 	

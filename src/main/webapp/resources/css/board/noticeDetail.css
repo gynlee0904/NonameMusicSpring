@@ -32,8 +32,6 @@ a:visited {
     margin : 0 auto;
 }
 
-
-
 main {
     width : 80%;
     margin : 0 auto;
@@ -42,7 +40,6 @@ main {
     --height : calc(100vh - 250px);
     flex: 1;
     /* 660px; */
-    
 }
 
     #whole_layer{
@@ -58,18 +55,18 @@ main {
 
         #aside_layer1 {
             --background-color: pink;
-            height : 10vh;
+            height : 12vh;
         }
 
-            #menu_container {
-                --background-color: #CCC;
-                width : 200px;
-                height : 200px;
-                display : flex;
-                align-items : center;
-                flex-direction : column;
-                margin : 0 auto;
-            }
+        #aside_layer2 {
+            --background-color: #CCC;
+            width : 200px;
+            height : 200px;
+            display : flex;
+            align-items : center;
+            flex-direction : column;
+            margin : 0 auto;
+        }
 
             .menuBtn {
                 color : #FFF;
@@ -102,12 +99,10 @@ main {
             }
 
 
-    #main_layer1 {
+    #main_layer {
         --background-color: antiquewhite;
         width : 100%;
         padding : 0 50px;
-        --margin-bottom: 10px;
-        
     }
     
         #board_name {
@@ -129,7 +124,7 @@ main {
             --z-index : 1;
             
         }
-        #content_wrap {
+        #content_layer {
             width : 100%;
             height : 80%;
             display: flex;
@@ -168,7 +163,7 @@ main {
             
         }
         
-        #noticeContent>img{
+        #noticeContent img{
         	max-width : 630px;
         	max-height : 270px;
         }
@@ -217,83 +212,48 @@ main {
         } 
         
 
-        #returnListBtn, #modifybtn {
-            color : #FFF;
-            background-color: #222;
-            border-radius: 3px;
-            width : 80px;
-            height:23px;
-            text-align: center;
-            margin-right: 5px;
-        }
-
-        #deleteBtn, button[name=insertReplyBtn] {
-            color : #FFF;
-            background-color: #222;
-            border-radius: 3px;
-            width : 80px;
-            height:23px;
-            text-align: center;
-            --margin-right: 5px;
-        }
-
         
         
-/*  ************************************** */
-        #comment_layer{
-            --background-color: #ccc;
-            
-            --width : 90%;
-            width : 665px;
-            height: auto;
-            --min-height: 295px;
-            margin: 10px auto;
-            
-        }
+/*  ***********댓글*************************** */
+#comment_layer{
+    --background-color: #ccc;
+    width : 665px;
+    height: auto;
+    margin: 10px auto;
+}
 
-/*         #comment_open { */
-/*             width : 663px; */
-/*             height : 25px; */
-/*             border : 0px solid black; */
-/*             background-color: #ccc; */
-/*             margin-bottom : 5px; */
-/*         } */
-
-        #viewCommentBtn {
-        	--border : 1px solid black;
-            width : 665px;
-            height : 35px;
-            border : none;
-            background-color: #ccc;
-            --background-size: cover;
-            margin-bottom : 5px;
-        }
-        #viewCommentBtn:active {
-            width : 665px;
-            height : 35px;
-            border : none;
-            border-style : inset;
-            background-color: #ccc;
-            --background-size: cover;
-            margin-bottom : 5px;
-        }
+	#viewCommentBtn {
+	    width : 100%;
+	    height : 35px;
+	    border : none;
+	    background-color: #ccc;
+	    margin-bottom : 5px;
+	}
+    #viewCommentBtn:active {
+        width : 100%;
+        height : 35px;
+        border : none;
+        border-style : inset;
+        background-color: #ccc;
+        margin-bottom : 5px;
+    }
         
-        
-        #comment_wrap{
-        	border : 1px solid #ccc;
-        	padding-top : 15px;
-        	
-        	
-        }
+    #comment_wrap{
+    	border : 1px solid #ccc;
+    	padding: 10px 0;
+    }
+	    .no-reply {
+	    	margin : 10px auto;
+	    }
 
-        #ReplyBox{
-            width : 595px;
+        .replyBox{
+            width : 645px;
             --height : 120px;
-            border-radius : 5px;
             --height : auto;
-            margin : 10px auto 0;
+            border-radius : 5px;
+            margin: 5px auto;
         }
-        #reply_head {
+        .reply_head {
             border-top-left-radius : 5px;
             border-top-right-radius : 5px;
             background-color : #00284f;
@@ -301,16 +261,15 @@ main {
             height:30px;
             display: flex;
             text-align: left;
-            
         }
-            #reply_noWriter{
+            .reply_nWriter{
                 width : 50%;
                 display : flex;
                 justify-content: flex-start;
                 align-items: center;
                 padding-left : 10px;
             }
-            #reply_nDate{
+            .reply_nDate{
                 width : 50%;
                 display: flex;
                 justify-content: flex-end;
@@ -318,67 +277,50 @@ main {
                 padding-right : 10px;
             }
 
-        #reply_content {
-            height:auto;
+        .reply_content {
             border : 1px solid #ccc;
+            height:auto;
             text-align: left;
             padding : 5px;
             word-break : break-all;
         }
 
-        #reply_foot {
+        .reply_foot {
             height:30px;
             display : flex;
             padding : 5px;
             border-bottom-left-radius : 5px;
             border-bottom-right-radius : 5px;
-            color : #fff;
-            background-color: #f0f0f0;
             border : 1px solid #ccc;
             border-top: none;
-
+            background-color: #f0f0f0;
+            color : #fff;
         }
-            #re_replyBtn{
+            .re_replyBtn{
                 width : 50%;
                 display : flex;
                 justify-content: flex-start;
                 align-items: center;
             }
-            #reply_edit_btn{
+            .reply_edit_btn{
                 width : 50%;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
             }
-            button[name=replymodifyBtn]{
-                color : #FFF;
-                background-color: #222;
-                border-radius: 3px;
-                width : 50px;
-                height:23px;
-                text-align: center;
-                margin-right: 5px;
-            }
-            button[name=replydeleteBtn]{
-                color : #FFF;
-                background-color: #222;
-                border-radius: 3px;
-                width : 50px;
-                height:23px;
-                text-align: center;
-                margin-right: 5px;
-            }
+            
+
 
 
         #insertReplyBox{
-            width : 595px;
+            width : 665px;
             --height : 120px;
-            border-radius : 5px;
             --height : auto;
-            margin : 30px auto 10px;
+            border-radius : 5px;
+            margin : 5px auto 10px;
         }
 
-        #insert_reply_head{
+        .insert_reply_head{
             border-top-left-radius : 5px;
             border-top-right-radius : 5px;
             background-color : #00284f;
@@ -393,7 +335,7 @@ main {
             --margine-right:5px;
             color : #fff;
         }
-        #insert_reply_content{
+        .insert_reply_content{
             height:70px;
             border : 1px solid #ccc;
             padding : 5px;
@@ -409,7 +351,7 @@ main {
             padding : 3px;
         }
 
-        #insert_reply_foot {
+        .insert_reply_foot {
             height:30px;
             display : flex;
             padding : 5px;
@@ -419,7 +361,7 @@ main {
             border : 1px solid #ccc;
             border-top: none;
         }
-            #reply_attachFile{
+            .reply_attachFile{
                 width : 50%;
                 display : flex;
                 justify-content: flex-start;
@@ -428,32 +370,28 @@ main {
             
                 
                 
-            #reply_writer{
+            .reply_writer{
                 width : 50%;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-
             }
             
-                input[name=noticeReplyWriter]{
-                    width : 100px;
-                    height : 22px;
-                    outline : none;
-                    --border: none;
-                    margin-right: 5px;
-                }
+            input[name=noticeReplyWriter]{
+                width : 100px;
+                height : 22px;
+                outline : none;
+                margin-right: 5px;
+            }
 
-
-
-        .replyModifyForm {
-            width : 593px;
+        .modifyReplyBox {
+            width : 645px;
             --height : 120px;
             border-radius : 5px;
             --height : auto;
             margin : 10px auto;
         }    
-        #modify_reply_head{
+        .modify_reply_head{
             border-top-left-radius : 5px;
             border-top-right-radius : 5px;
             background-color : #135394;
@@ -468,23 +406,23 @@ main {
             --margine-right:5px;
             color : #fff;
         }
-        #modify_reply_content{
+        .modify_reply_content{
             height:70px;
             border : 1px solid #ccc;
             padding : 5px;
             font-size: medium;
         }
-        #noticeReplyContent {
-            --background-color : green;
-            width : 100%;
-            height : 100%;
-            outline : none;
-            resize:none;
-            border : none;
-            padding : 3px;
-        }
+/*         #noticeReplyContent { */
+/*             --background-color : green; */
+/*             width : 100%; */
+/*             height : 100%; */
+/*             outline : none; */
+/*             resize:none; */
+/*             border : none; */
+/*             padding : 3px; */
+/*         } */
 
-        #modify_reply_foot {
+        .modify_reply_foot {
             height:30px;
             display : flex;
             padding : 5px;
@@ -494,7 +432,7 @@ main {
             border : 1px solid #ccc;
             border-top: none;
         }
-            #modify_reply_attachFile{
+            .modify_reply_attachFile{
                 width : 50%;
                 display : flex;
                 justify-content: flex-start;
@@ -503,7 +441,7 @@ main {
             
                 
                 
-            #modify_reply_edit{
+            .modify_reply_edit{
                 width : 50%;
                 display: flex;
                 justify-content: flex-end;
@@ -511,7 +449,7 @@ main {
 
             }
             
-                #modifyReplyBtn {
+                .modifyReplyBtn {
                     color : #FFF;
                     background-color: #222;
                     border-radius: 3px;
@@ -519,8 +457,38 @@ main {
                     height:22px;
                     text-align: center;
                 }      
+                
+                .rReplyBox {
+                    width: 625px;
+   					margin-left: 30px;
+                }
+                
+                
 #topScroll {
     border : none;
     background-color: white;;
 }  
+
+
+.btn {
+	color : #FFF;
+    background-color: #222;
+    border-radius: 3px;
+    width : 80px;
+    height:23px;
+    text-align: center;
+}
+
+#modifybtn, #replyModifyFormBtn  {
+    margin-right: 5px;
+}
+
+#replyModifyFormBtn, #replydeleteBtn, #insertRReplyBtn {
+    color : #FFF;
+    background-color: #222;
+    border-radius: 3px;
+    width : 50px;
+    height:23px;
+    text-align: center;
+}
 

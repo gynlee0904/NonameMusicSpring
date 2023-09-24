@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.product.domain.MyClass;
 
@@ -20,6 +21,12 @@ public interface ProductStore {
 	public List<MyClass> selectAllClassList(SqlSession session, PageInfo pInfo);
 
 	public MyClass selectClassByNo(SqlSession session, Integer classNo);
+
+	public int modifyClass(SqlSession session, MyClass myClass);
+
+	public MemberTch selectTchHistory(SqlSession session, String memberEmail);
+
+	
 
 
 

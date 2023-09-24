@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.store.ProductStore;
@@ -53,6 +54,18 @@ public class ProductStoreLogic implements ProductStore {
 	public MyClass selectClassByNo(SqlSession session, Integer classNo) {
 		MyClass classOne = session.selectOne("ProductMapper.selectClassByNo", classNo);
 		return classOne;
+	}
+
+	@Override
+	public int modifyClass(SqlSession session, MyClass myClass) {
+		int result = session.update("ProductMapper.modifyClass", myClass);
+		return result;
+	}
+
+	@Override
+	public MemberTch selectTchHistory(SqlSession session, String memberEmail) {
+		MemberTch tMember = session.selectOne("ProductMapper.selectTchHistory", memberEmail);
+		return tMember;
 	}
 
 

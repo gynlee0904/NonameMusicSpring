@@ -120,11 +120,7 @@
 
             attachFile.addEventListener('change', (event) => {
             const file = event.target.files[0];
-            if (file) {
-                // 여기에서 파일 업로드 또는 다른 필요한 처리를 수행하세요.
-                // 업로드 후에는 새 이미지로 업데이트할 수 있습니다.
-                // 예를 들어, 이미지 업로드를 위한 AJAX 요청을 보낼 수 있습니다.
-                
+            if (file) { 
                 // 새 이미지를 표시하기 위해 파일을 미리보기로 사용할 수 있습니다.
                 const reader = new FileReader();
                 reader.onload = (e) => {

@@ -162,8 +162,6 @@ main {
     }
     
 	.no_my_class{
-	
-		
         --margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -182,7 +180,6 @@ main {
         align-content: center;
         margin: 0 auto;
         text-align: center;
-        --justify-content: center;
     }
 
     .card {

@@ -42,7 +42,7 @@
                 </section>
                 <section id="main_layer2">
                     <div id="item_write">
-                        <a href="javascript:void(0)" onclick="writeClass();"><button id="writeClass"><i class="bi bi-arrow-up-circle"></i> 클래스등록</button></a>
+                        <button id="writeClass" onclick="writeClass();"><i class="bi bi-arrow-up-circle"></i> 클래스등록</button>
                     </div>
                     <div id="checkBtn">
                         <i class="bi bi-check2-square"></i>체크한 항목&nbsp 
@@ -52,18 +52,24 @@
 
                 </section>
                 <section id="main_layer3">
-                <c:if test="${mcList eq null}">
-                	 <div class="no_my_class">
-                	 	 <span>${msg}</span>
-                	 </div>
-                </c:if>
-
+                
+				<c:if test="${cList eq null}">
+	               	<div class="no_my_class" >
+	               		<span>${msg}</span>
+	               	</div>
+             	</c:if>
 				<c:forEach var="myClass" items="${cList}" varStatus="i">
                     <div class="my_class">
+	                    
+		                    
                         <div class="checkbox">
                             <input type="checkbox" name="delhidecheck">
                         </div>
-                        <div class="thumbnail"><img src="../resources/cuploadFiles/${myClass.classFileRename }" alt="#"  ></div>
+                        <div class="thumbnail">
+                        	<div class="thumbnail_case">
+		                        <img src="../resources/cuploadFiles/${myClass.classFileRename }" alt="#"  >
+		                    </div>      
+                        </div>
                         <div class="content">
                             <div>
                                 <a href="#"><h1>${myClass.classTitle}</h1></a>
@@ -78,7 +84,7 @@
                             </div>
                         </div>
                         <div class="btn">
-                        	<button class="modifyClass"> 수정하기</button>
+                        	<button class="modifyClass" onclick="modifyClass('${myClass.classNo}');"> 수정하기</button>
                             <button class="deleteClass"> 삭제하기</button>
                             <button class="hideClass"> 비공개하기</button>
                         </div>
@@ -95,7 +101,11 @@
         function writeClass(){
     		location.href = "/product/insertClass.do";
     	}
-  
+        
+        function modifyClass(classNo){
+    		location.href = "/product/modifyClass.do?classNo="+classNo;
+    	}
+
         </script>
     </body>
 </html>

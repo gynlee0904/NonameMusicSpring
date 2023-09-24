@@ -6,12 +6,40 @@ import com.nnm.spring.Reply.domain.NoticeReply;
 
 public interface NoticeReplyService {
 
-	public int insertNoticeReply(NoticeReply reply);
+	/**
+	 * 댓글등록
+	 * @param reply
+	 * @return
+	 */
+	public int insertNoticeReply(NoticeReply nReply);
 
+	/**
+	 * 댓글수정
+	 * @param reply
+	 * @return
+	 */
+	public int modifyReply(NoticeReply nReply);
+
+	/**
+	 * 댓글삭제
+	 * @param reply
+	 * @return
+	 */
+	public int deleteReply(NoticeReply nReply);
+	
+	/**
+	 * 댓글목록
+	 * @param refNoticeNo
+	 * @return
+	 */
 	public List<NoticeReply> selectNoticeReplyList(Integer refNoticeNo);
 
-	public int modifyReply(NoticeReply reply);
-
-	public int deleteReply(NoticeReply reply);
+	
+	/**
+	 * 댓글 총 개수
+	 * @param noticeNo
+	 * @return
+	 */
+	public int getReplyListCount(Integer refNoticeNo);
 
 }

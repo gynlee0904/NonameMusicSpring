@@ -169,18 +169,22 @@ public class ProductController {
 	}
 	
 	
+	/**
+	 * 클래스 상세페이지
+	 */
 	@RequestMapping(value="/class_detail.do", method=RequestMethod.GET)
 	public ModelAndView showClassDetail(ModelAndView mv
 										, @RequestParam ("classNo") Integer classNo
 										, HttpSession session) {
 		//SELECT * FROM CLASS_LIST_TBL WHERE CLASS_NO = classNo
-//		String memberEmail = (String)session.getAttribute("memberEmail");
-//		String memberName =  (String)session.getAttribute("memberName");
+		String memberEmail = (String)session.getAttribute("memberEmail");
 //		if(memberEmail != null && !memberEmail.equals("")) {
 			try {
 				MyClass classOne =  pService.selectClassByNo(classNo) ;
+				MemberTch tMember = pService.selectTchHistory(memberEmail);
 				if(classOne != null) {
 					mv.addObject("classOne", classOne);
+					mv.addObject("tMember", tMember);
 					mv.setViewName("product/reservation1");
 				}else {
 					mv.addObject("msg", "게시글 조회를 실패했습니다");
@@ -198,6 +202,82 @@ public class ProductController {
 		return mv;
 	}
 	
+	/**
+	 * 클래스 수정페이지 이동 
+	 */
+	@RequestMapping(value="/modifyClass.do", method=RequestMethod.GET)
+	public ModelAndView showmodifyClassForm(ModelAndView mv
+								  , @RequestParam ("classNo") Integer classNo
+								  , HttpSession session 
+								  ) {
+		String memberEmail = (String)session.getAttribute("memberEmail");
+		try {
+			MyClass myClass = pService.selectClassByNo(classNo);
+			mv.addObject("myClass", myClass);
+			mv.setViewName("product/modifyClass");
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의해주세요");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url","/member/mypage_tch.do?memberEmail="+memberEmail);
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	/**
+	 * 클래스 내용수정 
+	 */
+	@RequestMapping(value="/modifyClass.do", method=RequestMethod.POST)
+	public ModelAndView modifyClass(ModelAndView mv
+								  , @ModelAttribute MyClass myClass
+								  , @RequestParam(value="uploadFile", required = false) MultipartFile uploadFile
+								  , HttpSession session
+								  , HttpServletRequest request) {
+		//UPDATE CLASS_LIST_TBL SET CLASS_TITLE=?, CLASS_TIME=?, CLASS_DAY=?, CLASS_PRICE=?, CLASS_MAXPEOPLE=?, CLASS_TARGET=?, CLASS_PROGRESS=?, CLASS_FILENAME=?, CLASS_FILERENAME=?, CLASS_FILEPATH=?, CLASS_FILELENGTH=?, C_UPDATE_DATE=DEFAULT, UPDATE_YN='Y' WHERE CLASS_NO = #{classNo} AND MEMBER_EMAIL = #{memberEmail} AND C_STATUS = 'Y'    
+		try {
+			String memberEmail = (String)session.getAttribute("memberEmail");
+			String classWriter = myClass.getMemberEmail();
+			
+			//글쓴사람만 수정하도록 
+			if(classWriter != null && classWriter.equals(memberEmail)) {
+				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
+					String fileRename = myClass.getClassFileRename();
+					if(fileRename != null) {
+						//기존첨부파일삭제 
+						this.deleteFile(fileRename, request);
+					}
+					
+					//새 파일 첨부
+					Map<String, Object> cFileMap = this.saveFile(request, uploadFile);
+					myClass.setClassFilename((String)cFileMap.get("fileName"));
+					myClass.setClassFileRename((String)cFileMap.get("fileRename"));
+					myClass.setClassFilepath((String)cFileMap.get("filePath"));
+					myClass.setClassFilelength((long)cFileMap.get("fileLength"));
+				}
+				
+				int result = pService.modifyClass(myClass);
+				if(result>0) {
+					mv.setViewName("redirect:/product/class_detail.do?classNo="+myClass.getClassNo());
+				}else {
+					mv.addObject("msg", "글 수정이 완료되지 않았습니다");
+					mv.addObject("error", "글 수정 실패");
+					mv.addObject("url", "/product/modifyClass.do?classNo="+myClass.getClassNo());
+					mv.setViewName("common/errorPage");
+				}
+			}else {
+				mv.addObject("msg", "자신이 작성한 글만 수정할 수 있습니다");
+				mv.addObject("error", "글 수정 불가");
+				mv.addObject("url", "/product/my_class_list.do");
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의해주세요");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url","/product/my_class_list.do");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	
 	
 //**********************************************************************************************	

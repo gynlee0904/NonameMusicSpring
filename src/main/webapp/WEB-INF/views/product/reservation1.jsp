@@ -41,7 +41,7 @@
                 <section id="main_layer1">
                     <div id="main1_part1">
                         <div id="img">
-                            <img src="#" alt="thumbnail" id="thumbnail" >
+                             <img src="../resources/cuploadFiles/${classOne.classFileRename }" id="thumbnail">
                         </div>
                         
                     </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div>
                             <div id="t_score">
-                                <p><i class="bi bi-check2-square"></i> 진행강사 : 서태우 </p>
+                                <p><i class="bi bi-check2-square"></i> 진행강사 : ${classOne.classWriter } </p>
                                 <div id="starScore">
                                     <i class="bi bi-star-fill"></i>
                                     <i class="bi bi-star-fill"></i>
@@ -62,9 +62,9 @@
                                 <div>(12)</div>
                                 <div><button id="rv_btn">리뷰</button></div>
                             </div>
-                            <p><i class="bi bi-check2-square"></i> 진행 요일 : 화 / 목 / 토</p>
-                            <p><i class="bi bi-check2-square"></i> 진행 시간 : 오전 10시 ~ 오후 1시 (3시간)</p>
-                            <p><i class="bi bi-check2-square"></i> 1일 100,000원</p>
+                            <p><i class="bi bi-check2-square"></i> 진행 요일 : ${classOne.classDay }</p>
+                            <p><i class="bi bi-check2-square"></i> 진행 시간 : ${classOne.classTime }</p>
+                            <p><i class="bi bi-check2-square"></i> 1일 ${classOne.classPrice }</p>
                         </div>
                         <div class="button">
                             <button class="reserve_btn">예약하기</button>
@@ -78,12 +78,13 @@
                         선생님 정보 
                     </div>
                     <div class="data">
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
+                    	${tMember.history }
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
                     </div>
                 </section>
 
@@ -92,12 +93,13 @@
                         수강대상 
                     </div>
                     <div class="data">
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
+                    		${classOne.classTarget }
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
                     </div>
                 </section>
 
@@ -106,12 +108,13 @@
                         수업진행과정
                     </div>
                     <div class="data"> 
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
+                    	${classOne.classProgress }
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
+<!--                         <i class="bi bi-check"></i>냐냔냐<br> -->
                     </div>
                 </section>
 

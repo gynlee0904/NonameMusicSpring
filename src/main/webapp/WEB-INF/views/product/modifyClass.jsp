@@ -39,67 +39,68 @@
             
             <main>
             	<form action="/product/modifyClass.do" method="POST"  enctype="multipart/form-data">
-                <section id="main_layer1">
-                    <div id="main1_part1">
-                        <div id="img" >
-                            <input type="file" name="uploadFile" id="attachFile" style="display: none;" accept="image/*">
-                            <i class="bi bi-camera" id="camera"></i>
-                            <img src="../resources/images/no_image.jpg" id="thumbnail">
-                        </div>
-                        
-                    </div>
-                    <div id="main1_part2">
-                        <div id="class_title">
-                            <input type="text" name="classTitle" placeholder="클래스명을 입력하세요" spellcheck="false">
-                        </div>
-                        <div id="info">
-                        	<input type="hidden" name="memberEmail" value="${memberEmail }">
-                            <p><i class="bi bi-check2-square"></i> 진행강사 : ${memberName} </p>
-                            <div id="info_input">
-                                <p><i class="bi bi-check2-square"></i> 진행 요일 : <input class="input" type="text" name="classDay"  placeholder="진행요일 혹은 날짜를 입력하세요" spellcheck="false" ></p>
-                                <p><i class="bi bi-check2-square"></i> 진행 시간 : <input class="input" type="text" name="classTime" placeholder="진행시간을 입력하세요" spellcheck="false"></p>
-                                <p><i class="bi bi-check2-square"></i> 가격 :  <input class="input" type="text" name="classPrice" placeholder="회당가격을 입력하세요" spellcheck="false"> 원</p>
-                                <p><i class="bi bi-check2-square"></i> 최대인원 : <input class="input" type="text" name="maxPeople" placeholder="회당 최대레슨인원을 입력하세요" spellcheck="false"> 명</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="main_layer2">
-                    <div class="title">
-                        선생님 정보 
-                    </div>
-                    <div class="data">
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                        <i class="bi bi-check"></i>냐냔냐<br>
-                    </div>
-                </section>
-
-                <section id="main_layer3">
-                    <div class="title">
-                        수강대상 
-                    </div>
-                    <div class="data">
-                        <textarea name="classTarget" spellcheck="false"></textarea>
-                    </div>
-                </section>
-
-                <section id="main_layer4">
-                    <div class="title">
-                        수업진행과정
-                    </div>
-                    <div class="data"> 
-                        <textarea name="classProgress"spellcheck="false"></textarea>
-                    </div>
-                </section>
-
-                <section id="main_layer7">
-                    <button type="submit" class="reserve_btn">등록하기</button>  
-                </section>
+	            	<input type="hidden" name="classNo" value="${myClass.classNo }">
+	            	<input type="hidden" name="memberEmail" value="${memberEmail }">
+	                <section id="main_layer1">
+	                    <div id="main1_part1">
+	                        <div id="img" >
+	                            <input type="file" name="uploadFile" id="attachFile" style="display: none;" accept="image/*">
+	                            <i class="bi bi-camera" id="camera"></i>
+	                            <img src="../resources/cuploadFiles/${myClass.classFileRename }" id="thumbnail">
+	                        </div>
+	                        
+	                    </div>
+	                    <div id="main1_part2">
+	                        <div id="class_title">
+	                            <input type="text" name="classTitle" placeholder="클래스명을 입력하세요" spellcheck="false" value="${myClass.classTitle }">
+	                        </div>
+	                        <div id="info">
+	                            <p><i class="bi bi-check2-square"></i> 진행강사 : ${memberName} </p>
+	                            <div id="info_input">
+	                                <p><i class="bi bi-check2-square"></i> 진행 요일 : <input class="input" type="text" name="classDay"  placeholder="진행요일 혹은 날짜를 입력하세요" spellcheck="false" value="${myClass.classDay }"></p>
+	                                <p><i class="bi bi-check2-square"></i> 진행 시간 : <input class="input" type="text" name="classTime" placeholder="진행시간을 입력하세요" spellcheck="false" value="${myClass.classTime }"></p>
+	                                <p><i class="bi bi-check2-square"></i> 가격 :  <input class="input" type="text" name="classPrice" placeholder="회당가격을 입력하세요" spellcheck="false" value="${myClass.classPrice }"> 원</p>
+	                                <p><i class="bi bi-check2-square"></i> 최대인원 : <input class="input" type="text" name="maxPeople" placeholder="회당 최대레슨인원을 입력하세요" spellcheck="false" value="${myClass.maxPeople }"> 명</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </section>
+	
+	                <section id="main_layer2">
+	                    <div class="title">
+	                        선생님 정보 
+	                    </div>
+	                    <div class="data">
+	                        <i class="bi bi-check"></i>냐냔냐<br>
+	                        <i class="bi bi-check"></i>냐냔냐<br>
+	                        <i class="bi bi-check"></i>냐냔냐<br>
+	                        <i class="bi bi-check"></i>냐냔냐<br>
+	                        <i class="bi bi-check"></i>냐냔냐<br>
+	                        <i class="bi bi-check"></i>냐냔냐<br>
+	                    </div>
+	                </section>
+	
+	                <section id="main_layer3">
+	                    <div class="title">
+	                        수강대상 
+	                    </div>
+	                    <div class="data">
+	                        <textarea name="classTarget" spellcheck="false">${myClass.classTarget }</textarea>
+	                    </div>
+	                </section>
+	
+	                <section id="main_layer4">
+	                    <div class="title">
+	                        수업진행과정
+	                    </div>
+	                    <div class="data"> 
+	                        <textarea name="classProgress"spellcheck="false">${myClass.classProgress }</textarea>
+	                    </div>
+	                </section>
+	
+	                <section id="main_layer7">
+	                    <button type="submit" class="reserve_btn">등록하기</button>  
+	                </section>
                 </form>
             </main>
         </div>

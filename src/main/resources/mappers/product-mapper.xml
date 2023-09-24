@@ -18,6 +18,7 @@
 		<result property="classProgress"    column="CLASS_PROGRESS"/>	
 		<result property="cUpdateDate"  column="C_UPDATE_DATE"/>
 		<result property="UpdateYN"       column="UPDATE_YN"/>
+		<result property="cStatus"     column="C_STATUS"/>
 		<result property="classFilename"      column="CLASS_FILENAME"/>	
 		<result property="classFileRename"      column="CLASS_FILERENAME"/>	
 		<result property="classFilepath"      column="CLASS_FILEPATH"/>	
@@ -51,8 +52,44 @@
 	
 	<!-- 클래스페이지 상세 -->
 	<select id="selectClassByNo" resultMap="myClassResultMap">
-		SELECT * FROM CLASS_LIST_TBL WHERE CLASS_NO = #{classNo}
+		SELECT * FROM CLASS_LIST_TBL WHERE CLASS_NO = #{classNo} AND C_STATUS = 'Y'
 	</select>
+		
+	<!-- 클래스 상세페이지 수정 -->
+	<update id="modifyClass">
+		UPDATE CLASS_LIST_TBL SET CLASS_TITLE=#{classTitle}, CLASS_TIME=#{classTime}, CLASS_DAY=#{classDay}, CLASS_PRICE=#{classPrice}, CLASS_MAXPEOPLE=#{maxPeople}, CLASS_TARGET=#{classTarget}, CLASS_PROGRESS=#{classProgress}, CLASS_FILENAME=#{classFilename}, CLASS_FILERENAME=#{classFileRename}, CLASS_FILEPATH=#{classFilepath}, CLASS_FILELENGTH=#{classFilelength}, C_UPDATE_DATE=DEFAULT, UPDATE_YN='Y' WHERE CLASS_NO = #{classNo} AND MEMBER_EMAIL = #{memberEmail} AND C_STATUS = 'Y'
+	</update>
+	
+<!-- **************************************************************************************** -->
+	<resultMap type="MemberTch" id="tMemberResultMap">
+		<id property="memberEmail"            column="MEMBER_EMAIL"/>
+		<result property="position"           column="MEMBER_POSITION"/>
+		<result property="memberName"         column="MEMBER_NAME"/>
+		<result property="memberGender"       column="MEMBER_GENDER"/>
+		<result property="memberPhone"        column="MEMBER_PHONE"/>
+		<result property="memberPw"           column="MEMBER_PW"/>
+		<result property="proPicFilename"     column="PROPIC_FILENAME"/>
+		<result property="proPicFilepath"     column="PROPIC_FILEPATH"/>
+		<result property="proPicFilelength"   column="PROPIC_FILELENGTH"/>
+		<result property="lessonFee"          column="LESSONFEE"/>
+		<result property="payment"            column="PAYMENT"/>
+		<result property="contactTime"        column="CONTACTTIME"/>
+		<result property="place"              column="PLACE"/>
+		<result property="lesson"             column="LESSON"/>
+		<result property="lessonType"         column="LESSON_TYPE"/>
+		<result property="history"            column="HISTORY"/>
+		<result property="target"            column="TARGET"/>
+		<result property="freeWords"          column="FREE_WORDS"/>
+		<result property="memberDate"         column="MEMBER_DATE"/>
+		<result property="updateDate"         column="UPDATE_DATE"/>
+		<result property="memberYn"           column="MEMBER_YN"/>
+	</resultMap>
+	
+	<select id="selectTchHistory" resultMap="tMemberResultMap">
+		SELECT * FROM TMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
+	
 	
 	
 </mapper>

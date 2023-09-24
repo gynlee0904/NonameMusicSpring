@@ -18,11 +18,23 @@ public class NoticeReplyServiceImpl implements NoticeReplyService{
 	private SqlSession session;
 	
 	@Override
-	public int insertNoticeReply(NoticeReply reply) {
-		int result = rStore.insertNoticeReply(session, reply);
+	public int insertNoticeReply(NoticeReply nReply) {
+		int result = rStore.insertNoticeReply(session, nReply);
 		return result;
 	}
 
+	@Override
+	public int modifyReply(NoticeReply nReply) {
+		int result = rStore.modifyReply(session, nReply);
+		return result;
+	}
+
+	@Override
+	public int deleteReply(NoticeReply nReply) {
+		int result = rStore.deleteReply(session, nReply);
+		return result;
+	}
+	
 	@Override
 	public List<NoticeReply> selectNoticeReplyList(Integer refNoticeNo) {
 		List<NoticeReply> nrList = rStore.selectNoticeReplyList(session, refNoticeNo);
@@ -30,14 +42,8 @@ public class NoticeReplyServiceImpl implements NoticeReplyService{
 	}
 
 	@Override
-	public int modifyReply(NoticeReply reply) {
-		int result = rStore.modifyReply(session, reply);
-		return result;
-	}
-
-	@Override
-	public int deleteReply(NoticeReply reply) {
-		int result = rStore.deleteReply(session, reply);
+	public int getReplyListCount(Integer refNoticeNo) {
+		int result = rStore.getReplyListCount(session, refNoticeNo);
 		return result;
 	}
 	

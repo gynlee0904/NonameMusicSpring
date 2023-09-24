@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.service.ProductService;
@@ -53,6 +54,20 @@ public class ProductServiceImpl implements ProductService{
 		MyClass classOne = pStore.selectClassByNo(session, classNo);
 		return classOne;
 	}
+
+	@Override
+	public int modifyClass(MyClass myClass) {
+		int result = pStore.modifyClass(session, myClass);
+		return result;
+	}
+
+	@Override
+	public MemberTch selectTchHistory(String memberEmail) {
+		MemberTch tMember = pStore.selectTchHistory(session, memberEmail);
+		return tMember; 
+	}
+
+	
 	
 	
 
