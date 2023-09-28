@@ -369,16 +369,16 @@
 				}
          }
          
-            //TOP버튼 누르면 페이지 최상단으로 이동
-            const topScrollBtn = document.getElementById("topScroll");
-            function scrollToTop() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-            topScrollBtn.addEventListener("click", scrollToTop);
-            
+        //TOP버튼 누르면 페이지 최상단으로 이동
+        const topScrollBtn = document.getElementById("topScroll");
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+        topScrollBtn.addEventListener("click", scrollToTop);
+        
       </script>
               
     </body>

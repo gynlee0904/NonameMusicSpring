@@ -89,6 +89,11 @@
 		SELECT * FROM TMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
 	
+	<!-- 전체선생님리스트 목록 -->
+	<select id="selectAllTeacherList" resultMap="tMemberResultMap">
+		SELECT * FROM TMEMBER_TBL WHERE MEMBER_YN = 'Y' ORDER BY MEMBER_DATE DESC
+	</select>
+	
 	
 	
 	

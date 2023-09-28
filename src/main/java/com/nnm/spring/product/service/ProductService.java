@@ -23,6 +23,8 @@ public interface ProductService {
 	public int modifyClass(MyClass myClass);
 
 	public MemberTch selectTchHistory(String memberEmail);
+//////////////////////////////////////////////////////////////////////////
+	public List<MemberTch> selectAllTeacherList(PageInfo pInfo);
 
 	
 }

@@ -25,6 +25,10 @@ public interface ProductStore {
 	public int modifyClass(SqlSession session, MyClass myClass);
 
 	public MemberTch selectTchHistory(SqlSession session, String memberEmail);
+	
+//////////////////////////////////////////////////////////////////////
+	
+	public List<MemberTch> selectAllTeacherList(SqlSession session, PageInfo pInfo);
 
 	
 

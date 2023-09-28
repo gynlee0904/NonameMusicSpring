@@ -147,7 +147,7 @@ public class ProductController {
 //		String classWriter = myClass.getClassWriter();
 		
 		Integer totalCount = pService.getAllClassListCount();
-		PageInfo pInfo = this.getPageInfo(9, currentPage, totalCount);
+		PageInfo pInfo = this.getPageInfo(6, currentPage, totalCount);
 		List<MyClass>cList = pService.selectAllClassList(pInfo);
 		try {
 			
@@ -278,6 +278,34 @@ public class ProductController {
 		}
 		return mv;
 	}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping(value="/teacher_list.do", method=RequestMethod.GET)
+	public ModelAndView showTeacherList(ModelAndView mv
+										,@ModelAttribute MemberTch tMember
+										,HttpSession session
+										,@RequestParam(value="page", required=false, defaultValue="1") Integer currentPage) {
+		Integer totalCount = pService.getAllClassListCount();
+		PageInfo pInfo = this.getPageInfo(8, currentPage, totalCount);
+		List<MemberTch>tList = pService.selectAllTeacherList(pInfo);
+		try {
+			
+			if(tList.size()>0) {
+				mv.addObject("tList", tList).addObject("pInfo", pInfo).setViewName("product/teacherList");
+				
+			}else {
+				mv.addObject("msg", "등록된 선생님이 없습니다").setViewName("product/teacherList");
+			}
+			
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "클래스 리스트 조회를 실패했습니다");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/index.jsp");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
 	
 	
 //**********************************************************************************************	

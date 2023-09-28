@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="../resources/css/product/classList.css">
         <link rel="stylesheet" href="../resources/css/footer.css">
         <link rel="stylesheet" href="../resources/css/reset.css">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
         <!--헤더폰트-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,39 +76,89 @@
                 </section>
 
                 <section id="main_layer">
-<!--                     <div id="prev_icon"><i class="bi bi-chevron-compact-left"></i></div> -->
-				
-                    <div class="item_list">
-	                    <c:if test="${cList eq null}">
-		                	<div class="no_my_class">
-	                	 	 	<span>${msg}</span>
-		                	</div>
-	                	</c:if>
-	                	
-						<c:forEach var="allClass" items="${cList}" varStatus="i">
-                        <div class="card">
-                            <div class="img">
-                                <img src="../resources/cuploadFiles/${allClass.classFileRename }" alt="썸네일" >
-                            </div>
-                            <div class="text">
-                                <h2>${allClass.classTitle }</h2>
-                                <div class="explain">
-                                    <p>${allClass.classTime } / ${allClass.classPrice }원</p>
-                                    <p>진행강사 : ${allClass.classWriter }</p>
-                                </div>
-                                <c:url  var="detailUrl" value="/product/class_detail.do">
+					<div id="prev_icon">
+						<c:if test="${pInfo.startNavi != 1}">
+							<c:url var="prevUrl" value="/product/all_class_list.do" >  
+								<c:param name="currentPage" value="${pInfo.currentPage -1 }"></c:param> 								
+							</c:url>
+							<a href="${prevUrl}"><i class="bi bi-chevron-compact-left"></i></a>
+						</c:if>
+					</div>
+					
+					<div id=main_wrap">
+					
+	                    <div class="item_list">
+		                    <c:if test="${cList eq null}">
+			                	<div class="no_my_class">
+		                	 	 	<span>${msg}</span>
+			                	</div>
+		                	</c:if>
+		                	
+							<c:forEach var="allClass" items="${cList}" varStatus="i">
+	                        <div class="card">
+	                        	<c:url  var="detailUrl" value="/product/class_detail.do">
 									<c:param  name="classNo" value="${allClass.classNo }"></c:param>
 <%-- 									<c:param  name="memberEmail" value="${memberEmail }"></c:param> --%>
 								</c:url>
-                                <div class="watch">
-                                    <button type="button" onclick="showDetail('${detailUrl}');" id="showClass"><i class="bi bi-check-lg"></i>상세보기</button>
-                                </div>
-                            </div>
-                        </div>
-                        </c:forEach>
-                    </div>
-
-<!--                     <div id="next_icon"><i class="bi bi-chevron-compact-right"></i></div> -->
+								<a href="${detailUrl}">
+		                            <div class="img">
+		                                <img src="../resources/cuploadFiles/${allClass.classFileRename }" alt="썸네일" >
+		                            </div>
+	                            </a>
+	                            <div class="text">
+	                                <h2>${allClass.classTitle }</h2>
+	                                <div class="explain">
+	                                    <p>${allClass.classTime } / ${allClass.classPrice }원</p>
+	                                    <p>진행강사 : ${allClass.classWriter }</p>
+	                                </div>
+	                                
+	                                <div class="watch">
+	                                    <button type="button" onclick="showDetail('${detailUrl}');" id="showClass"><i class="bi bi-check-lg"></i>상세보기</button>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        </c:forEach>
+	                    </div>
+	                    <div id="pageNavi">
+<%-- 		                    <c:if test="${pInfo.startNavi != 1}"> --%>
+<%-- 								<c:url var="prevUrl" value="/product/all_class_list.do" >   --%>
+<%-- 									<c:param name="currentPage" value="${pInfo.startNavi -1 }"></c:param> 								 --%>
+<%-- 								</c:url> --%>
+<%-- 								<a href="${prevUrl}">[이전]&nbsp;&nbsp;</a> --%>
+<%-- 							</c:if> --%>
+						
+							<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}"  var="p">
+								<c:url var="pageUrl" value="/product/all_class_list.do" >
+									<c:param name="currentPage" value="${p}"></c:param>
+								</c:url>	
+								
+								<c:choose>
+				                    <c:when test="${p == pInfo.currentPage}">
+				                    	<p><a href="${pageUrl}" style="color: #ccc"> ${p}</a>&nbsp;&nbsp;</p>
+				                    </c:when>
+				                    <c:otherwise>
+				                        <p><a href="${pageUrl}"> ${p}</a>&nbsp;&nbsp;</p>
+				                    </c:otherwise>
+				                </c:choose>
+							</c:forEach> 
+							
+<%-- 							<c:if test="${pInfo.endNavi != pInfo.naviTotalCount}"> --%>
+<%-- 								<c:url var="nextUrl" value="/product/all_class_list.do" >   --%>
+<%-- 									<c:param name="currentPage" value="${pInfo.endNavi + 1}"></c:param> 								 --%>
+<%-- 								</c:url> --%>
+<%-- 								<a href="${nextUrl}">[다음]</a> --%>
+<%-- 							</c:if> --%>
+	                    </div>
+					</div>
+					
+					<div id="next_icon">
+						<c:if test="${pInfo.currentPage != pInfo.naviTotalCount}">
+							<c:url var="nextUrl" value="/product/all_class_list.do" >  
+								<c:param name="currentPage" value="${pInfo.currentPage + 1}"></c:param> 								
+							</c:url>
+							<a href="${nextUrl}"><i class="bi bi-chevron-compact-right"></i></a>
+						</c:if>
+					</div>
                 </section>
                 
             </main>
@@ -114,7 +166,8 @@
 
         <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
         
-         <script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <script>
 	      	function showDetail(url){
 	      		location.href=url;  //location href라고 잘못 써서 이동이 안됐음 
 	      	}

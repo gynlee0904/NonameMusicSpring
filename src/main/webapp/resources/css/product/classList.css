@@ -19,12 +19,12 @@ li{
 a{
     text-decoration: none;
 }
-a:link {
-    color : #222;
-}
-a:visited {
-    color : #222;
-}
+/* a:link { */
+/*     color : #222; */
+/* } */
+/* a:visited { */
+/*     color : #222; */
+/* } */
 
 #container {
     width : 1300px;
@@ -147,40 +147,46 @@ main {
         border-collapse : collapse;
     }
 
-    main>section:nth-child(2){
+    #main_layer{
         display: flex;
         min-height : 590px;
     }
-
+    
 
     #prev_icon, #next_icon {
         --background-color: pink;
+        width : 48px;
         font-size: 3em;
         color: #ccc;
         display: flex;
         align-items: center;
     }
-    
-	.no_my_class{
-        --margin: 0 auto;
-        display: flex;
-        justify-content: center;
-    	align-items: center;
+
+	#main_wrap{
+	display: flex;
+	min-height : 590px;
+    flex-direction: column;
 	}
-	.no_my_class {
-		margin: 0 auto;
-	}
-	
+
     .item_list{
         --background-color: bisque;
-        width : 85%;
+        width : 95%;
+        --width : 100%;
         display : flex;
         flex-wrap: wrap; /*상위요소의 너비보다 하위요소의 너비가 더 클경우 줄바꿈*/ 
         --justify-content: space-between;
         align-content: center;
         margin: 0 auto;
         text-align: center;
+        --justify-content: center;
     }
+    
+   	.no_my_class{
+       	margin: 0 auto;
+      	display: flex;
+       	justify-content: center;
+   		align-items: center;
+	}
 
     .card {
         border : 1px solid #222;  /*#eee*/
@@ -237,5 +243,8 @@ main {
             color: black;
             
         }
-     
+     #pageNavi {
+     	display: flex;
+     	justify-content: center;
+     }
 

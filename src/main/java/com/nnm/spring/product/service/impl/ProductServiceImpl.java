@@ -67,6 +67,12 @@ public class ProductServiceImpl implements ProductService{
 		return tMember; 
 	}
 
+	@Override
+	public List<MemberTch> selectAllTeacherList(PageInfo pInfo) {
+		List<MemberTch> tList = pStore.selectAllTeacherList(session, pInfo);
+		return tList;
+	}
+
 	
 	
 	

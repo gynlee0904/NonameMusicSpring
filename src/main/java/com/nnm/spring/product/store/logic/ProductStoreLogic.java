@@ -67,6 +67,16 @@ public class ProductStoreLogic implements ProductStore {
 		MemberTch tMember = session.selectOne("ProductMapper.selectTchHistory", memberEmail);
 		return tMember;
 	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public List<MemberTch> selectAllTeacherList(SqlSession session, PageInfo pInfo) {
+		int limit = pInfo.getRecordCountPerPage();
+		int offset = (pInfo.getCurrentPage()-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<MemberTch>tList = session.selectList("ProductMapper.selectAllTeacherList",null,rowBounds);
+		return tList;
+	}
 
 
 

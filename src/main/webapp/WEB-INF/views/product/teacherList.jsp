@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../resources/css/header.css">
         <link rel="stylesheet" href="../resources/css/nav.css">
         <link rel="stylesheet" href="../resources/css/product/teacherList.css">
-        <link rel="stylesheet" href="../resources/css/footer.css">
+        <link rel="stylesheet" href="../resources/css/footer.css?after">
         <link rel="stylesheet" href="../resources/css/reset.css">
 
         <!--헤더폰트-->
@@ -26,6 +26,28 @@
     
         <!--Bootstrap 아이콘cdn -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+        
+        <style>
+        	#wrap-footer {
+			    --bottom: 0px;
+			    margin-top: auto;
+			    clear:both; 
+			}
+			
+			footer {
+			    background-color: #f4f4f4;
+			    --width : 1040px;
+			    width : 1300px;
+			    height : 100px;
+			    margin: 20px auto 0;
+			    
+			    padding-top : 65px;
+			    text-align: center;
+			    font-size:1px;
+			    --bottom: 0px;  
+			}
+        	
+        </style>
     </head>
 
     <body>

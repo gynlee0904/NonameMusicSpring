@@ -52,8 +52,6 @@
                             <h1>공지사항</h1>
                         </section>
                         <section id="board_content">
-                        
-                            
                             <table>
                                 <colgroup>
                                     <col width="10%">
@@ -119,13 +117,20 @@
 										<c:url var="prevUrl" value="/notice/list.do" >  
 											<c:param name="page" value="${pInfo.startNavi -1 }"></c:param> 								
 										</c:url>
-										<a href="${prevUrl}">[이전]</a>
+										<a href="${prevUrl}">[이전]&nbsp;&nbsp;</a>
 									</c:if>
 									<c:forEach begin="${pInfo.startNavi}" end="${pInfo.endNavi}"  var="p">
 										<c:url var="pageUrl" value="/notice/list.do" >
 											<c:param name="page" value="${p}"></c:param>
 										</c:url>	
-										<p><a href="${pageUrl}"> ${p}</a>&nbsp;&nbsp;</p>
+										<c:choose>
+						                    <c:when test="${p == pInfo.currentPage}">
+						                    	<p><a href="${pageUrl}" style="color: #ccc"> ${p}</a>&nbsp;&nbsp;</p>
+						                    </c:when>
+						                    <c:otherwise>
+						                        <p><a href="${pageUrl}"> ${p}</a>&nbsp;&nbsp;</p>
+						                    </c:otherwise>
+						                </c:choose>
 									</c:forEach> 
 									<c:if test="${pInfo.endNavi != pInfo.naviTotalCount}">
 										<c:url var="nextUrl" value="/notice/list.do" >  
