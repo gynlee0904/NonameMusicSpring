@@ -31,8 +31,6 @@
 	</select>
 	
 	
-	
-	
 <!-- ********************************************************************************** -->	
 
 
@@ -65,5 +63,35 @@
 		SELECT * FROM TMEMBER_TBL WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PW = #{memberPw} AND MEMBER_POSITION = #{position} AND MEMBER_YN = 'Y' 
 	</select>
 	
+	
+<!-- ********************************************************************************** -->		
+	
+	
+	<resultMap type="com.nnm.spring.common.domain.Board" id="boardResultMap">
+		<id property="boardNo"             column="boardNo"/>
+		<result property="boardSubject"    column="boardSubject"/>
+		<result property="boardContent"    column="boardContent"/>
+		<result property="boardWriter"     column="boardWriter"/>
+		<result property="bCreateDate"      column="bCreateDate"/>
+		<result property="bUpdateDate"      column="bUpdateDate"/>
+		<result property="boardFilename"   column="boardFilename"/>
+		<result property="boardFilepath"   column="boardFilepath"/>
+		<result property="boardFilelength" column="boardFilelength"/>	
+	</resultMap>
+	
+<!-- 	<select id="selectBoardListCount" resultType="_int"> -->
+<!-- 		SELECT COUNT (*) FROM NOTICE_TBL  -->
+<!-- 		UNION  -->
+<!-- 		SELECT COUNT (*) FROM FREEBOARD_TBL; -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="selectAllBoardList" resultMap="boardResultMap"> -->
+<!-- 		SELECT * FROM NOTICE_TBL  -->
+<!-- 		UNION -->
+<!-- 		SELECT * FROM FREEBOARD_TBL; -->
+<!-- 	</select> -->
+
+
+
 	
 </mapper>

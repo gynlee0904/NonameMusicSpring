@@ -1,5 +1,7 @@
 package com.nnm.spring.common.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 
+import com.nnm.spring.common.domain.Board;
 import com.nnm.spring.common.domain.Register;
 import com.nnm.spring.common.service.CommonService;
 import com.nnm.spring.memberStd.domain.MemberStd;
 import com.nnm.spring.memberTch.domain.MemberTch;
+import com.nnm.spring.notice.domain.PageInfo;
 
 
 @Controller
@@ -144,6 +147,32 @@ public class CommonController {
 
 	
 	
+//	public String showBoardList(@RequestParam (value="page", required=false, defaultValue="1") Integer currentPage
+//								, Model model) {
+//		//SELECT * FROM NOTICE_TBL UNION ALL SELECT * FROM FREEBOARD_TBL;
+//		int totalCount = service.getListCount();
+//		PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+//		List<Board>bList = service.selectAllBoardList(pInfo);
+//		
+//		try {
+//			if(bList.size() >0) {
+//				model.addAttribute("pInfo",pInfo);
+//				model.addAttribute("bList", bList);
+//				return "/index.jsp";
+//				
+//			}else {
+//				model.addAttribute("msg","데이터조회가 완료되지 않았습니다");
+//				model.addAttribute("error", "공지목록 조회 실패");
+//				model.addAttribute("url", "/index.jsp");
+//				return "common/errorPage";
+//			}
+//		} catch (Exception e) {
+//			model.addAttribute("msg","관리자에게 문의해주세요");
+//			model.addAttribute("error", e.getMessage());
+//			model.addAttribute("url", "/index.jsp");
+//			return "common/errorPage";
+//		}
+//	}
 	
 	
 	
@@ -151,8 +180,33 @@ public class CommonController {
 	
 	
 	
-	
-	
+	/**
+	 * 페이징처리
+	 */
+	public PageInfo getPageInfo(int currentPage, int totalCount) {
+		////SELECT COUNT (*) FROM NOTICE_TBL
+		
+		PageInfo pi = null;
+		int recordCountPerPage = 5; //한페이지에 보여줄 게시물 갯수
+		int naviCountPerPage = 5; //한페이지에 보여줄 네비의 갯수
+		int naviTotalCount;
+		int startNavi;
+		int endNavi;
+		
+		naviTotalCount = (int)((double)totalCount/recordCountPerPage+0.9);  //정수로 강제형변환 
+		startNavi = (((int)((double)currentPage/naviCountPerPage+0.9))-1)*naviCountPerPage + 1;
+		//??? currentPage 값이 1~5일 떄 startNavi가 1로 고정되도록 구해주는 식 ???
+		
+		endNavi = startNavi + naviCountPerPage-1;
+		
+		if(endNavi > naviTotalCount) {
+			endNavi = naviTotalCount;
+			//endNavi는 startNavi에 무조건 naviCountPerPage값을 더하므로 실제 최대값보다 커질 수 있음
+			//커지면 naviTotalCount 값으로 넣어주는 식 ↓
+		}
+		pi= new PageInfo(currentPage, recordCountPerPage, naviCountPerPage, startNavi, endNavi, naviTotalCount, totalCount);
+		return pi;
+	}
 	
 	
 	

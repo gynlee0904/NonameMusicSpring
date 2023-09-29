@@ -18,6 +18,8 @@
 		<typeAlias type="com.nnm.spring.free.domain.Freeboard" alias="Freeboard"/>
 		<typeAlias type="com.nnm.spring.Reply.domain.NoticeReply" alias="NoticeReply"/>
 		<typeAlias type="com.nnm.spring.product.domain.MyClass" alias="MyClass"/>
+		<typeAlias type="com.nnm.spring.product.domain.Bookmark" alias="Bookmark"/>
+		<typeAlias type="com.nnm.spring.product.domain.ClassReview" alias="ClassReview"/>
 	</typeAliases>
 	
 	<mappers>
@@ -28,5 +30,6 @@
 		<mapper resource="mappers/freeboard-mapper.xml"></mapper>
 		<mapper resource="mappers/reply-mapper.xml"></mapper>
 		<mapper resource="mappers/product-mapper.xml"></mapper>
+		<mapper resource="mappers/review-mapper.xml"></mapper>
 	</mappers>
 </configuration>

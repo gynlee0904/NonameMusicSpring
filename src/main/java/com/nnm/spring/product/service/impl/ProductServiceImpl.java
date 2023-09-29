@@ -6,8 +6,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nnm.spring.Reply.domain.NoticeReply;
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
+import com.nnm.spring.product.domain.Bookmark;
+import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.service.ProductService;
 import com.nnm.spring.product.store.ProductStore;
@@ -62,6 +65,29 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public int insertBmk(Bookmark bookmark) {
+		int result = pStore.insertBmk(session, bookmark);
+		return result;
+	}
+	
+	@Override
+	public int deleteBmk(Bookmark bookmark) {
+		int result = pStore.deleteBmk(session, bookmark);
+		return result;
+	}
+	
+	@Override
+	public int selectBmkYn(Bookmark bookmark) {
+		int result = pStore.selectBmkYn(session, bookmark);
+		return result;
+	}
+	
+	
+
+	
+	
+///////////////////////////////////////////////////////////////////////////////	
+	@Override
 	public MemberTch selectTchHistory(String memberEmail) {
 		MemberTch tMember = pStore.selectTchHistory(session, memberEmail);
 		return tMember; 
@@ -72,6 +98,20 @@ public class ProductServiceImpl implements ProductService{
 		List<MemberTch> tList = pStore.selectAllTeacherList(session, pInfo);
 		return tList;
 	}
+
+
+	
+
+	
+
+	
+
+
+	
+
+
+
+
 
 	
 	

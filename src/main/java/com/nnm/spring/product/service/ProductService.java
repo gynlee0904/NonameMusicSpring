@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
+import com.nnm.spring.product.domain.Bookmark;
+import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
 
 public interface ProductService {
@@ -21,10 +23,40 @@ public interface ProductService {
 	public MyClass selectClassByNo(Integer classNo);
 
 	public int modifyClass(MyClass myClass);
+	
+	public int insertBmk(Bookmark bookmark);
+	
+	public int deleteBmk(Bookmark bookmark);
+	
+	public int selectBmkYn(Bookmark bookmark);
+	
+	
+	
+	
+
+	
+//////////////////////////////////////////////////////////////////////////	
 
 	public MemberTch selectTchHistory(String memberEmail);
-//////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+
 	public List<MemberTch> selectAllTeacherList(PageInfo pInfo);
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
 
 	
 }

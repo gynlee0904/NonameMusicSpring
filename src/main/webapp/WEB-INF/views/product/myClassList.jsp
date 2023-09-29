@@ -71,8 +71,11 @@
 		                    </div>      
                         </div>
                         <div class="content">
+                        	<c:url  var="detailUrl" value="/product/class_detail.do">
+								<c:param  name="classNo" value="${myClass.classNo }"></c:param>
+							</c:url>
                             <div>
-                                <a href="#"><h1>${myClass.classTitle}</h1></a>
+                                <a href="${detailUrl}"><h1>${myClass.classTitle}</h1></a>
                             </div>
                             <div class="text">
                                 <span>클래스 고유번호 : #${myClass.classNo},</span>

@@ -27,7 +27,7 @@
 	
 	<!-- 클래스등록 -->
 	<insert id="insertClass">
-		INSERT INTO CLASS_LIST_TBL VALUES (#{classTitle}, SEQ_MY_CLASS_NO.NEXTVAL,DEFAULT,#{memberEmail},#{classWriter},#{classTime},#{classDay},#{classPrice},#{maxPeople},#{classTarget},#{classProgress},DEFAULT,DEFAULT,DEFAULT, #{classFilename}, #{classFileRename}, #{classFilepath}, #{classFilelength})
+		INSERT INTO CLASS_LIST_TBL VALUES (#{classTitle}, SEQ_CLASS_NO.NEXTVAL,DEFAULT,#{memberEmail},#{classWriter},#{classTime},#{classDay},#{classPrice},#{maxPeople},#{classTarget},#{classProgress},DEFAULT,DEFAULT,DEFAULT, #{classFilename}, #{classFileRename}, #{classFilepath}, #{classFilelength})
 	</insert>
 
 	<!-- 마이클래스리스트 전체게시글수조회-->
@@ -59,6 +59,22 @@
 	<update id="modifyClass">
 		UPDATE CLASS_LIST_TBL SET CLASS_TITLE=#{classTitle}, CLASS_TIME=#{classTime}, CLASS_DAY=#{classDay}, CLASS_PRICE=#{classPrice}, CLASS_MAXPEOPLE=#{maxPeople}, CLASS_TARGET=#{classTarget}, CLASS_PROGRESS=#{classProgress}, CLASS_FILENAME=#{classFilename}, CLASS_FILERENAME=#{classFileRename}, CLASS_FILEPATH=#{classFilepath}, CLASS_FILELENGTH=#{classFilelength}, C_UPDATE_DATE=DEFAULT, UPDATE_YN='Y' WHERE CLASS_NO = #{classNo} AND MEMBER_EMAIL = #{memberEmail} AND C_STATUS = 'Y'
 	</update>
+	
+	<!-- 클래스 북마크 등록 -->
+	<insert id="insertBmk">
+		INSERT INTO BOOKMARK_TBL VALUES(SEQ_BOOKMARK_NO.NEXTVAL, #{refClassNo}, #{memberEmail})
+	</insert>
+	
+	<!-- 클래스 북마크 삭제 -->
+	<delete id="deleteBmk">
+		DELETE FROM BOOKMARK_TBL WHERE REF_CLASS_NO = #{refClassNo} AND MEMBER_EMAIL = #{memberEmail}
+	</delete>
+	
+	<!-- 클래스 북마크 여부 -->
+	<select id="selectBmkYn" resultType="_int">
+		SELECT COUNT(*) FROM BOOKMARK_TBL WHERE REF_CLASS_NO = #{refClassNo} AND MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
 	
 <!-- **************************************************************************************** -->
 	<resultMap type="MemberTch" id="tMemberResultMap">
@@ -94,6 +110,9 @@
 		SELECT * FROM TMEMBER_TBL WHERE MEMBER_YN = 'Y' ORDER BY MEMBER_DATE DESC
 	</select>
 	
+	
+
+
 	
 	
 	

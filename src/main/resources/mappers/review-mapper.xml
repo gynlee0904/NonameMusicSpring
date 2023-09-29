@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+<mapper namespace="ReviewMapper">
+	<resultMap type="ClassReview" id="classReviewResultMap">
+		<id     property="classReviewNo"          column="CLASS_REVIEW_NO"/>
+		<result property="refClassNo"             column="REF_CLASS_NO"/>
+		<result property="classReviewContent"     column="CLASS_REVIEW_CONTENT"/>
+		<result property="classReviewWriter"      column="CLASS_REVIEW_WRITER"/>
+		<result property="classReviewFilename"    column="CLASS_REVIEW_FILENAME"/>
+		<result property="classReviewFileRename"  column="CLASS_REVIEW_FILERENAME"/>
+		<result property="classReviewFilepath"    column="CLASS_REVIEW_FILEPATH"/>
+		<result property="classReviewFilelength"  column="CLASS_REVIEW_FILELENGTH"/>
+		<result property="cReviewCreateDate"      column="C_REVIEW_CREATE_DATE"/>	
+		<result property="cReviewUpdateDate"      column="C_REVIEW_UPDATE_DATE"/>	
+		<result property="cReviewStatus"          column="C_REVIEW__STATUS"/>	
+	</resultMap>
+  
+	<!-- 리뷰등록 -->
+	<insert id="insertClassReview">
+		INSERT INTO CLASS_REVIEW_TBL VALUES(SEQ_C_REVIEW_NO.NEXTVAL, #{refClassNo}, #{classReviewContent}, #{classReviewWriter}, #{classReviewFilename}, #{classReviewFileRename}, #{classReviewFilepath}, #{classReviewFilelength}, DEFAULT, DEFAULT, DEFAULT)
+	</insert>
+	
+	<!-- 리뷰목록 -->
+	<select id="selectClassReviewList" resultMap="classReviewResultMap">
+		SELECT * FROM CLASS_REVIEW_TBL WHERE REF_CLASS_NO = #{refClassNo} AND C_REVIEW__STATUS = 'Y' 
+	</select>
+	
+	<!-- 리뷰 총개수 --> 
+	<select id="getReviewListCount" resultType="_int">
+		SELECT COUNT (*) FROM CLASS_REVIEW_TBL WHERE C_REVIEW__STATUS = 'Y' AND REF_CLASS_NO = #{refClassNo}
+	</select>
+	
+ 	<!-- 댓글수정 --> 
+<!-- 	<update id="modifyReply"> -->
+<!-- 		UPDATE NOTICE_REPLY_TBL SET NOTICE_REPLY_CONTENT = #{noticeReplyContent}, N_R_UPDATE_DATE = DEFAULT, UPDATE_YN = 'Y' WHERE NOTICE_REPLY_NO = #{noticeReplyNo} -->
+<!-- 	</update> -->
+	
+	<!-- 댓글삭제 -->
+<!-- 	<update id="deleteReply"> -->
+<!-- 	 	UPDATE NOTICE_REPLY_TBL SET R_STATUS = 'N' WHERE NOTICE_REPLY_NO = #{noticeReplyNo}  -->
+<!-- 	</update> -->
+	
+
+	
+	
+	
+	
+	
+
+</mapper>

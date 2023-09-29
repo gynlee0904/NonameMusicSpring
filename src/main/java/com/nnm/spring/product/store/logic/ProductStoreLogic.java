@@ -6,8 +6,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.nnm.spring.Reply.domain.NoticeReply;
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
+import com.nnm.spring.product.domain.Bookmark;
+import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.store.ProductStore;
 
@@ -61,14 +64,36 @@ public class ProductStoreLogic implements ProductStore {
 		int result = session.update("ProductMapper.modifyClass", myClass);
 		return result;
 	}
+	
+	@Override
+	public int insertBmk(SqlSession session, Bookmark bookmark) {
+		int result = session.insert("ProductMapper.insertBmk", bookmark);
+		return result;
+	}
+	
+	@Override
+	public int deleteBmk(SqlSession session, Bookmark bookmark) {
+		int result = session.delete("ProductMapper.deleteBmk", bookmark);
+		return result;
+	}
+	
+	@Override
+	public int selectBmkYn(SqlSession session, Bookmark bookmark) {
+		int result = session.selectOne("ProductMapper.selectBmkYn", bookmark);
+		return result;
+	}
+	
+	
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+	
 	@Override
 	public MemberTch selectTchHistory(SqlSession session, String memberEmail) {
 		MemberTch tMember = session.selectOne("ProductMapper.selectTchHistory", memberEmail);
 		return tMember;
 	}
 	
-/////////////////////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public List<MemberTch> selectAllTeacherList(SqlSession session, PageInfo pInfo) {
 		int limit = pInfo.getRecordCountPerPage();
@@ -77,6 +102,18 @@ public class ProductStoreLogic implements ProductStore {
 		List<MemberTch>tList = session.selectList("ProductMapper.selectAllTeacherList",null,rowBounds);
 		return tList;
 	}
+
+	
+
+	
+
+
+
+	
+
+
+
+
 
 
 

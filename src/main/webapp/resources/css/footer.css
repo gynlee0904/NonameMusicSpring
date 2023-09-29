@@ -6,7 +6,8 @@
 
 footer {
     background-color: #f4f4f4;
-    width : 1040px;
+    --width : 1040px;
+    width : 1300px;
     height : 100px;
     margin: 20px auto 0;
     

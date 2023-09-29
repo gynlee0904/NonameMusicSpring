@@ -20,16 +20,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nnm.spring.Reply.domain.NoticeReply;
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
+import com.nnm.spring.product.domain.Bookmark;
+import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.service.ProductService;
+import com.nnm.spring.review.service.ClassReviewService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 	@Autowired
 	private ProductService pService;
+	
+	@Autowired
+	private ClassReviewService cReviewService;
 	
 	/**
 	 * 클래스등록 페이지로 이동
@@ -177,28 +184,59 @@ public class ProductController {
 										, @RequestParam ("classNo") Integer classNo
 										, HttpSession session) {
 		//SELECT * FROM CLASS_LIST_TBL WHERE CLASS_NO = classNo
-		String memberEmail = (String)session.getAttribute("memberEmail");
-//		if(memberEmail != null && !memberEmail.equals("")) {
-			try {
+		try {
+			String memberEmail = (String)session.getAttribute("memberEmail");
+			
+			if(memberEmail != null && !memberEmail.equals("")) { //로그인한 사람만 보기
+				//클래스 상세정보 가져오기
 				MyClass classOne =  pService.selectClassByNo(classNo) ;
+				//선생님 정보 가져오기
 				MemberTch tMember = pService.selectTchHistory(memberEmail);
+				//북마크여부 가져오기
+				Bookmark bookmark = new Bookmark(classNo, memberEmail);
 				if(classOne != null) {
+					int bmkYn = pService.selectBmkYn(bookmark); // 북마크 여부 1:했음, 2:안했음
+					
+					//리뷰리스트 가져오기
+					List<ClassReview>cReviewList = cReviewService.selectClassReviewList(classNo);
+					
+					//리뷰수 카운트
+					ClassReview cReview = new ClassReview();
+					int refClassNo = cReview.getRefClassNo();
+					int totalReviewCount = cReviewService.getReviewListCount(refClassNo);
+					
+					if(cReviewList.size() > 0) {
+						mv.addObject("cReviewList",cReviewList);
+					}else {
+						mv.addObject("msg", "등록된 리뷰가 없습니다.");
+					}
+					
 					mv.addObject("classOne", classOne);
 					mv.addObject("tMember", tMember);
+					mv.addObject("bmkYn", bmkYn);
+					mv.addObject("totalReviewCount",totalReviewCount);
 					mv.setViewName("product/reservation1");
+					
 				}else {
 					mv.addObject("msg", "게시글 조회를 실패했습니다");
 					mv.addObject("error", "게시글 상세조회 실패 ");
 					mv.addObject("url", "/product/all_class_list.do");
 					mv.setViewName("common/errorPage");
 				}
-			} catch (Exception e) {
-				mv.addObject("msg", "게시글 조회가 되지않았습니다");
-				mv.addObject("error", e.getMessage());
+			}else {
+				mv.addObject("msg", "로그인해야합니다.");
+				mv.addObject("error", "게시글 상세조회 실패 ");
 				mv.addObject("url", "/product/all_class_list.do");
 				mv.setViewName("common/errorPage");
 			}
-//		}
+			
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의해주세요.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/product/all_class_list.do");
+			mv.setViewName("common/errorPage");
+		}
+		
 		return mv;
 	}
 	
@@ -240,6 +278,7 @@ public class ProductController {
 			
 			//글쓴사람만 수정하도록 
 			if(classWriter != null && classWriter.equals(memberEmail)) {
+				
 				if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 					String fileRename = myClass.getClassFileRename();
 					if(fileRename != null) {
@@ -278,7 +317,68 @@ public class ProductController {
 		}
 		return mv;
 	}
-//////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	//클래스 북마크 등록
+	@RequestMapping(value = "/insert_bmk.do", method = RequestMethod.GET)
+	public ModelAndView insertBmk(ModelAndView mv
+									  , @RequestParam("refClassNo") int refClassNo
+									  , HttpSession session) {
+		try {
+			String memberEmail = (String) session.getAttribute("memberEmail");
+			Bookmark bookmark = new Bookmark(refClassNo, memberEmail);
+			int result = pService.insertBmk(bookmark);
+			if (result > 0) {
+				mv.setViewName("redirect:/product/class_detail.do?classNo=" + refClassNo);
+			} else {
+				mv.addObject("msg", "북마크 등록을 실패하였습니다.");
+				mv.addObject("url", "/product/class_detail.do?classNo=" + refClassNo);
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의해주세요");
+			mv.addObject("url", "/product/class_detail.do?classNo=" + refClassNo);
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+			
+			
+	
+	
+	// 클래스 북마크 삭제
+	@RequestMapping(value = "/delete_bmk.do", method = RequestMethod.GET)
+	public ModelAndView deleteBmk(ModelAndView mv
+								, @RequestParam("refClassNo") int refClassNo
+								, HttpSession session) {
+		try {
+			String memberEmail = (String) session.getAttribute("memberEmail");
+			Bookmark bookmark = new Bookmark(refClassNo, memberEmail);
+			int result = pService.deleteBmk(bookmark);
+			if (result > 0) {
+				mv.setViewName("redirect:/product/class_detail.do?classNo=" + refClassNo);
+			} else {
+				mv.addObject("msg", "북마크 삭제를 실패하였습니다.");
+				mv.addObject("url", "/product/class_detail.do?classNo=" + refClassNo);
+				mv.setViewName("common/errorPage");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의해주세요");
+			mv.addObject("url", "/product/class_detail.do?classNo=" + refClassNo);
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+
+	
+		
+		
+		
+		
+
+	
+////선생님 리스트//////////////////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value="/teacher_list.do", method=RequestMethod.GET)
 	public ModelAndView showTeacherList(ModelAndView mv
 										,@ModelAttribute MemberTch tMember
@@ -308,7 +408,11 @@ public class ProductController {
 	
 	
 	
-//**********************************************************************************************	
+	
+	
+	
+	
+//**공통메소드********************************************************************************************	
 	
 	/**
 	 * 페이지네이션 메소드
@@ -380,7 +484,8 @@ public class ProductController {
 			return fileMap;		
 		}
 	
-	
+		
+
 	
 	
 	

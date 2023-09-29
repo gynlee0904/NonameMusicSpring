@@ -38,7 +38,7 @@ public class NoticeReplyStoreLogic implements NoticeReplyStore {
 	
 	@Override
 	public int getReplyListCount(SqlSession session, Integer refNoticeNo) {
-		int result = session.update("ReplyMapper.getReplyListCount", refNoticeNo);
+		int result = session.selectOne("ReplyMapper.getReplyListCount", refNoticeNo);
 		return result;
 	}
 	
