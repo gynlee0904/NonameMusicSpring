@@ -10,9 +10,9 @@ import com.nnm.spring.Reply.domain.NoticeReply;
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.product.domain.Bookmark;
-import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.store.ProductStore;
+import com.nnm.spring.review.domain.ClassReview;
 
 @Repository
 public class ProductStoreLogic implements ProductStore {

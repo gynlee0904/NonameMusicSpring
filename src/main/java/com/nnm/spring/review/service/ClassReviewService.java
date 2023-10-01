@@ -2,7 +2,7 @@ package com.nnm.spring.review.service;
 
 import java.util.List;
 
-import com.nnm.spring.product.domain.ClassReview;
+import com.nnm.spring.review.domain.ClassReview;
 
 public interface ClassReviewService {
 
@@ -10,6 +10,8 @@ public interface ClassReviewService {
 	
 	public List<ClassReview> selectClassReviewList(Integer classNo);
 	
-	public int getReviewListCount(int refClassNo);
+	public int getReviewCount(int refClassNo);
+
+	public double getReviewAvg(int classNo);
 
 }

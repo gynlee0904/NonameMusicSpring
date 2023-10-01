@@ -24,9 +24,9 @@ import com.nnm.spring.Reply.domain.NoticeReply;
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.product.domain.Bookmark;
-import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
 import com.nnm.spring.product.service.ProductService;
+import com.nnm.spring.review.domain.ClassReview;
 import com.nnm.spring.review.service.ClassReviewService;
 
 @Controller
@@ -190,20 +190,17 @@ public class ProductController {
 			if(memberEmail != null && !memberEmail.equals("")) { //로그인한 사람만 보기
 				//클래스 상세정보 가져오기
 				MyClass classOne =  pService.selectClassByNo(classNo) ;
-				//선생님 정보 가져오기
-				MemberTch tMember = pService.selectTchHistory(memberEmail);
-				//북마크여부 가져오기
-				Bookmark bookmark = new Bookmark(classNo, memberEmail);
+				
+				
 				if(classOne != null) {
+					//선생님 정보 가져오기
+					MemberTch tMember = pService.selectTchHistory(memberEmail);
+					//북마크여부 가져오기
+					Bookmark bookmark = new Bookmark(classNo, memberEmail);
 					int bmkYn = pService.selectBmkYn(bookmark); // 북마크 여부 1:했음, 2:안했음
 					
 					//리뷰리스트 가져오기
 					List<ClassReview>cReviewList = cReviewService.selectClassReviewList(classNo);
-					
-					//리뷰수 카운트
-					ClassReview cReview = new ClassReview();
-					int refClassNo = cReview.getRefClassNo();
-					int totalReviewCount = cReviewService.getReviewListCount(refClassNo);
 					
 					if(cReviewList.size() > 0) {
 						mv.addObject("cReviewList",cReviewList);
@@ -211,10 +208,23 @@ public class ProductController {
 						mv.addObject("msg", "등록된 리뷰가 없습니다.");
 					}
 					
+					//리뷰수 카운트
+					int totalReviewCount = cReviewService.getReviewCount(classNo);
+					
+					//클래스당 리뷰 평점
+					double totalReviewAvg = cReviewService.getReviewAvg(classNo);
+					
+					//리뷰번호당 별점
+//					ClassReview cReview = new ClassReview();
+//					double cReviewStar = cReview.getcReviewStar();
+		
+					
 					mv.addObject("classOne", classOne);
 					mv.addObject("tMember", tMember);
 					mv.addObject("bmkYn", bmkYn);
 					mv.addObject("totalReviewCount",totalReviewCount);
+					mv.addObject("totalReviewAvg",totalReviewAvg);
+//					mv.addObject("cReview",cReview);
 					mv.setViewName("product/reservation1");
 					
 				}else {

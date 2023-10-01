@@ -1,4 +1,4 @@
-package com.nnm.spring.product.domain;
+package com.nnm.spring.review.domain;
 
 import java.sql.Timestamp;
 
@@ -14,7 +14,7 @@ public class ClassReview {
 	private Timestamp cReviewCreateDate;
 	private Timestamp cReviewUpdateDate;
 	private char cReviewStatus;
-	
+	private double cReviewStar;
 	
 	public int getClassReviewNo() {
 		return classReviewNo;
@@ -82,15 +82,25 @@ public class ClassReview {
 	public void setcReviewStatus(char cReviewStatus) {
 		this.cReviewStatus = cReviewStatus;
 	}
+	
+	public double getcReviewStar() {
+		return cReviewStar;
+	}
+	public void setcReviewStar(double cReviewStar) {
+		this.cReviewStar = cReviewStar;
+	}
+	
 	@Override
 	public String toString() {
 		return "리뷰 [리뷰번호=" + classReviewNo + ", 클래스번호=" + refClassNo + ", 리뷰내용="
-				+ classReviewContent + ", 리뷰작성자=" + classReviewWriter + ", 첨부파일명="
-				+ classReviewFilename + ", 첨부파일리네임=" + classReviewFileRename + ", 파일경로="
+				+ classReviewContent + ", 리뷰작성자=" + classReviewWriter + ", 첨부파일="
+				+ classReviewFilename + ", 파일리네임=" + classReviewFileRename + ", 파일경로="
 				+ classReviewFilepath + ", 파일크기=" + classReviewFilelength + ", 리뷰작성일="
-				+ cReviewCreateDate + ", 리뷰수정일=" + cReviewUpdateDate + ", 리뷰상태=" + cReviewStatus
-				+ "]";
+				+ cReviewCreateDate + ", 리뷰수정일=" + cReviewUpdateDate + ", 리뷰공개여부=" + cReviewStatus
+				+ ", 별점=" + cReviewStar + "]";
 	}
+
+
 	
 	
 	

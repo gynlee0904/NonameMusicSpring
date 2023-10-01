@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nnm.spring.notice.domain.PageInfo;
-import com.nnm.spring.product.domain.ClassReview;
+import com.nnm.spring.review.domain.ClassReview;
 import com.nnm.spring.review.service.ClassReviewService;
 
 @Controller
@@ -28,12 +28,13 @@ public class ClassReviewController {
 	@Autowired
 	private ClassReviewService cReviewService;
 	
-	
+	//리뷰등록
 	@RequestMapping(value = "/review/insert.do", method = RequestMethod.POST)
 	public ModelAndView insertReview(ModelAndView mv
 									, @ModelAttribute ClassReview cReview
 									, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
-									, HttpSession session) {
+									, HttpSession session
+									, HttpServletRequest request) {
 		String url="";
 		try {
 			//INSERT INTO REPLY_TBL VALUES()
@@ -42,6 +43,16 @@ public class ClassReviewController {
 			String memberEmail = (String) session.getAttribute("memberEmail");
 //			if(memberEmail != null && !memberEmail.equals("")) { //로그인한 사용자만 댓글 작성 
 				cReview.setClassReviewWriter(classReviewWriter); //작성자=로그인한 사용자이름
+				
+				//첨부파일 업로드
+				if(uploadFile !=null && !uploadFile.getOriginalFilename().equals("")) {
+					//파일정보(이름, 리네임, 경로, 크기) 및 파일저장 
+					Map<String, Object> rMap = this.saveFile(request, uploadFile);
+					cReview.setClassReviewFilename((String)rMap.get("fileName")); //맵이 Object이기때문에 String으로 형변환
+					cReview.setClassReviewFileRename((String)rMap.get("fileRename")); //("")안에는 키값과 맞춤
+					cReview.setClassReviewFilepath((String)rMap.get("filePath"));
+					cReview.setClassReviewFilelength((long)rMap.get("fileLength"));
+				}
 				
 				int result = cReviewService.insertClassReview(cReview);
 				if(result > 0) {

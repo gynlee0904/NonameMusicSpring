@@ -19,7 +19,7 @@
 		<typeAlias type="com.nnm.spring.Reply.domain.NoticeReply" alias="NoticeReply"/>
 		<typeAlias type="com.nnm.spring.product.domain.MyClass" alias="MyClass"/>
 		<typeAlias type="com.nnm.spring.product.domain.Bookmark" alias="Bookmark"/>
-		<typeAlias type="com.nnm.spring.product.domain.ClassReview" alias="ClassReview"/>
+		<typeAlias type="com.nnm.spring.review.domain.ClassReview" alias="ClassReview"/>
 	</typeAliases>
 	
 	<mappers>

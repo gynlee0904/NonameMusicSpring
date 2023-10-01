@@ -16,23 +16,35 @@
 		<result property="classReviewFilelength"  column="CLASS_REVIEW_FILELENGTH"/>
 		<result property="cReviewCreateDate"      column="C_REVIEW_CREATE_DATE"/>	
 		<result property="cReviewUpdateDate"      column="C_REVIEW_UPDATE_DATE"/>	
-		<result property="cReviewStatus"          column="C_REVIEW__STATUS"/>	
+		<result property="cReviewStatus"          column="C_REVIEW_STATUS"/>	
+		<result property="cReviewStar"          column="C_REVIEW_STAR"/>
 	</resultMap>
   
 	<!-- 리뷰등록 -->
 	<insert id="insertClassReview">
-		INSERT INTO CLASS_REVIEW_TBL VALUES(SEQ_C_REVIEW_NO.NEXTVAL, #{refClassNo}, #{classReviewContent}, #{classReviewWriter}, #{classReviewFilename}, #{classReviewFileRename}, #{classReviewFilepath}, #{classReviewFilelength}, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO CLASS_REVIEW_TBL VALUES(SEQ_C_REVIEW_NO.NEXTVAL, #{refClassNo}, #{classReviewContent}, #{classReviewWriter}, #{classReviewFilename}, #{classReviewFileRename}, #{classReviewFilepath}, #{classReviewFilelength}, DEFAULT, DEFAULT, DEFAULT, #{cReviewStar})
 	</insert>
 	
 	<!-- 리뷰목록 -->
 	<select id="selectClassReviewList" resultMap="classReviewResultMap">
-		SELECT * FROM CLASS_REVIEW_TBL WHERE REF_CLASS_NO = #{refClassNo} AND C_REVIEW__STATUS = 'Y' 
+		SELECT * FROM CLASS_REVIEW_TBL WHERE C_REVIEW_STATUS = 'Y' AND REF_CLASS_NO = #{refClassNo} ORDER BY CLASS_REVIEW_NO DESC 
 	</select>
 	
 	<!-- 리뷰 총개수 --> 
-	<select id="getReviewListCount" resultType="_int">
-		SELECT COUNT (*) FROM CLASS_REVIEW_TBL WHERE C_REVIEW__STATUS = 'Y' AND REF_CLASS_NO = #{refClassNo}
+	<select id="getReviewCount" resultType="_int">
+		SELECT COUNT (*) FROM CLASS_REVIEW_TBL WHERE C_REVIEW_STATUS = 'Y' AND REF_CLASS_NO = #{refClassNo}
 	</select>
+	
+	<!-- 클래스당 리뷰 평점 -->
+	<select id="getReviewAvg" resultType="_double">
+		SELECT COALESCE(ROUND(AVG(C_REVIEW_STAR), 1), 0.0)
+		FROM CLASS_REVIEW_TBL
+		WHERE C_REVIEW_STATUS = 'Y' AND REF_CLASS_NO=#{refClassNo}
+	</select>
+	
+
+	
+	
 	
  	<!-- 댓글수정 --> 
 <!-- 	<update id="modifyReply"> -->

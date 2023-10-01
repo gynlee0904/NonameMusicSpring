@@ -5,8 +5,8 @@ import java.util.List;
 import com.nnm.spring.memberTch.domain.MemberTch;
 import com.nnm.spring.notice.domain.PageInfo;
 import com.nnm.spring.product.domain.Bookmark;
-import com.nnm.spring.product.domain.ClassReview;
 import com.nnm.spring.product.domain.MyClass;
+import com.nnm.spring.review.domain.ClassReview;
 
 public interface ProductService {
 	

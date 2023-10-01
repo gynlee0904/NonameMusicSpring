@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nnm.spring.product.domain.ClassReview;
+import com.nnm.spring.review.domain.ClassReview;
 import com.nnm.spring.review.service.ClassReviewService;
 import com.nnm.spring.review.store.ClassReviewStore;
 
@@ -30,8 +30,14 @@ public class ClassReviewServiceImpl implements ClassReviewService{
 	}
 
 	@Override
-	public int getReviewListCount(int refClassNo) {
-		int result = cReviewStore.getReviewListCount(session, refClassNo);
+	public int getReviewCount(int refClassNo) {
+		int result = cReviewStore.getReviewCount(session, refClassNo);
+		return result;
+	}
+
+	@Override
+	public double getReviewAvg(int refClassNo) {
+		double result = cReviewStore.getReviewAvg(session, refClassNo);
 		return result;
 	}
 
